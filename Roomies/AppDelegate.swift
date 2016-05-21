@@ -2,8 +2,8 @@
 //  AppDelegate.swift
 //  Roomies
 //
-//  Created by Alec Barlow on 5/20/16.
-//  Copyright © 2016 Alec Barlow. All rights reserved.
+//  Created by Alec Barlow, Gabe Ratcliff, Nigel Koh on 5/20/16.
+//  Copyright © 2016 Alec Barlow, Gabe Ratcliff, Nigel Koh. All rights reserved.
 //
 
 import UIKit

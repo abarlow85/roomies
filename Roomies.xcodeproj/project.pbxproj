@@ -8,12 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		7089E0A01CEFBF6100485CD4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7089E09F1CEFBF6100485CD4 /* AppDelegate.swift */; };
-		7089E0A21CEFBF6100485CD4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7089E0A11CEFBF6100485CD4 /* ViewController.swift */; };
+		7089E0A21CEFBF6100485CD4 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7089E0A11CEFBF6100485CD4 /* LoginViewController.swift */; };
 		7089E0A51CEFBF6100485CD4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7089E0A31CEFBF6100485CD4 /* Main.storyboard */; };
 		7089E0A71CEFBF6100485CD4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7089E0A61CEFBF6100485CD4 /* Assets.xcassets */; };
 		7089E0AA1CEFBF6100485CD4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7089E0A81CEFBF6100485CD4 /* LaunchScreen.storyboard */; };
 		7089E0B51CEFBF6100485CD4 /* RoomiesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7089E0B41CEFBF6100485CD4 /* RoomiesTests.swift */; };
 		7089E0C01CEFBF6200485CD4 /* RoomiesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7089E0BF1CEFBF6200485CD4 /* RoomiesUITests.swift */; };
+		7089E0CE1CEFE23800485CD4 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7089E0CD1CEFE23800485CD4 /* UserModel.swift */; };
+		7089E0D01CEFE58E00485CD4 /* RoomSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7089E0CF1CEFE58E00485CD4 /* RoomSelectionViewController.swift */; };
+		7089E0D21CEFE66800485CD4 /* RoomModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7089E0D11CEFE66800485CD4 /* RoomModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +39,7 @@
 /* Begin PBXFileReference section */
 		7089E09C1CEFBF6100485CD4 /* Roomies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Roomies.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7089E09F1CEFBF6100485CD4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		7089E0A11CEFBF6100485CD4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		7089E0A11CEFBF6100485CD4 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		7089E0A41CEFBF6100485CD4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7089E0A61CEFBF6100485CD4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7089E0A91CEFBF6100485CD4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -47,6 +50,9 @@
 		7089E0BB1CEFBF6200485CD4 /* RoomiesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RoomiesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7089E0BF1CEFBF6200485CD4 /* RoomiesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomiesUITests.swift; sourceTree = "<group>"; };
 		7089E0C11CEFBF6200485CD4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7089E0CD1CEFE23800485CD4 /* UserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		7089E0CF1CEFE58E00485CD4 /* RoomSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomSelectionViewController.swift; sourceTree = "<group>"; };
+		7089E0D11CEFE66800485CD4 /* RoomModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,8 +104,11 @@
 			isa = PBXGroup;
 			children = (
 				7089E09F1CEFBF6100485CD4 /* AppDelegate.swift */,
-				7089E0A11CEFBF6100485CD4 /* ViewController.swift */,
+				7089E0A11CEFBF6100485CD4 /* LoginViewController.swift */,
 				7089E0A31CEFBF6100485CD4 /* Main.storyboard */,
+				7089E0CF1CEFE58E00485CD4 /* RoomSelectionViewController.swift */,
+				7089E0D11CEFE66800485CD4 /* RoomModel.swift */,
+				7089E0CD1CEFE23800485CD4 /* UserModel.swift */,
 				7089E0A61CEFBF6100485CD4 /* Assets.xcassets */,
 				7089E0A81CEFBF6100485CD4 /* LaunchScreen.storyboard */,
 				7089E0AB1CEFBF6100485CD4 /* Info.plist */,
@@ -256,7 +265,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7089E0A21CEFBF6100485CD4 /* ViewController.swift in Sources */,
+				7089E0A21CEFBF6100485CD4 /* LoginViewController.swift in Sources */,
+				7089E0CE1CEFE23800485CD4 /* UserModel.swift in Sources */,
+				7089E0D21CEFE66800485CD4 /* RoomModel.swift in Sources */,
+				7089E0D01CEFE58E00485CD4 /* RoomSelectionViewController.swift in Sources */,
 				7089E0A01CEFBF6100485CD4 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -484,6 +496,7 @@
 				7089E0C61CEFBF6200485CD4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		7089E0C71CEFBF6200485CD4 /* Build configuration list for PBXNativeTarget "RoomiesTests" */ = {
 			isa = XCConfigurationList;
@@ -492,6 +505,7 @@
 				7089E0C91CEFBF6200485CD4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		7089E0CA1CEFBF6200485CD4 /* Build configuration list for PBXNativeTarget "RoomiesUITests" */ = {
 			isa = XCConfigurationList;
@@ -500,6 +514,7 @@
 				7089E0CC1CEFBF6200485CD4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

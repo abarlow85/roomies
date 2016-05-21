@@ -14,7 +14,7 @@ extension RoomSelectionViewController: UISearchResultsUpdating {
     }
 }
 
-class RoomSelectionViewController: UITableViewController {
+class RoomSelectionViewController: UITableViewController, CancelButtonDelegate, NewRoomViewControllerDelegate {
     
     @IBOutlet weak var RoomSearchBar: UISearchBar!
     
@@ -64,8 +64,59 @@ class RoomSelectionViewController: UITableViewController {
             room = rooms[indexPath.row]
         }
         cell.textLabel?.text = "\(room["name"]!) at \(room["category"]!)"
-        cell.detailTextLabel?.text = room["category"] as! String
+        cell.detailTextLabel?.text = room["category"] as? String
         return cell
+    }
+    
+    func filterContentForSearchText(searchText: String, scope: String = "All") {
+        filteredRooms = rooms.filter { room in
+            return room["name"]!.lowercaseString.containsString(searchText.lowercaseString)
+        }
+        tableView.reloadData()
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier != "RoomSelectedSegue" {
+            let navigationController = segue.destinationViewController as! UINavigationController
+            let controller = navigationController.topViewController as! NewRoomViewController
+            controller.cancelButtonDelegate = self
+            controller.delegate = self
+        }
+    }
+    
+    func showAllRooms(){
+        RoomModel.getRooms(){
+            data, response, error in
+            do{
+                if(data != nil){
+                    if let jsonResult = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as? [NSMutableDictionary] {
+                        self.rooms = jsonResult
+                        dispatch_async(dispatch_get_main_queue(), {
+                            self.tableView.reloadData()
+                        })
+                    }
+                }
+                
+            } catch {
+                print("Something went wrong")
+            }
+        }
+    }
+    
+    func cancelButtonPressedFrom(controller: UIViewController) {
+        print(controller)
+        dismissViewControllerAnimated(true, completion: showAllRooms)
+    }
+    
+    func newRoomViewController(controller: NewRoomViewController, didFinishAddingRoom room: NSMutableDictionary) {
+        print(controller)
+        dismissViewControllerAnimated(true, completion: nil)
+        performSegueWithIdentifier("RoomSelectedSegue", sender: room)
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
     }
 
     

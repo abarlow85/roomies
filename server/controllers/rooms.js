@@ -33,31 +33,42 @@ module.exports = (function(){
 		},
 
 		create: function(req, res){
-			var room = new Room({name: req.body.name, category: req.body.category});
-			room.save(function(err, room){
-				if(err){
-					console.log(err.errors);
-					console.log('cannot add room');
-				} else{
-					console.log("successfully added room")
-					Room.findByIdAndUpdate(room._id, {$push: {users: req.body.user}}, {new: true}, function(err, newRoom){
-						if (err) {
-							console.log(err);
-						} else {
-							console.log("room updated with user");
-							User.findByIdAndUpdate(req.body.user, {$push: {_room: room._id}}, {new: true}, function(err){
-								if (err) {
-									console.log(err);
-								} else {
-									console.log("user updated with room");
-									res.json(newRoom);
-								}
-							})
+			Room.findOne({"name": req.body.name, "category": req.body.category}, function(err, roomExists) {
+				if (err) {
+					console.log(err);
+				} else if (roomExists) {
+					console.log("duplicate")
+					console.log(roomExists);
+					res.json({"error": "Room name and category already exist"})
+				} else {
+					var room = new Room({name: req.body.name, category: req.body.category});
+					room.save(function(err, room){
+					if(err){
+						console.log(err.errors);
+						console.log('cannot add room');
+					} else{
+						console.log("successfully added room")
+						Room.findByIdAndUpdate(room._id, {$push: {users: req.body.user}}, {new: true}, function(err, newRoom){
+							if (err) {
+								console.log(err);
+							} else {
+								console.log("room updated with user");
+								User.findByIdAndUpdate(req.body.user, {$push: {_room: room._id}}, {_lastRoom: room._id}, function(err){
+									if (err) {
+										console.log(err);
+									} else {
+										console.log("user updated with room");
+										res.json(newRoom);
+									}
+								})
 							
-						}
+							}
+						})
+					}
 					})
-				}
-			})
+			}
+			});
+			
 		}
 
 		// create: function(req, res){

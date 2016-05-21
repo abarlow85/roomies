@@ -28,6 +28,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             //User was in the register view but needs to log-in
             newUser = false
             loginTextLabel.text = "Please Log-in"
+            errorTextLabel.hidden = true
             registerButtonLabel.setTitle("New Roommate?", forState: .Normal)
             nameTextField.hidden = true
             confirmPasswordTextField.hidden = true
@@ -36,6 +37,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             //User needs to register
             newUser = true
             loginTextLabel.text = "Please register"
+            errorTextLabel.hidden = true
             registerButtonLabel.setTitle("Existing User?", forState: .Normal)
             nameTextField.hidden = false
             confirmPasswordTextField.hidden = false
@@ -61,19 +63,20 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-        var userData = NSMutableDictionary()
+        let userData = NSMutableDictionary()
         //dismiss keyboard
         self.view.endEditing(true)
+        print(textField)
+        
+        if emailTextField.text!.isEmpty ||
+            passwordTextField.text!.isEmpty {
+            errorTextLabel.text = "All fields are required"
+            errorTextLabel.hidden = false
+            return false
+        }
         
         if newUser {
-            if (nameTextField.text!.isEmpty ||
-                emailTextField.text!.isEmpty ||
-                passwordTextField.text!.isEmpty) {
-                
-                errorTextLabel.text = "All fields are required"
-                errorTextLabel.hidden = false
-                return false
-            }
+    
             if textField == passwordTextField {
                 let minPasswordLength = 5
                 let text = passwordTextField.text!
@@ -82,7 +85,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
 //                var number = false
                 
                 if text.characters.count < minPasswordLength {
-                    errorTextLabel.text = "Password must be greater than \(minPasswordLength)"
+                    errorTextLabel.text = "Password must be greater than \(minPasswordLength) characters"
                     errorTextLabel.hidden = false
                     return false
                 }
@@ -115,12 +118,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                             let fail = checkForFail as! String
                             dispatch_async(dispatch_get_main_queue(), {
                                 self.errorTextLabel.text = fail
+                                self.errorTextLabel.hidden = false
                             })
                         } else {
                             let user = jsonResult["user"] as! String
                             self.prefs.setValue(user, forKey: "currentUser")
                             dispatch_async(dispatch_get_main_queue(), {
-                                self.performSegueWithIdentifier("RoomSelection", sender: jsonResult)
+                                self.performSegueWithIdentifier("NewRoomSelectionSegue", sender: jsonResult)
                             })
                         }
                         
@@ -134,8 +138,46 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 }
             })
 
-            
-            
+        } else {
+            userData["email"] = emailTextField.text!
+            userData["password"] = passwordTextField.text!
+            UserModel.loginUser(userData, completionHandler: { data, response, error in
+                
+                do {
+                    //                print(response)
+                    if let jsonResult = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as? NSDictionary {
+                        print(jsonResult)
+                        if let checkForFail = jsonResult["error"] {
+                            print(checkForFail)
+                            let fail = checkForFail as! String
+                            dispatch_async(dispatch_get_main_queue(), {
+                                self.errorTextLabel.text = fail
+                                self.errorTextLabel.hidden = false
+                            })
+                        } else {
+                            let user = jsonResult["user"] as! String
+                            self.prefs.setValue(user, forKey: "currentUser")
+
+                            dispatch_async(dispatch_get_main_queue(), {
+                                if let lastRoom = jsonResult["_lastRoom"] as? String {
+                                    self.prefs.setValue(lastRoom, forKey: "currentRoom")
+                                    self.performSegueWithIdentifier("LoginSegue", sender: lastRoom)
+                                } else {
+                                    self.performSegueWithIdentifier("NewRoomSelectionSegue", sender: user)
+                                }
+                                
+                            })
+                        }
+                        
+                        
+                    }
+                    
+                }catch {
+                    print(data)
+                    print(response)
+                    print(error)
+                }
+            })
             
         }
         return true

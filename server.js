@@ -5,6 +5,7 @@ var bodyParser = require('body-parser');
 var passport = require('passport');
 var session = require('express-session');
 var flash = require('connect-flash');
+var messages = [];
 
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, './client')));
@@ -15,9 +16,9 @@ app.use(flash());
 
 require('./server/config/mongoose.js');
 require('./server/config/passport.js')(passport);
-require('./server/config/routes.js')(app, passport);
 
-app.listen(8000, function() {
+var server = app.listen(8000, function() {
 	console.log('go to localhost:8000')
 });
 
+require('./server/config/routes.js')(app, passport, server);

@@ -13,6 +13,8 @@ class TaskViewController: UITableViewController, CancelButtonDelegate, NewTaskVi
     let dateFormatter = NSDateFormatter()
     var roomTasks = [NSMutableDictionary]()
     var roomUsers = [NSMutableDictionary]()
+    var tasks = [[NSMutableDictionary]]()
+    var nickname: String!
     
     
     override func viewDidLoad() {
@@ -43,7 +45,17 @@ class TaskViewController: UITableViewController, CancelButtonDelegate, NewTaskVi
 
         }
     }
-    
+
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        tasks = [roomTasks]
+        SocketIOManager.sharedInstance.getTask { (taskInfo) -> Void in
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                self.tasks.append(taskInfo)
+                self.tableView.reloadData()
+                self.scrollToBottom()
+            })
+
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "newTaskSegue" {
             let navigationController = segue.destinationViewController as! UINavigationController
@@ -52,6 +64,7 @@ class TaskViewController: UITableViewController, CancelButtonDelegate, NewTaskVi
             //            print(roomUsers)
             controller.cancelButtonDelegate = self
             controller.delegate = self
+
         }
     }
     
@@ -102,5 +115,15 @@ class TaskViewController: UITableViewController, CancelButtonDelegate, NewTaskVi
         return userString
     }
     
+    func scrollToBottom() {
+        let delay = 0.1 * Double(NSEC_PER_SEC)
+        
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(delay)), dispatch_get_main_queue()) { () -> Void in
+            if self.tasks.count > 0 {
+                let lastRowIndexPath = NSIndexPath(forRow: self.tasks.count - 1, inSection: 0)
+                self.tableView.scrollToRowAtIndexPath(lastRowIndexPath, atScrollPosition: UITableViewScrollPosition.Bottom, animated: true)
+            }
+        }
+    }
     
 }

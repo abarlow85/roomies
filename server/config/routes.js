@@ -2,9 +2,25 @@ var tasks = require('../controllers/tasks.js')
 var users = require('../controllers/users.js')
 var rooms = require('../controllers/rooms.js')
 var messages = require('../controllers/messages.js')
+var userList = [];
+var typingUsers = {};
 
-module.exports = function(app, passport) {
 
+module.exports = function(app, passport, server) {
+
+	var io = require('socket.io').listen(server);
+	console.log('got here!!!');
+	io.sockets.on('connection', function(socket){
+		console.log('connection!');
+		
+		socket.on('connected', function(){
+			console.log('connected');
+			users.login(function(output){
+				console.log('broadcast');
+				socket.broadcast.emit('new_user', output);
+			})
+		})
+	});
 
 // User routes
 	app.post('/register', passport.authenticate('local-register', {

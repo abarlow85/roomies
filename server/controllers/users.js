@@ -40,21 +40,33 @@ module.exports = (function(){
 		},
 
 		add_to_room: function(req, res){
-			Room.findOneAndUpdate({_id: req.body._id}, {'$push': {users: req.body.user}}).exec(function(err){
+			Room.findOneAndUpdate({_id: req.body._id}, {'$push': {users: req.body.user}}, {new: true}).exec(function(err, newRoom){
 				if(err){
 					console.log('cannot add user to room');
 				} else{
-					User.findByIdAndUpdate(req.body.user, {$push: {rooms: req.body._id}}, {new: true}, function(err, user){
+					User.findByIdAndUpdate(req.body.user, {$push: {rooms: req.body._id}}, function(err){
 						if (err) {
 							console.log(err)
 						} else {
 							console.log('successfully added user to room')
-							res.json(user)
+							res.json(newRoom)
 						}
 					});
 					
 				}
 			})
-		}
+		}, 
+		// socket methods 
+		login: function(callback) {
+		User.find({}, function(err, users){
+			if(err){
+				console.log('error');
+			} else {
+				
+				callback(users);
+			}
+		});
+		
+	},
 	}
 })();

@@ -20,8 +20,9 @@ module.exports = function(app, passport) {
     }));
 
     app.get('/success', function(req, res){
-    	res.json(req.session.passport);
+    	// res.json(req.session.passport);
     	// rooms.create(req, res);
+    	users.showCurrentUser(req, res);
     });
 
     app.get('/failure', function(req, res){

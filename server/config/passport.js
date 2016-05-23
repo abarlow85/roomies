@@ -90,6 +90,7 @@ module.exports = function(passport) {
                 req.flash('error', 'Incorrect user credentials')
     			return done(null, false);
     		}
+            // console.log(user);
     		return done(null, user);
     	});
     }));

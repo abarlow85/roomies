@@ -14,8 +14,14 @@ class TaskViewController: UITableViewController {
     var roomTasks = [NSMutableDictionary]()
     var roomUsers = [NSMutableDictionary]()
     
+    
+    @IBAction func roomSelectionButtonPressed(sender: AnyObject) {
+        performSegueWithIdentifier("BackToRoomSelectionSegue", sender: self)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+//        self.tabBarController?.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Room Selection", style: .Plain, target: self, action: roomSelectionButtonPressed((self.tabBarController?.navigationItem.leftBarButtonItem)!))
         let room = prefs.stringForKey("currentRoom")!
         TaskModel.getTasksForRoom(room) { data, response, error in
             do {
@@ -49,6 +55,10 @@ class TaskViewController: UITableViewController {
         var cell = tableView.dequeueReusableCellWithIdentifier("TaskCell")
         
         return cell!
+    }
+    
+    func backToRoomSelection() {
+        performSegueWithIdentifier("BackToRoomSelectionSegue", sender: self)
     }
     
     

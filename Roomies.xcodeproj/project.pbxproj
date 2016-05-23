@@ -22,6 +22,7 @@
 		7089E0DA1CF0018D00485CD4 /* NewRoomViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7089E0D91CF0018D00485CD4 /* NewRoomViewControllerDelegate.swift */; };
 		7089E0DC1CF017EE00485CD4 /* TaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7089E0DB1CF017EE00485CD4 /* TaskViewController.swift */; };
 		7089E0DE1CF0195800485CD4 /* TaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7089E0DD1CF0195800485CD4 /* TaskModel.swift */; };
+		7089E0E21CF0217B00485CD4 /* TaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7089E0E11CF0217B00485CD4 /* TaskCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +64,7 @@
 		7089E0D91CF0018D00485CD4 /* NewRoomViewControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewRoomViewControllerDelegate.swift; sourceTree = "<group>"; };
 		7089E0DB1CF017EE00485CD4 /* TaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskViewController.swift; sourceTree = "<group>"; };
 		7089E0DD1CF0195800485CD4 /* TaskModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskModel.swift; sourceTree = "<group>"; };
+		7089E0E11CF0217B00485CD4 /* TaskCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +120,7 @@
 				7089E0A31CEFBF6100485CD4 /* Main.storyboard */,
 				7089E0DB1CF017EE00485CD4 /* TaskViewController.swift */,
 				7089E0DD1CF0195800485CD4 /* TaskModel.swift */,
+				7089E0E11CF0217B00485CD4 /* TaskCell.swift */,
 				7089E0CF1CEFE58E00485CD4 /* RoomSelectionViewController.swift */,
 				7089E0D71CEFF28800485CD4 /* CancelButtonDelegate.swift */,
 				7089E0D31CEFEE9800485CD4 /* NewRoomViewController.swift */,
@@ -287,6 +290,7 @@
 				7089E0CE1CEFE23800485CD4 /* UserModel.swift in Sources */,
 				7089E0D21CEFE66800485CD4 /* RoomModel.swift in Sources */,
 				7089E0D01CEFE58E00485CD4 /* RoomSelectionViewController.swift in Sources */,
+				7089E0E21CF0217B00485CD4 /* TaskCell.swift in Sources */,
 				7089E0A01CEFBF6100485CD4 /* AppDelegate.swift in Sources */,
 				7089E0DA1CF0018D00485CD4 /* NewRoomViewControllerDelegate.swift in Sources */,
 				7089E0DC1CF017EE00485CD4 /* TaskViewController.swift in Sources */,

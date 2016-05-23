@@ -15,6 +15,18 @@ module.exports = (function(){
 			})
 		},
 
+		showCurrentUser: function(req, res) {
+			// console.log(req.params.id);
+			User.findOne({_id: req.session.passport.user}).exec(function(err, user) {
+				if(err){
+					console.log('cannot show by id in users');
+				} else {
+					console.log('showing current user...');
+					res.json(user);
+				}
+			})
+		},
+
 		show_by_id: function(req, res) {
 			console.log(req.params.id);
 			User.findOne({_id: req.params.id}).exec(function(err, user) {

@@ -42,23 +42,34 @@ module.exports = (function(){
 					res.json({"error": "Room name and category already exist"})
 				} else {
 					var room = new Room({name: req.body.name, category: req.body.category});
-					room.save(function(err, room){
+					room.save(function(err){
 					if(err){
 						console.log(err.errors);
 						console.log('cannot add room');
 					} else{
+						console.log(room)
 						console.log("successfully added room")
 						Room.findByIdAndUpdate(room._id, {$push: {users: req.body.user}}, {new: true}, function(err, newRoom){
 							if (err) {
 								console.log(err);
 							} else {
 								console.log("room updated with user");
-								User.findByIdAndUpdate(req.body.user, {$push: {_room: room._id}}, {_lastRoom: room._id}, function(err){
+								User.findByIdAndUpdate(req.body.user, {
+									$push: {rooms: room._id}},
+									{new: true}, function(err, user){
 									if (err) {
 										console.log(err);
 									} else {
 										console.log("user updated with room");
-										res.json(newRoom);
+										User.findByIdAndUpdate(user._id, {_lastRoom: room._id}, function(err) {
+											if (err) {
+												console.log(err)
+											} else {
+												console.log("_lastRoom updated in user")
+												res.json(newRoom);
+											}
+										});
+										
 									}
 								})
 							

@@ -121,7 +121,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                                 self.errorTextLabel.hidden = false
                             })
                         } else {
-                            let user = jsonResult["user"] as! String
+                            let user = jsonResult["_id"] as! String
                             self.prefs.setValue(user, forKey: "currentUser")
                             dispatch_async(dispatch_get_main_queue(), {
                                 self.performSegueWithIdentifier("NewRoomSelectionSegue", sender: jsonResult)
@@ -155,10 +155,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                                 self.errorTextLabel.hidden = false
                             })
                         } else {
-                            let user = jsonResult["user"] as! String
+                            let user = jsonResult["_id"] as! String
                             self.prefs.setValue(user, forKey: "currentUser")
-
+                            print(jsonResult)
                             dispatch_async(dispatch_get_main_queue(), {
+                                
                                 if let lastRoom = jsonResult["_lastRoom"] as? String {
                                     self.prefs.setValue(lastRoom, forKey: "currentRoom")
                                     self.performSegueWithIdentifier("LoginSegue", sender: lastRoom)

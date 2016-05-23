@@ -23,17 +23,6 @@ class RoomSelectionViewController: UITableViewController, CancelButtonDelegate, 
     var rooms = [NSMutableDictionary]()
     let searchController = UISearchController(searchResultsController: nil)
     
-//    var rooms = [
-//            Room(category: "UC Berkeley", name: "123"),
-//            Room(category: "UC Berkeley", name: "321"),
-//            Room(category: "UC Berkeley", name: "541"),
-//            Room(category: "UC Berkeley", name: "875"),
-//            Room(category: "UC Berkeley", name: "122"),
-//            Room(category: "UC Davis", name: "1"),
-//            Room(category: "UC Davis", name: "2"),
-//            Room(category: "Coding Dojo", name: "iOS")
-//        ]
-    
     
     
     override func viewDidLoad() {
@@ -76,11 +65,20 @@ class RoomSelectionViewController: UITableViewController, CancelButtonDelegate, 
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier != "RoomSelectedSegue" {
+        print(segue.identifier)
+        if segue.identifier !=
+            "RoomSelectedSegue" {
+            print("notSelectedSegue")
             let navigationController = segue.destinationViewController as! UINavigationController
             let controller = navigationController.topViewController as! NewRoomViewController
             controller.cancelButtonDelegate = self
             controller.delegate = self
+        } else {
+            print("else")
+            let tabBarController = segue.destinationViewController as! UITabBarController
+            let navController = tabBarController.viewControllers![0] as! UINavigationController
+            let controller = navController.topViewController as! TaskViewController
+//            controller.tabBarController?.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Room Selection", style: .Plain, target: controller, action: Selector(controller.backToRoomSelection()))
         }
     }
     
@@ -109,9 +107,10 @@ class RoomSelectionViewController: UITableViewController, CancelButtonDelegate, 
     }
     
     func newRoomViewController(controller: NewRoomViewController, didFinishAddingRoom room: NSMutableDictionary) {
-        print(controller)
-        dismissViewControllerAnimated(true, completion: nil)
+        
         performSegueWithIdentifier("RoomSelectedSegue", sender: room)
+        dismissViewControllerAnimated(true, completion: nil)
+        
     }
     
     override func didReceiveMemoryWarning() {

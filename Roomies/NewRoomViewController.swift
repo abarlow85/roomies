@@ -50,7 +50,11 @@ class NewRoomViewController: UITableViewController {
                         let roomId = jsonResult["_id"]
                         self.prefs.setValue(roomId, forKey: "currentRoom")
                         print("roomId: \(jsonResult["_id"])")
-                        self.delegate?.newRoomViewController(self, didFinishAddingRoom: jsonResult)
+                        dispatch_async(dispatch_get_main_queue(), {
+                            self.delegate?.newRoomViewController(self, didFinishAddingRoom: jsonResult)
+//                            self.performSegueWithIdentifier("NewRoomAddedSegue", sender: self)
+                        })
+                        
                     }
                     
                 }
@@ -64,6 +68,10 @@ class NewRoomViewController: UITableViewController {
         }
     }
     
+    override func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        let header = view as! UITableViewHeaderFooterView
+        header.backgroundView?.backgroundColor = UIColor(red:197/255.0, green:224/255.0, blue:216/255.0, alpha: 1.0)
+    }
     
     
     override func viewDidLoad() {

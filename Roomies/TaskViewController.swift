@@ -55,7 +55,9 @@ class TaskViewController: UITableViewController, CancelButtonDelegate, NewTaskVi
                 self.tableView.reloadData()
                 self.scrollToBottom()
             })
-
+        }
+    }
+        
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "newTaskSegue" {
             let navigationController = segue.destinationViewController as! UINavigationController

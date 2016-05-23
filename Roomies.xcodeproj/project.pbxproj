@@ -19,10 +19,10 @@
 		7089E0D21CEFE66800485CD4 /* RoomModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7089E0D11CEFE66800485CD4 /* RoomModel.swift */; };
 		7089E0D41CEFEE9800485CD4 /* NewRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7089E0D31CEFEE9800485CD4 /* NewRoomViewController.swift */; };
 		7089E0D81CEFF28800485CD4 /* CancelButtonDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7089E0D71CEFF28800485CD4 /* CancelButtonDelegate.swift */; };
-		7089E0DA1CF0018D00485CD4 /* NewTaskViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7089E0D91CF0018D00485CD4 /* NewTaskViewControllerDelegate.swift */; };
 		7089E0DC1CF017EE00485CD4 /* TaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7089E0DB1CF017EE00485CD4 /* TaskViewController.swift */; };
 		7089E0DE1CF0195800485CD4 /* TaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7089E0DD1CF0195800485CD4 /* TaskModel.swift */; };
 		7089E0E21CF0217B00485CD4 /* TaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7089E0E11CF0217B00485CD4 /* TaskCell.swift */; };
+		70C9FA611CF38CDD00E1801F /* NewTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C9FA601CF38CDD00E1801F /* NewTaskViewController.swift */; };
 		A688D5B81CF39202007E3D11 /* NSCharacterSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A688D5A11CF39202007E3D11 /* NSCharacterSet.swift */; };
 		A688D5B91CF39202007E3D11 /* SocketAckEmitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A688D5A21CF39202007E3D11 /* SocketAckEmitter.swift */; };
 		A688D5BA1CF39202007E3D11 /* SocketAckManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A688D5A31CF39202007E3D11 /* SocketAckManager.swift */; };
@@ -47,8 +47,6 @@
 		A688D5CD1CF39202007E3D11 /* SwiftRegex.swift in Sources */ = {isa = PBXBuildFile; fileRef = A688D5B61CF39202007E3D11 /* SwiftRegex.swift */; };
 		A688D5CE1CF39202007E3D11 /* WebSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = A688D5B71CF39202007E3D11 /* WebSocket.swift */; };
 		A688D5D01CF39224007E3D11 /* SocketIOManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A688D5CF1CF39224007E3D11 /* SocketIOManager.swift */; };
-		70C9FA611CF38CDD00E1801F /* NewTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C9FA601CF38CDD00E1801F /* NewTaskViewController.swift */; };
-
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,11 +85,10 @@
 		7089E0D11CEFE66800485CD4 /* RoomModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomModel.swift; sourceTree = "<group>"; };
 		7089E0D31CEFEE9800485CD4 /* NewRoomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewRoomViewController.swift; sourceTree = "<group>"; };
 		7089E0D71CEFF28800485CD4 /* CancelButtonDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CancelButtonDelegate.swift; sourceTree = "<group>"; };
-		7089E0D91CF0018D00485CD4 /* NewTaskViewControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewTaskViewControllerDelegate.swift; sourceTree = "<group>"; };
 		7089E0DB1CF017EE00485CD4 /* TaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskViewController.swift; sourceTree = "<group>"; };
 		7089E0DD1CF0195800485CD4 /* TaskModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskModel.swift; sourceTree = "<group>"; };
 		7089E0E11CF0217B00485CD4 /* TaskCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskCell.swift; sourceTree = "<group>"; };
-
+		70C9FA601CF38CDD00E1801F /* NewTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewTaskViewController.swift; sourceTree = "<group>"; };
 		A688D5A11CF39202007E3D11 /* NSCharacterSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSCharacterSet.swift; sourceTree = "<group>"; };
 		A688D5A21CF39202007E3D11 /* SocketAckEmitter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketAckEmitter.swift; sourceTree = "<group>"; };
 		A688D5A31CF39202007E3D11 /* SocketAckManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketAckManager.swift; sourceTree = "<group>"; };
@@ -116,9 +113,6 @@
 		A688D5B61CF39202007E3D11 /* SwiftRegex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftRegex.swift; sourceTree = "<group>"; };
 		A688D5B71CF39202007E3D11 /* WebSocket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebSocket.swift; sourceTree = "<group>"; };
 		A688D5CF1CF39224007E3D11 /* SocketIOManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketIOManager.swift; sourceTree = "<group>"; };
-
-		70C9FA601CF38CDD00E1801F /* NewTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewTaskViewController.swift; sourceTree = "<group>"; };
-
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -174,17 +168,13 @@
 				7089E0A11CEFBF6100485CD4 /* LoginViewController.swift */,
 				7089E0A31CEFBF6100485CD4 /* Main.storyboard */,
 				7089E0DB1CF017EE00485CD4 /* TaskViewController.swift */,
-
 				A688D5CF1CF39224007E3D11 /* SocketIOManager.swift */,
-
 				70C9FA601CF38CDD00E1801F /* NewTaskViewController.swift */,
-
 				7089E0DD1CF0195800485CD4 /* TaskModel.swift */,
 				7089E0E11CF0217B00485CD4 /* TaskCell.swift */,
 				7089E0CF1CEFE58E00485CD4 /* RoomSelectionViewController.swift */,
 				7089E0D71CEFF28800485CD4 /* CancelButtonDelegate.swift */,
 				7089E0D31CEFEE9800485CD4 /* NewRoomViewController.swift */,
-				7089E0D91CF0018D00485CD4 /* NewTaskViewControllerDelegate.swift */,
 				7089E0D11CEFE66800485CD4 /* RoomModel.swift */,
 				7089E0CD1CEFE23800485CD4 /* UserModel.swift */,
 				7089E0A61CEFBF6100485CD4 /* Assets.xcassets */,
@@ -399,19 +389,14 @@
 				A688D5BF1CF39202007E3D11 /* SocketEnginePollable.swift in Sources */,
 				7089E0E21CF0217B00485CD4 /* TaskCell.swift in Sources */,
 				7089E0A01CEFBF6100485CD4 /* AppDelegate.swift in Sources */,
-
 				A688D5C21CF39202007E3D11 /* SocketEventHandler.swift in Sources */,
 				A688D5BC1CF39202007E3D11 /* SocketEngine.swift in Sources */,
 				A688D5C61CF39202007E3D11 /* SocketIOClientStatus.swift in Sources */,
 				A688D5B81CF39202007E3D11 /* NSCharacterSet.swift in Sources */,
-				7089E0DA1CF0018D00485CD4 /* NewRoomViewControllerDelegate.swift in Sources */,
 				A688D5D01CF39224007E3D11 /* SocketIOManager.swift in Sources */,
 				A688D5BE1CF39202007E3D11 /* SocketEnginePacketType.swift in Sources */,
 				A688D5CC1CF39202007E3D11 /* String.swift in Sources */,
-
-				7089E0DA1CF0018D00485CD4 /* NewTaskViewControllerDelegate.swift in Sources */,
 				70C9FA611CF38CDD00E1801F /* NewTaskViewController.swift in Sources */,
-
 				7089E0DC1CF017EE00485CD4 /* TaskViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

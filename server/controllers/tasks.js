@@ -44,7 +44,26 @@ module.exports = (function(){
 						} else{
 							console.log('successfully updated task to room')
 							console.log(room)
-							res.json(room);
+							for (user in req.body.users) {
+								var userId = req.body.users[user]
+								console.log(userId)
+								User.findByIdAndUpdate(userId, {'$push': {tasks: task._id}}, function(err, user){
+									console.log("task for user: " + user)
+									if (err) {
+										console.log(err)
+									} else {
+										console.log("task saved in user")
+									}
+								})
+							}
+							Task.findOne({_id: task._id}).populate("users").exec(function(err, newTask) {
+								if (err) {
+									console.log("cannot find task")
+									console.log(err)
+								} else {
+									res.json(newTask);
+								}
+							});
 						}
 					});
 				}

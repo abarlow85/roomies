@@ -13,7 +13,7 @@ class NewRoomViewController: UITableViewController {
     let prefs = NSUserDefaults.standardUserDefaults()
     
     weak var cancelButtonDelegate: CancelButtonDelegate?
-    weak var delegate: NewRoomViewControllerDelegate?
+//    weak var delegate: NewRoomViewControllerDelegate?
     
     @IBOutlet weak var newRoomNameLabel: UITextField!
     @IBOutlet weak var newRoomCatLabel: UITextField!
@@ -51,8 +51,8 @@ class NewRoomViewController: UITableViewController {
                         self.prefs.setValue(roomId, forKey: "currentRoom")
                         print("roomId: \(jsonResult["_id"])")
                         dispatch_async(dispatch_get_main_queue(), {
-                            self.delegate?.newRoomViewController(self, didFinishAddingRoom: jsonResult)
-//                            self.performSegueWithIdentifier("NewRoomAddedSegue", sender: self)
+//                            self.delegate?.newRoomViewController(self, didFinishAddingRoom: jsonResult)
+                            self.performSegueWithIdentifier("NewRoomAddedSegue", sender: self)
                         })
                         
                     }

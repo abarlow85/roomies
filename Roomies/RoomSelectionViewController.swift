@@ -14,7 +14,7 @@ extension RoomSelectionViewController: UISearchResultsUpdating {
     }
 }
 
-class RoomSelectionViewController: UITableViewController, CancelButtonDelegate, NewRoomViewControllerDelegate {
+class RoomSelectionViewController: UITableViewController, CancelButtonDelegate {
     
     @IBOutlet weak var RoomSearchBar: UISearchBar!
     
@@ -72,7 +72,7 @@ class RoomSelectionViewController: UITableViewController, CancelButtonDelegate, 
             let navigationController = segue.destinationViewController as! UINavigationController
             let controller = navigationController.topViewController as! NewRoomViewController
             controller.cancelButtonDelegate = self
-            controller.delegate = self
+//            controller.delegate = self
         } else {
             print("else")
             let tabBarController = segue.destinationViewController as! UITabBarController
@@ -106,12 +106,12 @@ class RoomSelectionViewController: UITableViewController, CancelButtonDelegate, 
         dismissViewControllerAnimated(true, completion: showAllRooms)
     }
     
-    func newRoomViewController(controller: NewRoomViewController, didFinishAddingRoom room: NSMutableDictionary) {
-        
-        performSegueWithIdentifier("RoomSelectedSegue", sender: room)
-        dismissViewControllerAnimated(true, completion: nil)
-        
-    }
+//    func newRoomViewController(controller: NewRoomViewController, didFinishAddingRoom room: NSMutableDictionary) {
+//        dismissViewControllerAnimated(false, completion: nil)
+//        performSegueWithIdentifier("NewRoomAddedSegue", sender: room)
+//        
+//        
+//    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

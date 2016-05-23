@@ -21,6 +21,7 @@ class TaskViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //testing
 //        self.tabBarController?.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Room Selection", style: .Plain, target: self, action: roomSelectionButtonPressed((self.tabBarController?.navigationItem.leftBarButtonItem)!))
         let room = prefs.stringForKey("currentRoom")!
         TaskModel.getTasksForRoom(room) { data, response, error in

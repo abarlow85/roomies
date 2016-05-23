@@ -40,21 +40,38 @@ module.exports = (function(){
 		},
 
 		add_to_room: function(req, res){
-			Room.findOneAndUpdate({_id: req.body._id}, {'$push': {users: req.body.user}}, {new: true}).exec(function(err, newRoom){
-				if(err){
-					console.log('cannot add user to room');
-				} else{
-					User.findByIdAndUpdate(req.body.user, {$push: {rooms: req.body._id}}, function(err){
+			User.findOne({"_id":req.body.user, "rooms": req.body._id}, function(err, user){
+				if (err) {
+					console.log(err);
+				} else if (user){
+					console.log("the user is in the room already")
+					console.log(user.rooms)
+					User.findByIdAndUpdate(req.body.user, {_lastRoom: req.body._id}, function(err){
 						if (err) {
 							console.log(err)
 						} else {
-							console.log('successfully added user to room')
-							res.json(newRoom)
+							console.log('changed user _lastRoom')
+							res.json({_id: req.body._id})
 						}
 					});
+				} else {
+					Room.findOneAndUpdate({_id: req.body._id}, {'$push': {users: req.body.user}}, {new: true}).exec(function(err, newRoom){
+					if(err){
+						console.log('cannot add user to room');
+					} else{
+						User.findByIdAndUpdate(req.body.user, {$push: {rooms: req.body._id}}, function(err){
+							if (err) {
+							console.log(err)
+							} else {
+								console.log('successfully added user to room')
+								res.json(newRoom)
+							}
+						});
 					
+					}
+					});
 				}
-			})
+			})	
 		}
 	}
 })();

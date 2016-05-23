@@ -1,4 +1,5 @@
-<div ng-controller = 'taskController'>
-	<h3> Room CHOSEN </h3>
-	<p> {{room.name}} {{room.category}}</p>
+<div ng-controller = 'allTaskController'>
+	<h1>{{room.name}}</h1>
+	<p ng-repeat = 'user in users'>{{user.name}}</p>
+	<p ng-repeat = 'task in tasks'>{{task.objective}}</p>
 </div>

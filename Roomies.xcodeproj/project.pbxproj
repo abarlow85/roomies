@@ -23,6 +23,7 @@
 		7089E0DE1CF0195800485CD4 /* TaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7089E0DD1CF0195800485CD4 /* TaskModel.swift */; };
 		7089E0E21CF0217B00485CD4 /* TaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7089E0E11CF0217B00485CD4 /* TaskCell.swift */; };
 		70C9FA611CF38CDD00E1801F /* NewTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C9FA601CF38CDD00E1801F /* NewTaskViewController.swift */; };
+		70C9FA631CF3B3BB00E1801F /* NewTaskViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C9FA621CF3B3BB00E1801F /* NewTaskViewControllerDelegate.swift */; };
 		A688D5B81CF39202007E3D11 /* NSCharacterSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A688D5A11CF39202007E3D11 /* NSCharacterSet.swift */; };
 		A688D5B91CF39202007E3D11 /* SocketAckEmitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A688D5A21CF39202007E3D11 /* SocketAckEmitter.swift */; };
 		A688D5BA1CF39202007E3D11 /* SocketAckManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A688D5A31CF39202007E3D11 /* SocketAckManager.swift */; };
@@ -89,6 +90,7 @@
 		7089E0DD1CF0195800485CD4 /* TaskModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskModel.swift; sourceTree = "<group>"; };
 		7089E0E11CF0217B00485CD4 /* TaskCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskCell.swift; sourceTree = "<group>"; };
 		70C9FA601CF38CDD00E1801F /* NewTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewTaskViewController.swift; sourceTree = "<group>"; };
+		70C9FA621CF3B3BB00E1801F /* NewTaskViewControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewTaskViewControllerDelegate.swift; sourceTree = "<group>"; };
 		A688D5A11CF39202007E3D11 /* NSCharacterSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSCharacterSet.swift; sourceTree = "<group>"; };
 		A688D5A21CF39202007E3D11 /* SocketAckEmitter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketAckEmitter.swift; sourceTree = "<group>"; };
 		A688D5A31CF39202007E3D11 /* SocketAckManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketAckManager.swift; sourceTree = "<group>"; };
@@ -175,6 +177,7 @@
 				7089E0CF1CEFE58E00485CD4 /* RoomSelectionViewController.swift */,
 				7089E0D71CEFF28800485CD4 /* CancelButtonDelegate.swift */,
 				7089E0D31CEFEE9800485CD4 /* NewRoomViewController.swift */,
+				70C9FA621CF3B3BB00E1801F /* NewTaskViewControllerDelegate.swift */,
 				7089E0D11CEFE66800485CD4 /* RoomModel.swift */,
 				7089E0CD1CEFE23800485CD4 /* UserModel.swift */,
 				7089E0A61CEFBF6100485CD4 /* Assets.xcassets */,
@@ -372,6 +375,7 @@
 				A688D5CD1CF39202007E3D11 /* SwiftRegex.swift in Sources */,
 				7089E0DE1CF0195800485CD4 /* TaskModel.swift in Sources */,
 				A688D5CA1CF39202007E3D11 /* SocketStringReader.swift in Sources */,
+				70C9FA631CF3B3BB00E1801F /* NewTaskViewControllerDelegate.swift in Sources */,
 				7089E0D81CEFF28800485CD4 /* CancelButtonDelegate.swift in Sources */,
 				A688D5C41CF39202007E3D11 /* SocketIOClientOption.swift in Sources */,
 				A688D5BB1CF39202007E3D11 /* SocketAnyEvent.swift in Sources */,

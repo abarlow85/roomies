@@ -57,6 +57,22 @@ class RoomSelectionViewController: UITableViewController, CancelButtonDelegate {
         return cell
     }
     
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let room: NSMutableDictionary
+        if searchController.active && searchController.searchBar.text != "" {
+            room = filteredRooms[indexPath.row]
+        } else {
+            room = rooms[indexPath.row]
+        }
+        prefs.setValue(room["_id"], forKey: "currentRoom")
+        let roomId = prefs.valueForKey("currentRoom")! as! String
+        let user = prefs.valueForKey("currentUser")! as! String
+        let roomData = NSMutableDictionary()
+        roomData["_id"] = roomId
+        roomData["user"] = user
+        addToRoom(roomData)
+    }
+    
     func filterContentForSearchText(searchText: String, scope: String = "All") {
         filteredRooms = rooms.filter { room in
             return room["name"]!.lowercaseString.containsString(searchText.lowercaseString)
@@ -95,6 +111,24 @@ class RoomSelectionViewController: UITableViewController, CancelButtonDelegate {
                     }
                 }
                 
+            } catch {
+                print("Something went wrong")
+            }
+        }
+    }
+    
+    func addToRoom(roomData: NSMutableDictionary){
+        RoomModel.selectRoom(roomData){
+            data, response, error in
+            do{
+                if(data != nil){
+                    if let jsonResult = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as? NSMutableArray {
+                        print(jsonResult)
+                        dispatch_async(dispatch_get_main_queue(), {
+                            self.performSegueWithIdentifier("RoomSelectedSegue", sender: jsonResult)
+                        })
+                    }
+                }
             } catch {
                 print("Something went wrong")
             }

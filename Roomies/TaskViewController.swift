@@ -57,7 +57,7 @@ class TaskViewController: UITableViewController, CancelButtonDelegate, NewTaskVi
             })
         }
     }
-        
+
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "newTaskSegue" {
             let navigationController = segue.destinationViewController as! UINavigationController
@@ -85,7 +85,7 @@ class TaskViewController: UITableViewController, CancelButtonDelegate, NewTaskVi
         return cell!
     }
     
-    func newTaskViewController(controller: NewTaskViewController, didFinishAddingRoom task: NSMutableDictionary) {
+    func newTaskViewController(controller: NewTaskViewController, didFinishAddingTask task: NSMutableDictionary) {
         dismissViewControllerAnimated(true, completion: nil)
         print(task)
         roomTasks.append(task)

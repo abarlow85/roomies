@@ -13,6 +13,8 @@ class TaskViewController: UITableViewController {
     let dateFormatter = NSDateFormatter()
     var roomTasks = [NSMutableDictionary]()
     var roomUsers = [NSMutableDictionary]()
+    var tasks = [[NSMutableDictionary]]()
+    var nickname: String!
     
     
     @IBAction func roomSelectionButtonPressed(sender: AnyObject) {
@@ -21,6 +23,7 @@ class TaskViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "handleConnectedUserUpdateNotification:", name: "userWasConnectedNotification", object: nil)
 //        self.tabBarController?.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Room Selection", style: .Plain, target: self, action: roomSelectionButtonPressed((self.tabBarController?.navigationItem.leftBarButtonItem)!))
         let room = prefs.stringForKey("currentRoom")!
         TaskModel.getTasksForRoom(room) { data, response, error in
@@ -47,6 +50,18 @@ class TaskViewController: UITableViewController {
         }
     }
     
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        tasks = [roomTasks]
+        SocketIOManager.sharedInstance.getTask { (taskInfo) -> Void in
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                self.tasks.append(taskInfo)
+                self.tableView.reloadData()
+                self.scrollToBottom()
+            })
+        }
+    }
+    
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return roomTasks.count
     }
@@ -61,5 +76,15 @@ class TaskViewController: UITableViewController {
         performSegueWithIdentifier("BackToRoomSelectionSegue", sender: self)
     }
     
+    func scrollToBottom() {
+        let delay = 0.1 * Double(NSEC_PER_SEC)
+        
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(delay)), dispatch_get_main_queue()) { () -> Void in
+            if self.tasks.count > 0 {
+                let lastRowIndexPath = NSIndexPath(forRow: self.tasks.count - 1, inSection: 0)
+                self.tableView.scrollToRowAtIndexPath(lastRowIndexPath, atScrollPosition: UITableViewScrollPosition.Bottom, animated: true)
+            }
+        }
+    }
     
 }

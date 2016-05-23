@@ -75,7 +75,7 @@ class NewTaskViewController: UIViewController, UITableViewDataSource, UITableVie
                     print("TASK RETURNED")
                     print(jsonResult)
                     dispatch_async(dispatch_get_main_queue(), {
-                        self.delegate?.newTaskViewController(self, didFinishAddingRoom: jsonResult)
+                        self.delegate?.newTaskViewController(self, didFinishAddingTask: jsonResult)
                     })
                     
                 }

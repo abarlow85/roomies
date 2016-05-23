@@ -1,13 +1,13 @@
 //
-//  NewRoomViewControllerDelegate.swift
+//  NewTaskViewControllerDelegate.swift
 //  Roomies
 //
-//  Created by Alec Barlow, Gabe Ratcliff, Nigel Koh on 5/20/16.
-//  Copyright © Alec Barlow, Gabe Ratcliff, Nigel Koh. All rights reserved.
+//  Created by Alec Barlow on 5/23/16.
+//  Copyright © 2016 Alec Barlow. All rights reserved.
 //
 
 import Foundation
 
 protocol NewTaskViewControllerDelegate: class {
-    func newTaskViewController(controller: NewTaskViewController, didFinishAddingRoom task: NSMutableDictionary)
+    func newTaskViewController(controller: NewTaskViewController, didFinishAddingTask task: NSMutableDictionary)
 }

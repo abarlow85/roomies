@@ -55,6 +55,8 @@ class TaskViewController: UITableViewController, CancelButtonDelegate, NewTaskVi
                 self.tableView.reloadData()
                 self.scrollToBottom()
             })
+        }
+    }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "newTaskSegue" {
@@ -83,7 +85,7 @@ class TaskViewController: UITableViewController, CancelButtonDelegate, NewTaskVi
         return cell!
     }
     
-    func newTaskViewController(controller: NewTaskViewController, didFinishAddingRoom task: NSMutableDictionary) {
+    func newTaskViewController(controller: NewTaskViewController, didFinishAddingTask task: NSMutableDictionary) {
         dismissViewControllerAnimated(true, completion: nil)
         print(task)
         roomTasks.append(task)

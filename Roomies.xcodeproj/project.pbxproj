@@ -19,10 +19,11 @@
 		7089E0D21CEFE66800485CD4 /* RoomModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7089E0D11CEFE66800485CD4 /* RoomModel.swift */; };
 		7089E0D41CEFEE9800485CD4 /* NewRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7089E0D31CEFEE9800485CD4 /* NewRoomViewController.swift */; };
 		7089E0D81CEFF28800485CD4 /* CancelButtonDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7089E0D71CEFF28800485CD4 /* CancelButtonDelegate.swift */; };
-		7089E0DA1CF0018D00485CD4 /* NewRoomViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7089E0D91CF0018D00485CD4 /* NewRoomViewControllerDelegate.swift */; };
+		7089E0DA1CF0018D00485CD4 /* NewTaskViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7089E0D91CF0018D00485CD4 /* NewTaskViewControllerDelegate.swift */; };
 		7089E0DC1CF017EE00485CD4 /* TaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7089E0DB1CF017EE00485CD4 /* TaskViewController.swift */; };
 		7089E0DE1CF0195800485CD4 /* TaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7089E0DD1CF0195800485CD4 /* TaskModel.swift */; };
 		7089E0E21CF0217B00485CD4 /* TaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7089E0E11CF0217B00485CD4 /* TaskCell.swift */; };
+		70C9FA611CF38CDD00E1801F /* NewTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C9FA601CF38CDD00E1801F /* NewTaskViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,10 +62,11 @@
 		7089E0D11CEFE66800485CD4 /* RoomModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomModel.swift; sourceTree = "<group>"; };
 		7089E0D31CEFEE9800485CD4 /* NewRoomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewRoomViewController.swift; sourceTree = "<group>"; };
 		7089E0D71CEFF28800485CD4 /* CancelButtonDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CancelButtonDelegate.swift; sourceTree = "<group>"; };
-		7089E0D91CF0018D00485CD4 /* NewRoomViewControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewRoomViewControllerDelegate.swift; sourceTree = "<group>"; };
+		7089E0D91CF0018D00485CD4 /* NewTaskViewControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewTaskViewControllerDelegate.swift; sourceTree = "<group>"; };
 		7089E0DB1CF017EE00485CD4 /* TaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskViewController.swift; sourceTree = "<group>"; };
 		7089E0DD1CF0195800485CD4 /* TaskModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskModel.swift; sourceTree = "<group>"; };
 		7089E0E11CF0217B00485CD4 /* TaskCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskCell.swift; sourceTree = "<group>"; };
+		70C9FA601CF38CDD00E1801F /* NewTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewTaskViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,12 +121,13 @@
 				7089E0A11CEFBF6100485CD4 /* LoginViewController.swift */,
 				7089E0A31CEFBF6100485CD4 /* Main.storyboard */,
 				7089E0DB1CF017EE00485CD4 /* TaskViewController.swift */,
+				70C9FA601CF38CDD00E1801F /* NewTaskViewController.swift */,
 				7089E0DD1CF0195800485CD4 /* TaskModel.swift */,
 				7089E0E11CF0217B00485CD4 /* TaskCell.swift */,
 				7089E0CF1CEFE58E00485CD4 /* RoomSelectionViewController.swift */,
 				7089E0D71CEFF28800485CD4 /* CancelButtonDelegate.swift */,
 				7089E0D31CEFEE9800485CD4 /* NewRoomViewController.swift */,
-				7089E0D91CF0018D00485CD4 /* NewRoomViewControllerDelegate.swift */,
+				7089E0D91CF0018D00485CD4 /* NewTaskViewControllerDelegate.swift */,
 				7089E0D11CEFE66800485CD4 /* RoomModel.swift */,
 				7089E0CD1CEFE23800485CD4 /* UserModel.swift */,
 				7089E0A61CEFBF6100485CD4 /* Assets.xcassets */,
@@ -292,7 +295,8 @@
 				7089E0D01CEFE58E00485CD4 /* RoomSelectionViewController.swift in Sources */,
 				7089E0E21CF0217B00485CD4 /* TaskCell.swift in Sources */,
 				7089E0A01CEFBF6100485CD4 /* AppDelegate.swift in Sources */,
-				7089E0DA1CF0018D00485CD4 /* NewRoomViewControllerDelegate.swift in Sources */,
+				7089E0DA1CF0018D00485CD4 /* NewTaskViewControllerDelegate.swift in Sources */,
+				70C9FA611CF38CDD00E1801F /* NewTaskViewController.swift in Sources */,
 				7089E0DC1CF017EE00485CD4 /* TaskViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

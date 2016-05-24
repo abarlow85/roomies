@@ -2,34 +2,41 @@ var tasks = require('../controllers/tasks.js')
 var users = require('../controllers/users.js')
 var rooms = require('../controllers/rooms.js')
 var messages = require('../controllers/messages.js')
-// var userList = [];
-// var typingUsers = {};
+var userList = [];
+var typingUsers = {};
 
 
 module.exports = function(app, passport, server) {
 
 	var io = require('socket.io').listen(server);
-	console.log('got here!!!');
+
 	io.sockets.on('connection', function(socket){
 		console.log('connection!');
-		
-		socket.on('connected', function(){
-			console.log('connected');
+
+		// socket methods for chat messages
+		socket.on('connected', function(last_room){
+			console.log('user connected');
+			subscribe(socket, {room: last_room});
+			
 			users.login(function(output){
-				console.log('broadcast');
 				socket.broadcast.emit('new_user', output);
 			})
 		})
 
+		// socket.on('subscribe', function(){
+		// 	users.subscribe(socket, data);
+		// })
+
+		// socket.on('unsubscribe', function(){
+		// 	users.unsubscribe(socket, data);
+		// })
+
+		// socket.on('disconnect', function(){
+		// 	users.disconnect(socket, data);
+		// })
+
+		// socket methods for tasks
 		socket.on('task', function(objective, users, expiration) {
-			console.log(objective);
-			console.log(users);
-			console.log(expiration);
-			// var new_task_data = {
-			// 	objective: objective, 
-			// 	users: users,
-			// 	expiration: expiration
-			// }
 			io.emit('newTask', objective, users, expiration);
 		})
 	});

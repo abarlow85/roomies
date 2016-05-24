@@ -112,9 +112,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 do {
                     //                print(response)
                     if let jsonResult = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as? NSDictionary {
-                        print(jsonResult)
+//                        print(jsonResult)
                         if let checkForFail = jsonResult["error"] {
-                            print(checkForFail)
+//                            print(checkForFail)
                             let fail = checkForFail as! String
                             dispatch_async(dispatch_get_main_queue(), {
                                 self.errorTextLabel.text = fail
@@ -146,9 +146,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 do {
                     //                print(response)
                     if let jsonResult = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as? NSDictionary {
-                        print(jsonResult)
+//                        print(jsonResult)
                         if let checkForFail = jsonResult["error"] {
-                            print(checkForFail)
+//                            print(checkForFail)
                             let fail = checkForFail as! String
                             dispatch_async(dispatch_get_main_queue(), {
                                 self.errorTextLabel.text = fail
@@ -157,7 +157,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                         } else {
                             let user = jsonResult["_id"] as! String
                             self.prefs.setValue(user, forKey: "currentUser")
-                            print(jsonResult)
+//                            print(jsonResult)
                             dispatch_async(dispatch_get_main_queue(), {
                                 
                                 if let lastRoom = jsonResult["_lastRoom"] as? String {

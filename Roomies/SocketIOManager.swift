@@ -40,6 +40,22 @@ class SocketIOManager: NSObject {
 //        completionHandler()
 //    }
 //    
+    func sendTaskAlert(date: NSString, objective: String){
+        socket.emit("newTaskAlert", date, objective)
+    }
+    
+    func getTaskAlertAndScheduleNotification(completionHandler: (taskInfo: [String:AnyObject]) -> Void) {
+        socket.on("getNewTaskAlert") { (dataArray, socketAck) -> Void in
+            
+            print("data array here:")
+            var taskDictionary = [String: AnyObject]()
+            print(dataArray)
+            taskDictionary["date"] = dataArray[0]
+            taskDictionary["objective"] = dataArray[1]
+            completionHandler(taskInfo: taskDictionary)
+        }
+    }
+    
     func sendTask(task: NSMutableDictionary) {
         print("tasks here...")
         print(task)
@@ -98,4 +114,5 @@ class SocketIOManager: NSObject {
 //    func sendStopTypingMessage(nickname: String) {
 //        socket.emit("stopType", nickname)
 //    }
+    
 }

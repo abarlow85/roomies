@@ -81,16 +81,15 @@ class RoomSelectionViewController: UITableViewController, CancelButtonDelegate {
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        print(segue.identifier)
         if segue.identifier !=
             "RoomSelectedSegue" {
-            print("notSelectedSegue")
+//            print("notSelectedSegue")
             let navigationController = segue.destinationViewController as! UINavigationController
             let controller = navigationController.topViewController as! NewRoomViewController
             controller.cancelButtonDelegate = self
 //            controller.delegate = self
         } else {
-            print("else")
+//            print("else")
             let tabBarController = segue.destinationViewController as! UITabBarController
             let navController = tabBarController.viewControllers![0] as! UINavigationController
             let controller = navController.topViewController as! TaskViewController
@@ -121,7 +120,6 @@ class RoomSelectionViewController: UITableViewController, CancelButtonDelegate {
         RoomModel.selectRoom(roomData){
             data, response, error in
             do{
-                print("in here")
                 if(data != nil){
                     if let jsonResult = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as? NSMutableDictionary {
                         print(jsonResult)

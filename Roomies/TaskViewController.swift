@@ -20,31 +20,10 @@ class TaskViewController: UITableViewController, CancelButtonDelegate, NewTaskVi
     override func viewDidLoad() {
         super.viewDidLoad()
         let room = prefs.stringForKey("currentRoom")!
-        TaskModel.getTasksForRoom(room) { data, response, error in
-            do {
-                if let roomData = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as? NSMutableDictionary {
-                    //                    print("room information:")
-                    //                    print(room)
-                    let tasks = roomData["tasks"] as! [NSMutableDictionary]
-                    self.roomTasks = tasks
-                    
-                    let users = roomData["users"] as! [NSMutableDictionary]
-                    self.roomUsers = users
-                    print(roomData["users"]!)
-                    
-                    dispatch_async(dispatch_get_main_queue(), {
-                        self.tableView.reloadData()
-//                        self.update()
-                        
-                        self.tabBarController?.navigationItem.prompt = "\(roomData["name"]!)"
-                    })
-                }
-            } catch {
-                print("Something went wrong")
-            }
-
-        }
-        
+        getTasksforRoom(room)
+        let notificationSettings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
+        UIApplication.sharedApplication().registerUserNotificationSettings(notificationSettings)
+        setupNotificationSettings()
     }
 
     override func viewDidAppear(animated: Bool) {
@@ -52,19 +31,32 @@ class TaskViewController: UITableViewController, CancelButtonDelegate, NewTaskVi
         tasks = [roomTasks]
         SocketIOManager.sharedInstance.getTask { (taskInfo) -> Void in
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
-//                self.tasks.append(taskInfo)
-//                self.tableView.reloadData()
-//                self.scrollToBottom()
-                print("task info: \(taskInfo)")
+//                print("task info: \(taskInfo)")
                 let user = self.prefs.stringForKey("currentUser")!
                 let users = taskInfo["users"] as! NSArray
+                let objective = taskInfo["objective"] as! String
+                let date = taskInfo["expiration_date"] as! NSString
                 for i in 0..<users.count {
-//                    print(users[i])
                     if users[i]["_id"] as! String == user {
-                        self.alertNewTask()
+                        self.alertNewTask(objective, expiration: date)
                     }
                 }
-                
+                let room = self.prefs.stringForKey("currentRoom")!
+                self.getTasksforRoom(room)
+                self.tableView.reloadData()
+                self.scrollToBottom()
+            })
+        }
+        
+        SocketIOManager.sharedInstance.getTaskAlertAndScheduleNotification { (taskInfo) -> Void in
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                let objective = taskInfo["text"] as! String
+                let date = taskInfo["date"] as! String
+                let dateString = date
+                let dateFormatter = NSDateFormatter()
+                dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+                let dateFromString = dateFormatter.dateFromString(dateString)
+                self.scheduleLocalNotification(dateFromString!, withText: objective)
             })
         }
     }
@@ -98,7 +90,6 @@ class TaskViewController: UITableViewController, CancelButtonDelegate, NewTaskVi
     
     func newTaskViewController(controller: NewTaskViewController, didFinishAddingTask task: NSMutableDictionary) {
         dismissViewControllerAnimated(true, completion: nil)
-        print(task)
         roomTasks.append(task)
         self.tableView.reloadData()
     }
@@ -109,7 +100,6 @@ class TaskViewController: UITableViewController, CancelButtonDelegate, NewTaskVi
     
     func stringifyResponsibleUsers(users: NSArray) -> String {
         var userString = ""
-//        print(users)
         for idx in 0..<users.count {
             let user = users[idx]["name"] as! String
             if users.count < 2 {
@@ -123,24 +113,11 @@ class TaskViewController: UITableViewController, CancelButtonDelegate, NewTaskVi
             }
             
         }
-//        print(userString)
-        
         return userString
     }
     
-    
-//socket task update methods
-//    func showBannerLabelAnimated() {
-//        UIView.animateWithDuration(0.75, animations: { () -> Void in
-//            self.lblNewsBanner.alpha = 1.0
-//            
-//        }) { (finished) -> Void in
-//            self.bannerLabelTimer = NSTimer.scheduledTimerWithTimeInterval(2.0, target: self, selector: "hideBannerLabel", userInfo: nil, repeats: false)
-//        }
-//    }
-    
-    func alertNewTask() {
-        let alertController = UIAlertController(title: "New Task", message: "There is a new task for you!", preferredStyle: UIAlertControllerStyle.Alert)
+    func alertNewTask(objective: String, expiration: NSString) {
+        let alertController = UIAlertController(title: "New Task for you!", message: objective, preferredStyle: UIAlertControllerStyle.Alert)
         let OKAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (action) -> Void in
             print("adding alert")
         }
@@ -151,7 +128,6 @@ class TaskViewController: UITableViewController, CancelButtonDelegate, NewTaskVi
     
     func scrollToBottom() {
         let delay = 0.1 * Double(NSEC_PER_SEC)
-        
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(delay)), dispatch_get_main_queue()) { () -> Void in
             if self.tasks.count > 0 {
                 let lastRowIndexPath = NSIndexPath(forRow: self.tasks.count - 1, inSection: 0)
@@ -160,4 +136,80 @@ class TaskViewController: UITableViewController, CancelButtonDelegate, NewTaskVi
         }
     }
     
+    func getTasksforRoom(room:String) {
+        TaskModel.getTasksForRoom(room) { data, response, error in
+            do {
+                if let roomData = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as? NSMutableDictionary {
+                    let tasks = roomData["tasks"] as! [NSMutableDictionary]
+                    self.roomTasks = tasks
+                    let users = roomData["users"] as! [NSMutableDictionary]
+                    self.roomUsers = users
+                    print(roomData["users"]!)
+                    dispatch_async(dispatch_get_main_queue(), {
+                        self.tableView.reloadData()
+                        self.tabBarController?.navigationItem.prompt = "\(roomData["name"]!)"
+                    })
+                }
+            } catch {
+                print("Something went wrong")
+            }
+        }
+
+    }
+    
+    func scheduleLocalNotification(date: NSDate, withText: String) {
+        let localNotification = UILocalNotification()
+        localNotification.fireDate = fixNotificationDate(date)
+        localNotification.alertBody = withText
+        localNotification.alertAction = "Dismiss"
+        localNotification.category = "taskReminderCategory"
+        
+        UIApplication.sharedApplication().scheduleLocalNotification(localNotification)
+    }
+    
+    func fixNotificationDate(dateToFix: NSDate) -> NSDate {
+        let dateComponents: NSDateComponents = NSCalendar.currentCalendar().components([NSCalendarUnit.NSDayCalendarUnit, NSCalendarUnit.NSMonthCalendarUnit, NSCalendarUnit.NSYearCalendarUnit, NSCalendarUnit.NSHourCalendarUnit, NSCalendarUnit.NSMinuteCalendarUnit], fromDate: dateToFix)
+        dateComponents.second = 0
+        let fixedDate: NSDate! = NSCalendar.currentCalendar().dateFromComponents(dateComponents)
+        return fixedDate
+    }
+    
+    func setupNotificationSettings() {
+        let notificationSettings: UIUserNotificationSettings! = UIApplication.sharedApplication().currentUserNotificationSettings()
+        
+        if (notificationSettings.types == UIUserNotificationType.None){
+            // Specify the notification types.
+            var notificationTypes: UIUserNotificationType = [UIUserNotificationType.Alert, UIUserNotificationType.Sound, UIUserNotificationType.Badge]
+            
+            // Specify the notification actions.
+            var justInformAction = UIMutableUserNotificationAction()
+            justInformAction.identifier = "justInform"
+            justInformAction.title = "OK, got it"
+            justInformAction.activationMode = UIUserNotificationActivationMode.Background
+            justInformAction.destructive = false
+            justInformAction.authenticationRequired = false
+            
+            var modifyListAction = UIMutableUserNotificationAction()
+            modifyListAction.identifier = "editList"
+            modifyListAction.title = "Edit list"
+            modifyListAction.activationMode = UIUserNotificationActivationMode.Foreground
+            modifyListAction.destructive = false
+            modifyListAction.authenticationRequired = true
+            
+            let actionsArray = NSArray(objects: justInformAction, modifyListAction)
+            let actionsArrayMinimal = NSArray(objects: modifyListAction)
+            
+            // Specify the category related to the above actions.
+            var taskReminderCategory = UIMutableUserNotificationCategory()
+            taskReminderCategory.identifier = "taskReminderCategory"
+            taskReminderCategory.setActions(actionsArray as! [UIUserNotificationAction], forContext: UIUserNotificationActionContext.Default)
+            taskReminderCategory.setActions(actionsArrayMinimal as! [UIUserNotificationAction], forContext: UIUserNotificationActionContext.Minimal)
+            
+            let categoriesForSettings = NSSet(objects: taskReminderCategory)
+            
+            // Register the notification settings.
+            let newNotificationSettings = UIUserNotificationSettings(forTypes: notificationTypes, categories: categoriesForSettings as! Set<UIUserNotificationCategory>)
+            UIApplication.sharedApplication().registerUserNotificationSettings(newNotificationSettings)
+        }
+    }
 }

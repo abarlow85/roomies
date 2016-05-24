@@ -82,9 +82,14 @@ class NewTaskViewController: UIViewController, UITableViewDataSource, UITableVie
                 print(error)
             }
         }
+        
+        let taskText = newTaskText.text!
+        let taskDate = newTaskDate.date
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        let stringDate: String = dateFormatter.stringFromDate(NSDate())
+        SocketIOManager.sharedInstance.sendTaskAlert(stringDate, objective: taskText)
+//        scheduleLocalNotification(newTaskDate.date, withText: newTaskText.text!)
 
-        
-        
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -117,7 +122,7 @@ class NewTaskViewController: UIViewController, UITableViewDataSource, UITableVie
         return true
     }
     
-    
+
     
     
     

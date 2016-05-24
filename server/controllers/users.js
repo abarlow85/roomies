@@ -76,14 +76,17 @@ module.exports = (function(){
 		}, 
 		// socket methods 
 		login: function(callback) {
-		User.find({}, function(err, users){
-			if(err){
-				console.log('error');
-			} else {
-				
-				callback(users);
-			}
-		});	
-	}
+			User.find({}, function(err, users){
+				if(err){
+					console.log('error');
+				} else {
+					
+					callback(users);
+				}
+			});	
+		}
+		// newMessage: function(socket, data){
+		// 	socket.broadcast.to(data.room).emit('newMessage', {client: })
+		// }
 	}
 })();

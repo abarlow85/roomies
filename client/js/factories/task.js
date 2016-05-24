@@ -3,7 +3,6 @@ roomies.factory('taskFactory', function ($http){
 	factory.getRoomById = function (info, callback){
 		$http.get('/rooms/' + info).success(function (output){
 			if (output){
-				console.log(output);
 				callback(output);
 			}
 		})
@@ -11,7 +10,6 @@ roomies.factory('taskFactory', function ($http){
 	factory.getTaskById = function (info, callback){
 		console.log(info);
 		$http.get('/tasks/' + info._id).success(function (output){
-			console.log(output);
 			callback(output);
 		})
 	}
@@ -19,13 +17,11 @@ roomies.factory('taskFactory', function ($http){
 		console.log(info);
 		$http.post('/tasks/create', info).success(function (output){
 			if (output){
-				console.log(output);
 				callback(output);
 			}
 		})
 	}
 	factory.updateTask = function (info, callback){
-		console.log(info);
 		var paramId = info._id;
 		var task = {};
 		task.objective = info.objective;

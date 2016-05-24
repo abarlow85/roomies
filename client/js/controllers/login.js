@@ -1,5 +1,16 @@
 roomies.controller('loginController', function ($scope, $location, $localStorage, userFactory){
 	$scope.newUser = false;
+
+	$scope.splashPage = true;
+
+	if($scope.splashPage == true){
+		console.log($scope.splashPage);
+		setTimeout(function() {
+			$scope.splashPage = false;
+			$scope.$apply();
+			console.log($scope.splashPage);
+		}, 4000);
+	}
 	$scope.toggleForm = function () {
 		if ($scope.newUser == false){
 			$scope.newUser = true;
@@ -11,12 +22,10 @@ roomies.controller('loginController', function ($scope, $location, $localStorage
 	$scope.userRegister = function (regUser) {
 		console.log(regUser);
 		userFactory.register(regUser, function (data){
-			console.log('Registering: ' + data);
 			if (data.error){
 				console.log("error")
 			}
 			else if(data) {
-				console.log(data);
 				$localStorage.user = data
 				$location.path('/room');
 			}
@@ -29,7 +38,6 @@ roomies.controller('loginController', function ($scope, $location, $localStorage
 				console.log('error');
 			}
 			else if (data){
-				console.log(data);
 				var room_id = data._lastRoom;
 				$localStorage.user = data;
 				$localStorage.room = data._lastRoom;

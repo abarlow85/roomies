@@ -18,7 +18,6 @@ roomies.controller('roomPickController', function ($scope, $location, $localStor
 		roomFactory.addNewRoom(newRoom, function (data){
 			if (data){
 				$localStorage.room = data._id;
-				console.log(data._id);
 				$location.path('/room/' + data._id)
 			}
 		})

@@ -4,7 +4,6 @@ roomies.factory('userFactory', function ($http){
 		console.log(info);
 		$http.post('/register', info).success(function (output){
 			if (output.error){
-				console.log(output);
 				callback(output);
 			}
 			else if (output){
@@ -16,7 +15,6 @@ roomies.factory('userFactory', function ($http){
 		console.log(info);
 		$http.post('/login', info).success(function (output){
 			if (output.error){
-				console.log(output);
 				callback(output);
 			}
 			else if (output){

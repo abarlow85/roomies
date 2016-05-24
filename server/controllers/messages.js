@@ -48,7 +48,8 @@ module.exports = (function(){
 						console.log(task)
 						console.log('successfully updated message to task')
 						// res.json(task)
-						Task.findOne({_id: req.body._task}).populate("messages").exec(function (err, newMessage){
+						Task.findOne({_id: req.body._task})
+						.populate({path: "messages", model: 'Message', populate: {path: '_user', model: 'User'}}).exec(function (err, newMessage){
 							if (err) {
 								console.log("cannot find message");
 							} else {
@@ -56,7 +57,6 @@ module.exports = (function(){
 								res.json(newMessage);
 							}
 						})
-
 					}
 				})
 			});

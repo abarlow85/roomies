@@ -24,6 +24,8 @@
 		7089E0E21CF0217B00485CD4 /* TaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7089E0E11CF0217B00485CD4 /* TaskCell.swift */; };
 		70C9FA611CF38CDD00E1801F /* NewTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C9FA601CF38CDD00E1801F /* NewTaskViewController.swift */; };
 		70C9FA631CF3B3BB00E1801F /* NewTaskViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C9FA621CF3B3BB00E1801F /* NewTaskViewControllerDelegate.swift */; };
+		70C9FA651CF4DD6D00E1801F /* MyTasksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C9FA641CF4DD6D00E1801F /* MyTasksViewController.swift */; };
+		70C9FA671CF4F18100E1801F /* TaskDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C9FA661CF4F18100E1801F /* TaskDetailsViewController.swift */; };
 		A688D5B81CF39202007E3D11 /* NSCharacterSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A688D5A11CF39202007E3D11 /* NSCharacterSet.swift */; };
 		A688D5B91CF39202007E3D11 /* SocketAckEmitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A688D5A21CF39202007E3D11 /* SocketAckEmitter.swift */; };
 		A688D5BA1CF39202007E3D11 /* SocketAckManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A688D5A31CF39202007E3D11 /* SocketAckManager.swift */; };
@@ -91,6 +93,8 @@
 		7089E0E11CF0217B00485CD4 /* TaskCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskCell.swift; sourceTree = "<group>"; };
 		70C9FA601CF38CDD00E1801F /* NewTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewTaskViewController.swift; sourceTree = "<group>"; };
 		70C9FA621CF3B3BB00E1801F /* NewTaskViewControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewTaskViewControllerDelegate.swift; sourceTree = "<group>"; };
+		70C9FA641CF4DD6D00E1801F /* MyTasksViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyTasksViewController.swift; sourceTree = "<group>"; };
+		70C9FA661CF4F18100E1801F /* TaskDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskDetailsViewController.swift; sourceTree = "<group>"; };
 		A688D5A11CF39202007E3D11 /* NSCharacterSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSCharacterSet.swift; sourceTree = "<group>"; };
 		A688D5A21CF39202007E3D11 /* SocketAckEmitter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketAckEmitter.swift; sourceTree = "<group>"; };
 		A688D5A31CF39202007E3D11 /* SocketAckManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketAckManager.swift; sourceTree = "<group>"; };
@@ -169,7 +173,9 @@
 				7089E09F1CEFBF6100485CD4 /* AppDelegate.swift */,
 				7089E0A11CEFBF6100485CD4 /* LoginViewController.swift */,
 				7089E0A31CEFBF6100485CD4 /* Main.storyboard */,
+				70C9FA641CF4DD6D00E1801F /* MyTasksViewController.swift */,
 				7089E0DB1CF017EE00485CD4 /* TaskViewController.swift */,
+				70C9FA661CF4F18100E1801F /* TaskDetailsViewController.swift */,
 				A688D5CF1CF39224007E3D11 /* SocketIOManager.swift */,
 				70C9FA601CF38CDD00E1801F /* NewTaskViewController.swift */,
 				7089E0DD1CF0195800485CD4 /* TaskModel.swift */,
@@ -388,9 +394,11 @@
 				7089E0D01CEFE58E00485CD4 /* RoomSelectionViewController.swift in Sources */,
 				A688D5C71CF39202007E3D11 /* SocketLogger.swift in Sources */,
 				A688D5BD1CF39202007E3D11 /* SocketEngineClient.swift in Sources */,
+				70C9FA651CF4DD6D00E1801F /* MyTasksViewController.swift in Sources */,
 				A688D5C51CF39202007E3D11 /* SocketIOClientSpec.swift in Sources */,
 				A688D5CB1CF39202007E3D11 /* SocketTypes.swift in Sources */,
 				A688D5BF1CF39202007E3D11 /* SocketEnginePollable.swift in Sources */,
+				70C9FA671CF4F18100E1801F /* TaskDetailsViewController.swift in Sources */,
 				7089E0E21CF0217B00485CD4 /* TaskCell.swift in Sources */,
 				7089E0A01CEFBF6100485CD4 /* AppDelegate.swift in Sources */,
 				A688D5C21CF39202007E3D11 /* SocketEventHandler.swift in Sources */,

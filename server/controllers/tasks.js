@@ -30,6 +30,22 @@ module.exports = (function(){
 			})
 		},
 
+		show_user_tasks_for_room: function(req, res) {
+			Task.find({'_room': req.params.room_id, 'users' : req.params.user_id})
+			.populate("_room")
+			.populate("users")
+			.exec(function(err, tasks) {
+				if(err){
+					console.log('cannot search for room');
+				} else {
+					console.log('showing room search');
+					console.log(tasks)
+					res.json(tasks);
+
+				}
+			})
+		},
+
 		create: function(req, res) {
 			var task = new Task({objective: req.body.objective, expiration_date: req.body.expiration_date, _room: req.body._room, users: req.body.users});
 			task.save(function(err, task){

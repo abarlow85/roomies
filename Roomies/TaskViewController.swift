@@ -35,7 +35,7 @@ class TaskViewController: UITableViewController, CancelButtonDelegate, NewTaskVi
                     dispatch_async(dispatch_get_main_queue(), {
                         self.tableView.reloadData()
 //                        self.update()
-                        print(self.roomTasks)
+                        
                         self.tabBarController?.navigationItem.prompt = "\(roomData["name"]!)"
                     })
                 }
@@ -44,6 +44,7 @@ class TaskViewController: UITableViewController, CancelButtonDelegate, NewTaskVi
             }
 
         }
+        
     }
 
     override func viewDidAppear(animated: Bool) {
@@ -51,9 +52,18 @@ class TaskViewController: UITableViewController, CancelButtonDelegate, NewTaskVi
         tasks = [roomTasks]
         SocketIOManager.sharedInstance.getTask { (taskInfo) -> Void in
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                self.tasks.append(taskInfo)
-                self.tableView.reloadData()
-                self.scrollToBottom()
+//                self.tasks.append(taskInfo)
+//                self.tableView.reloadData()
+//                self.scrollToBottom()
+                print("task info: \(taskInfo)")
+                let user = self.prefs.stringForKey("currentUser")!
+                let users = taskInfo["users"] as! NSArray
+                for i in 0..<users.count {
+                    if users[i]["_id"] as! String == user {
+                        self.alertNewTask()
+                    }
+                }
+                
             })
         }
     }
@@ -112,9 +122,30 @@ class TaskViewController: UITableViewController, CancelButtonDelegate, NewTaskVi
             }
             
         }
-        print(userString)
+//        print(userString)
         
         return userString
+    }
+    
+    
+//socket task update methods
+//    func showBannerLabelAnimated() {
+//        UIView.animateWithDuration(0.75, animations: { () -> Void in
+//            self.lblNewsBanner.alpha = 1.0
+//            
+//        }) { (finished) -> Void in
+//            self.bannerLabelTimer = NSTimer.scheduledTimerWithTimeInterval(2.0, target: self, selector: "hideBannerLabel", userInfo: nil, repeats: false)
+//        }
+//    }
+    
+    func alertNewTask() {
+        let alertController = UIAlertController(title: "New Task", message: "There is a new task for you!", preferredStyle: UIAlertControllerStyle.Alert)
+        let OKAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (action) -> Void in
+            print("adding alert")
+        }
+        alertController.addAction(OKAction)
+        presentViewController(alertController, animated: true, completion: nil)
+        
     }
     
     func scrollToBottom() {

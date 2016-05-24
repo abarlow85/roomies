@@ -2,8 +2,8 @@ var tasks = require('../controllers/tasks.js')
 var users = require('../controllers/users.js')
 var rooms = require('../controllers/rooms.js')
 var messages = require('../controllers/messages.js')
-var userList = [];
-var typingUsers = {};
+// var userList = [];
+// var typingUsers = {};
 
 
 module.exports = function(app, passport, server) {
@@ -19,6 +19,18 @@ module.exports = function(app, passport, server) {
 				console.log('broadcast');
 				socket.broadcast.emit('new_user', output);
 			})
+		})
+
+		socket.on('task', function(objective, users, expiration) {
+			console.log(objective);
+			console.log(users);
+			console.log(expiration);
+			// var new_task_data = {
+			// 	objective: objective, 
+			// 	users: users,
+			// 	expiration: expiration
+			// }
+			io.emit('newTask', objective, users, expiration);
 		})
 	});
 

@@ -65,17 +65,13 @@ class NewTaskViewController: UIViewController, UITableViewDataSource, UITableVie
         taskData["expiration_date"] = fromDate
         taskData["users"] = responsibleUsers
         taskData["_room"] = prefs.stringForKey("currentRoom")!
-        print ("TASK DATA \n")
-        print(taskData)
         TaskModel.addTask(taskData) {
             data, response, error in
             do {
-                //                print(response)
                 if let jsonResult = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as? NSMutableDictionary {
-                    print("TASK RETURNED")
-                    print(jsonResult)
                     dispatch_async(dispatch_get_main_queue(), {
                         self.delegate?.newTaskViewController(self, didFinishAddingTask: jsonResult)
+                        SocketIOManager.sharedInstance.sendTask(jsonResult)
                     })
                     
                 }

@@ -19,46 +19,63 @@ class SocketIOManager: NSObject {
     
     func establishConnection() {
         socket.connect()
+        listenForOtherTasks()
     }
     
     func closeConnection() {
         socket.disconnect()
     }
     
-    func connectToServerWithNickname(nickname: String, completionHandler: (userList: [[String: AnyObject]]!) -> Void) {
-        socket.emit("connectUser", nickname)
-        
-        socket.on("userList") { ( dataArray, ack) -> Void in
-            completionHandler(userList: dataArray[0] as! [[String: AnyObject]])
-        }
-        
-//        listenForOtherMessages()
-        
-    }
+//    func connectToServerWithNickname(nickname: String, completionHandler: (userList: [[String: AnyObject]]!) -> Void) {
+//        socket.emit("connectUser", nickname)
+//        
+//        socket.on("userList") { ( dataArray, ack) -> Void in
+//            completionHandler(userList: dataArray[0] as! [[String: AnyObject]])
+//        }
+//    
+//    }
     
 //    func exitChatWithNickname(nickname: String, completionHandler: () -> Void) {
 //        socket.emit("exitUser", nickname)
 //        completionHandler()
 //    }
 //    
-    func sendTask(objective: String, withNickname nickname: String) {
-        socket.emit("task", nickname, objective)
+    func sendTask(task: NSMutableDictionary) {
+        print("tasks here...")
+        print(task)
+        let taskObjective = task["objective"] as! String
+        var taskUsers = [String]()
+        let task_users = task["users"] as! NSArray
+        for idx in 0..<task_users.count {
+//            print("\(task_users[idx]["name"]!) is here")
+            taskUsers.append(task_users[idx]["name"]! as! String)
+        }
+//        let taskUsers = task["users"] as! String
+        let taskExpirationDate = task["expiration_date"] as! String
+        socket.emit("task", taskObjective, taskUsers, taskExpirationDate)
+
     }
 //
 //    
-    func getTask(completionHandler: (taskInfo: [NSMutableDictionary]) -> Void) {
+    func getTask(completionHandler: (taskInfo: [String:AnyObject]) -> Void) {
         socket.on("newTask") { (dataArray, socketAck) -> Void in
-            var taskDictionary = [NSMutableDictionary]()
-            taskDictionary[0]["objective"] = dataArray[0]
-            taskDictionary[0]["users"] = dataArray[1]
-            taskDictionary[0]["expiration_date"] = dataArray[2]
             
+            var taskDictionary = [String: AnyObject]()
+            taskDictionary["objective"] = dataArray[0]
+            taskDictionary["users"] = dataArray[1]
+            taskDictionary["expiration_date"] = dataArray[2]
+            print(dataArray)
+//            let data = dataArray[0] as! String
             completionHandler(taskInfo: taskDictionary)
         }
     }
 //
 //    
-//    private func listenForOtherMessages() {
+    private func listenForOtherTasks() {
+        socket.on("newTaskUpdate") { (dataArray, socketAck) -> Void in
+            NSNotificationCenter.defaultCenter().postNotificationName("newTaskWasAddedNotification", object: dataArray[0] as! String)
+        }
+        
 //        socket.on("userConnectUpdate") { (dataArray, socketAck) -> Void in
 //            NSNotificationCenter.defaultCenter().postNotificationName("userWasConnectedNotification", object: dataArray[0] as! [String: AnyObject])
 //        }
@@ -70,8 +87,8 @@ class SocketIOManager: NSObject {
 //        socket.on("userTypingUpdate") { (dataArray, socketAck) -> Void in
 //            NSNotificationCenter.defaultCenter().postNotificationName("userTypingNotification", object: dataArray[0] as? [String: AnyObject])
 //        }
-//    }
-//    
+    }
+//
 //    
 //    func sendStartTypingMessage(nickname: String) {
 //        socket.emit("startType", nickname)

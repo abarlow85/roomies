@@ -59,6 +59,7 @@ class TaskViewController: UITableViewController, CancelButtonDelegate, NewTaskVi
                 let user = self.prefs.stringForKey("currentUser")!
                 let users = taskInfo["users"] as! NSArray
                 for i in 0..<users.count {
+//                    print(users[i])
                     if users[i]["_id"] as! String == user {
                         self.alertNewTask()
                     }

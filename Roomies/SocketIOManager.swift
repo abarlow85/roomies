@@ -44,11 +44,11 @@ class SocketIOManager: NSObject {
         print("tasks here...")
         print(task)
         let taskObjective = task["objective"] as! String
-        var taskUsers = [String]()
+        var taskUsers = [NSDictionary]()
         let task_users = task["users"] as! NSArray
         for idx in 0..<task_users.count {
 //            print("\(task_users[idx]["name"]!) is here")
-            taskUsers.append(task_users[idx]["name"]! as! String)
+            taskUsers.append(task_users[idx] as! NSDictionary)
         }
 //        let taskUsers = task["users"] as! String
         let taskExpirationDate = task["expiration_date"] as! String

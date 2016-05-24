@@ -1,7 +1,6 @@
-roomies.controller('allTaskController', function ($scope, $localStorage, taskFactory){
+roomies.controller('allTaskController', function ($scope, $localStorage, $location, taskFactory){
 	$scope.room = {};
 	$scope.currentUser = $localStorage.user
-	$scope.currentTask = "";
 	$scope.tasks = [];
 	$scope.users = [];
 
@@ -13,18 +12,33 @@ roomies.controller('allTaskController', function ($scope, $localStorage, taskFac
 	})
 
 	$scope.createTask = function (taskContent){
-		taskFactory.createTask(taskContent, function (data){
+		var fullTask = {};
+		fullTask.objective = taskContent.objective;
+		fullTask.expiration_date = taskContent.expiration_date;
+		fullTask.users = taskContent.users;
+		fullTask._room = $scope.room;
+		console.log(fullTask);
+		taskFactory.createTask(fullTask, function (data){
 			if (data){
 				console.log(data);
 				$scope.tasks.push(data);
 			}
 		})
 	}
-	$scope.removeTask = function (taskId){
-		taskFactory.removeTask(taskId, function (data){
+	$scope.removeTask = function (task){
+		taskFactory.removeTask(task, function (data){
 			if (data){
 				console.log(data);
-				$scope.tasks.splice(tasks.indexOf(taskId), 1);
+				$scope.tasks.splice($scope.tasks.indexOf(task), 1);
+			}
+		})
+	}
+	$scope.selectTask = function (taskId){
+		taskFactory.getTaskById(taskId, function (data){
+			if (data){
+				console.log(data)
+				$localStorage.currentTask = data;
+				$location.path('/task/' + data._id);
 			}
 		})
 	}

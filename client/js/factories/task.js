@@ -1,7 +1,7 @@
 roomies.factory('taskFactory', function ($http){
 	var factory = {};
-	factory.index = function (callback){
-		$http.get('/tasks').success(function (output){
+	factory.getRoomById = function (info, callback){
+		$http.get('/rooms/' + info).success(function (output){
 			if (output){
 				console.log(output);
 				callback(output);
@@ -21,6 +21,14 @@ roomies.factory('taskFactory', function ($http){
 			if (output){
 				console.log(output);
 				callback(output);
+			}
+		})
+	}
+	factory.updateTask = function (info, callback){
+		console.log(info);
+		$http.post('/tasks/update', info).success(function (output){
+			if (output){
+				callback(output)
 			}
 		})
 	}

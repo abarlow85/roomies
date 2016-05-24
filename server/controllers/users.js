@@ -42,7 +42,6 @@ module.exports = (function(){
 		add_to_room: function(req, res){
 			User.findOne({"_id":req.body.user, "rooms": req.body._id}, function(err, user){
 				if (err) {
-
 					console.log(err)
 				} else if (user){
 					console.log("the user is in the room already")
@@ -84,8 +83,7 @@ module.exports = (function(){
 				
 				callback(users);
 			}
-		});
-		
-	},
+		});	
+	}
 	}
 })();

@@ -80,6 +80,11 @@ module.exports = function(app, passport, server) {
 	app.get('/tasks/:id', function(req, res){
         tasks.show_by_id(req, res);
     })
+
+    app.get('/tasks/:room_id/:user_id', function(req, res){
+		console.log("get tasks for user in room");
+		tasks.show_user_tasks_for_room(req, res);
+	});
     
 	app.post('/tasks/create', function(req, res){
 		tasks.create(req, res);

@@ -21,6 +21,14 @@ class TaskModel {
         let task = session.dataTaskWithURL(url!, completionHandler: completionHandler)
         task.resume()
     }
+    
+    static func getUserTasksForRoom(room:String, user:String, completionHandler: (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void){
+        let url = NSURL(string: "http://localhost:8000/tasks/" + room + "/" + user)
+        let session = NSURLSession.sharedSession()
+        let task = session.dataTaskWithURL(url!, completionHandler: completionHandler)
+        task.resume()
+    }
+    
     static func addTask(taskData:NSDictionary, completionHandler: (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void){
         do {
             let jsonData = try NSJSONSerialization.dataWithJSONObject(taskData, options: NSJSONWritingOptions.PrettyPrinted)

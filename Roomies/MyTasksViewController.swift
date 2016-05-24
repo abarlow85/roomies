@@ -1,4 +1,12 @@
 //
+//  MyTasksViewController.swift
+//  Roomies
+//
+//  Created by Alec Barlow on 5/24/16.
+//  Copyright © 2016 Alec Barlow. All rights reserved.
+//
+
+//
 //  TaskViewController.swift
 //  Roomies
 //
@@ -8,7 +16,7 @@
 
 import UIKit
 
-class TaskViewController: UITableViewController, CancelButtonDelegate, NewTaskViewControllerDelegate {
+class MyTasksViewController: UITableViewController, CancelButtonDelegate, NewTaskViewControllerDelegate {
     let prefs = NSUserDefaults.standardUserDefaults()
     let dateFormatter = NSDateFormatter()
     var roomTasks = [NSMutableDictionary]()
@@ -19,30 +27,32 @@ class TaskViewController: UITableViewController, CancelButtonDelegate, NewTaskVi
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         let room = prefs.stringForKey("currentRoom")!
-        getTasksForRoom(room)
+        let currentUser = prefs.stringForKey("currentUser")!
+        getUserTasksForRoom(room, user: currentUser)
+        
+        
     }
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        let room = prefs.stringForKey("currentRoom")!
-//        getTasksForRoom(room)
+        
         
     }
-
+    
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         tasks = [roomTasks]
         SocketIOManager.sharedInstance.getTask { (taskInfo) -> Void in
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
-//                self.tasks.append(taskInfo)
-//                self.tableView.reloadData()
-//                self.scrollToBottom()
+                //                self.tasks.append(taskInfo)
+                //                self.tableView.reloadData()
+                //                self.scrollToBottom()
                 print("task info: \(taskInfo)")
                 let user = self.prefs.stringForKey("currentUser")!
                 let users = taskInfo["users"] as! NSArray
                 for i in 0..<users.count {
-//                    print(users[i])
+                    //                    print(users[i])
                     if users[i]["_id"] as! String == user {
                         self.alertNewTask()
                     }
@@ -52,22 +62,23 @@ class TaskViewController: UITableViewController, CancelButtonDelegate, NewTaskVi
         }
     }
     
-
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "newTaskSegue" {
             let navigationController = segue.destinationViewController as! UINavigationController
             let controller = navigationController.topViewController as! NewTaskViewController
             controller.userArray = roomUsers
             //            print(roomUsers)
+            controller.cancelButtonDelegate = self
             controller.delegate = self
-
+            
         }
         if segue.identifier == "TaskDetailsSegue" {
             //            let controller = segue.destinationViewController as! TaskDetailsViewController
             let barViewController = segue.destinationViewController as! UITabBarController
             let navController = barViewController.viewControllers![0] as! UINavigationController
             let controller = navController.topViewController as! TaskDetailsViewController
-//            controller.cancelButtonDelegate = self
+            //            controller.cancelButtonDelegate = self
             if let indexPath = tableView.indexPathForCell(sender as! UITableViewCell) {
                 //                print(roomTasks[indexPath.row]["_id"])
                 let id = roomTasks[indexPath.row]["_id"] as! String
@@ -91,14 +102,14 @@ class TaskViewController: UITableViewController, CancelButtonDelegate, NewTaskVi
         return cell!
     }
     
+    override func tableView(tableView: UITableView, accessoryButtonTappedForRowWithIndexPath indexPath: NSIndexPath) {
+        performSegueWithIdentifier("TaskDetailsSegue", sender: tableView.cellForRowAtIndexPath(indexPath))
+    }
+    
     func newTaskViewController(controller: NewTaskViewController, didFinishAddingTask task: NSMutableDictionary) {
         dismissViewControllerAnimated(true, completion: nil)
         roomTasks.append(task)
         self.tableView.reloadData()
-    }
-    
-    override func tableView(tableView: UITableView, accessoryButtonTappedForRowWithIndexPath indexPath: NSIndexPath) {
-        performSegueWithIdentifier("TaskDetailsSegue", sender: tableView.cellForRowAtIndexPath(indexPath))
     }
     
     func cancelButtonPressedFrom(controller: UIViewController) {
@@ -107,7 +118,7 @@ class TaskViewController: UITableViewController, CancelButtonDelegate, NewTaskVi
     
     func stringifyResponsibleUsers(users: NSArray) -> String {
         var userString = ""
-//        print(users)
+        //        print(users)
         for idx in 0..<users.count {
             let user = users[idx]["name"] as! String
             if users.count < 2 {
@@ -121,21 +132,21 @@ class TaskViewController: UITableViewController, CancelButtonDelegate, NewTaskVi
             }
             
         }
-//        print(userString)
+        //        print(userString)
         
         return userString
     }
     
     
-//socket task update methods
-//    func showBannerLabelAnimated() {
-//        UIView.animateWithDuration(0.75, animations: { () -> Void in
-//            self.lblNewsBanner.alpha = 1.0
-//            
-//        }) { (finished) -> Void in
-//            self.bannerLabelTimer = NSTimer.scheduledTimerWithTimeInterval(2.0, target: self, selector: "hideBannerLabel", userInfo: nil, repeats: false)
-//        }
-//    }
+    //socket task update methods
+    //    func showBannerLabelAnimated() {
+    //        UIView.animateWithDuration(0.75, animations: { () -> Void in
+    //            self.lblNewsBanner.alpha = 1.0
+    //
+    //        }) { (finished) -> Void in
+    //            self.bannerLabelTimer = NSTimer.scheduledTimerWithTimeInterval(2.0, target: self, selector: "hideBannerLabel", userInfo: nil, repeats: false)
+    //        }
+    //    }
     
     func alertNewTask() {
         let alertController = UIAlertController(title: "New Task", message: "There is a new task for you!", preferredStyle: UIAlertControllerStyle.Alert)
@@ -158,15 +169,35 @@ class TaskViewController: UITableViewController, CancelButtonDelegate, NewTaskVi
         }
     }
     
-    func getTasksForRoom(room: String) {
+    func getUserTasksForRoom(room: String, user: String) {
+        TaskModel.getUserTasksForRoom(room, user: user) { data, response, error in
+            do {
+                if let tasksData = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as? [NSMutableDictionary] {
+                    //                    print("room information:")
+                    //                    print(room)
+                    self.roomTasks = tasksData
+                    
+                    //                    let users = tasksData["users"] as! [NSMutableDictionary]
+                    //                    self.roomUsers = users
+                    //                    print(roomData["users"]!)
+                    
+                    dispatch_async(dispatch_get_main_queue(), {
+                        self.tableView.reloadData()
+                        //                        self.update()
+                        
+                    })
+                }
+            } catch {
+                print("Something went wrong")
+            }
+            
+        }
+        
         TaskModel.getTasksForRoom(room) { data, response, error in
             do {
                 if let roomData = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as? NSMutableDictionary {
                     //                    print("room information:")
                     //                    print(room)
-                    let tasks = roomData["tasks"] as! [NSMutableDictionary]
-                    self.roomTasks = tasks
-                    
                     let users = roomData["users"] as! [NSMutableDictionary]
                     self.roomUsers = users
                     print(roomData["users"]!)
@@ -175,7 +206,7 @@ class TaskViewController: UITableViewController, CancelButtonDelegate, NewTaskVi
                         self.tableView.reloadData()
                         //                        self.update()
                         
-                        self.title = "Room \(roomData["name"]!)"
+                        self.title = "My Tasks: Room \(roomData["name"]!)"
                     })
                 }
             } catch {
@@ -186,3 +217,4 @@ class TaskViewController: UITableViewController, CancelButtonDelegate, NewTaskVi
     }
     
 }
+

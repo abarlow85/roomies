@@ -39,6 +39,10 @@ module.exports = function(app, passport, server) {
 		socket.on('task', function(objective, users, expiration) {
 			io.emit('newTask', objective, users, expiration);
 		})
+
+		socket.on('newTaskAlert', function(date, objective) {
+			io.emit('getNewTaskAlert', date, objective)
+		})
 	});
 
 // User routes

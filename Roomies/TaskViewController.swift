@@ -54,12 +54,13 @@ class TaskViewController: UITableViewController, CancelButtonDelegate, NewTaskVi
         
         SocketIOManager.sharedInstance.getTaskAlertAndScheduleNotification { (taskInfo) -> Void in
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                let objective = taskInfo["text"] as! String
+                let objective = taskInfo["objective"] as! String
                 let date = taskInfo["date"] as! String
                 let dateString = date
                 let dateFormatter = NSDateFormatter()
                 dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
                 let dateFromString = dateFormatter.dateFromString(dateString)
+                print("scheduling local notification...")
                 self.scheduleLocalNotification(dateFromString!, withText: objective)
             })
         }

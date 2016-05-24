@@ -5,7 +5,6 @@ roomies.controller('allTaskController', function ($scope, $localStorage, $locati
 	$scope.users = [];
 
 	taskFactory.getRoomById($localStorage.room, function (data){
-		console.log(data);
 		$scope.tasks = data.tasks;
 		$scope.users = data.users;
 		$scope.room = data;
@@ -17,10 +16,8 @@ roomies.controller('allTaskController', function ($scope, $localStorage, $locati
 		fullTask.expiration_date = taskContent.expiration_date;
 		fullTask.users = taskContent.users;
 		fullTask._room = $scope.room;
-		console.log(fullTask);
 		taskFactory.createTask(fullTask, function (data){
 			if (data){
-				console.log(data);
 				$scope.tasks.push(data);
 			}
 		})
@@ -28,7 +25,6 @@ roomies.controller('allTaskController', function ($scope, $localStorage, $locati
 	$scope.removeTask = function (task){
 		taskFactory.removeTask(task, function (data){
 			if (data){
-				console.log(data);
 				$scope.tasks.splice($scope.tasks.indexOf(task), 1);
 			}
 		})
@@ -36,7 +32,6 @@ roomies.controller('allTaskController', function ($scope, $localStorage, $locati
 	$scope.selectTask = function (taskId){
 		taskFactory.getTaskById(taskId, function (data){
 			if (data){
-				console.log(data)
 				$localStorage.currentTask = data;
 				$location.path('/task/' + data._id);
 			}

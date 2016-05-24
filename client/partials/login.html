@@ -1,25 +1,32 @@
 <div ng-controller = 'loginController'>
-	<div ng-if = 'newUser == true'>
-		<a href= "" ng-click = 'toggleForm()'>Returning User? </a>
-		<h3> Register </h3>
-		<div class = 'userLogin'>
-			<form> 
-				Full Name: <input required type = 'text' ng-model = 'regUser.name'>
-				Email: <input required type = 'text' ng-model = 'regUser.email'>
-				Password: <input required type = 'password' ng-model = 'regUser.password'>
-				<input type = 'submit' ng-click = 'userRegister(regUser)'>
-			</form>
-		</div>
+	<div>
+		<img src = "../img/splash_page.jpg"> 
 	</div>
-	<div ng-if = 'newUser == false'>
-		<a href = "" ng-click = 'toggleForm()'> New User? </a>
-		<h3> Login </h3>
-		<div class = 'userLogin'>
-			<form>
-				Email: <input required type = 'text' ng-model = 'loginUser.email'>
-				Password: <input required type = 'password' ng-model = 'loginUser.password'>
-				<input type = 'submit' ng-click = 'userLogin(loginUser)'>
-			</form>
+	<div class = 'modal'>
+		<div class= 'modal-content'>
+			<div ng-if = 'newUser == true'>
+				<a href= "" ng-click = 'toggleForm()'>Returning User? </a>
+				<h3> Register </h3>
+				<div class = 'userLogin'>
+					<form> 
+						Full Name: <input required type = 'text' ng-model = 'regUser.name'>
+						Email: <input required type = 'text' ng-model = 'regUser.email'>
+						Password: <input required type = 'password' ng-model = 'regUser.password'>
+						<input type = 'submit' ng-click = 'userRegister(regUser)'>
+					</form>
+				</div>
+			</div>
+			<div ng-if = 'newUser == false'>
+				<a href = "" ng-click = 'toggleForm()'> New User? </a>
+				<h3> Login </h3>
+				<div class = 'userLogin'>
+					<form>
+						Email: <input required type = 'text' ng-model = 'loginUser.email'>
+						Password: <input required type = 'password' ng-model = 'loginUser.password'>
+						<input type = 'submit' ng-click = 'userLogin(loginUser)'>
+					</form>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>

@@ -85,7 +85,7 @@ module.exports = function(app, passport, server) {
 		tasks.create(req, res);
 	})
 
-	app.post('/tasks/update', function(req, res){
+	app.post('/tasks/update/:id', function(req, res){
 		tasks.update(req, res);
 	})
 

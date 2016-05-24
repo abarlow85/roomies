@@ -121,8 +121,9 @@ class RoomSelectionViewController: UITableViewController, CancelButtonDelegate {
         RoomModel.selectRoom(roomData){
             data, response, error in
             do{
+                print("in here")
                 if(data != nil){
-                    if let jsonResult = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as? NSMutableArray {
+                    if let jsonResult = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as? NSMutableDictionary {
                         print(jsonResult)
                         dispatch_async(dispatch_get_main_queue(), {
                             self.performSegueWithIdentifier("RoomSelectedSegue", sender: jsonResult)

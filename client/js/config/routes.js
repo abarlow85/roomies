@@ -9,6 +9,9 @@ roomies.config(function ($routeProvider){
 	.when('/room/:id', {
 		templateUrl: '../partials/tasks.html'
 	})
+	.when('/task/:id', {
+		templateUrl: '../partials/task.html'
+	})
 	.otherwise({
 		redirectTo: '/'
 	})

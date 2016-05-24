@@ -60,6 +60,7 @@ class TaskViewController: UITableViewController, CancelButtonDelegate, NewTaskVi
                 let dateFormatter = NSDateFormatter()
                 dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
                 let dateFromString = dateFormatter.dateFromString(dateString)
+                print("scheduling local notification...")
                 self.scheduleLocalNotification(dateFromString!, withText: objective)
             })
         }

@@ -14,7 +14,7 @@ class RoomModel {
     let prefs = NSUserDefaults.standardUserDefaults()
     
     static func getRooms(completionHandler: (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void) {
-        let url = NSURL(string: "http://localhost:8000/rooms")
+        let url = NSURL(string: "http://54.201.88.135/rooms")
         let session = NSURLSession.sharedSession()
         let task = session.dataTaskWithURL(url!, completionHandler: completionHandler)
         task.resume()
@@ -22,7 +22,7 @@ class RoomModel {
     
     static func selectRoom(roomData: NSMutableDictionary, completionHandler: (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void ) {
         
-        if let url = NSURL(string: "http://localhost:8000/users/addtoroom") {
+        if let url = NSURL(string: "http://54.201.88.135/users/addtoroom") {
             let request = NSMutableURLRequest(URL: url)
             request.HTTPMethod = "POST"
             let bodyData = "{\"_id\":\"\(roomData["_id"] as! String)\", \"user\":\"\(roomData["user"] as! String!)\"}"
@@ -38,7 +38,7 @@ class RoomModel {
     
     static func addRoom(roomData: NSMutableDictionary, completionHandler: (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void ) {
         
-        if let url = NSURL(string: "http://localhost:8000/rooms/create") {
+        if let url = NSURL(string: "http://54.201.88.135/rooms/create") {
             let request = NSMutableURLRequest(URL: url)
             request.HTTPMethod = "POST"
             let bodyData = "{\"name\":\"\(roomData["name"] as! String)\", \"category\":\"\(roomData["category"] as! String)\", \"user\":\"\(roomData["user"] as! String)\"}"

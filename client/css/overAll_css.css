@@ -1,0 +1,7 @@
+.splash.ng-leave {
+		transition: 2s linear all;
+		opacity: 1;
+	}
+	.splash.ng-leave.ng-leave-active{
+		opacity: 0;
+	}

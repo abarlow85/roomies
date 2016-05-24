@@ -118,7 +118,7 @@ class NewTaskViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-        self.view.endEditing(true)
+//        self.view.
         return true
     }
     

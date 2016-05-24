@@ -54,7 +54,7 @@ class TaskViewController: UITableViewController, CancelButtonDelegate, NewTaskVi
         
         SocketIOManager.sharedInstance.getTaskAlertAndScheduleNotification { (taskInfo) -> Void in
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                let objective = taskInfo["text"] as! String
+                let objective = taskInfo["objective"] as! String
                 let date = taskInfo["date"] as! String
                 let dateString = date
                 let dateFormatter = NSDateFormatter()
@@ -71,6 +71,7 @@ class TaskViewController: UITableViewController, CancelButtonDelegate, NewTaskVi
             let navigationController = segue.destinationViewController as! UINavigationController
             let controller = navigationController.topViewController as! NewTaskViewController
             controller.userArray = roomUsers
+            controller.cancelButtonDelegate = self
             //            print(roomUsers)
             controller.delegate = self
 

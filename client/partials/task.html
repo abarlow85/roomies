@@ -1,42 +1,105 @@
 <div ng-controller = 'taskDetailsController'>
-<h2> {{currentTask.objective}}</h2>
-Update Task:
-	<form>
-			<label>Objective </label>
-			<input type = 'text' ng-model = 'Task.objective'>
-			<label for= 'inputDate'> Expiration Date </label>
-				<input input-date
-			    type="text"
-			    name="created"
-			    ng-model="Task.expiration_date"
-			    container="body"
-			    format="yyyy/mm/dd"
-			    months-full="{{ month }}"
-			    months-short="{{ monthShort }}"
-			    weekdays-full="{{ weekdaysFull }}"
-			    weekdays-short="{{ weekdaysShort }}"
-			    weekdays-letter="{{ weekdaysLetter }}"
-			    disable="disable"
-			    min="{{ minDate }}"
-			    max="{{ maxDate }}"
-			    today="today"
-			    clear="clear"
-			    close="close"
-			    select-years="15"
-			    on-start="onStart()"
-			    on-render="onRender()"
-			    on-open="onOpen()"
-			    on-close="onClose()"
-			    on-set="onSet()"
-			    on-stop="onStop()" />
-			   	<label for="input_starttime" class="active">Time</label>
-			    <input ng-model = 'Task.expiration_time' class='timepicker' id="input_starttime" input-clck data-twelvehour="true" type="text">
-			<input class = 'btn waves-effect waves-light teal lighten-2'  type = 'submit' ng-click = 'updateTask(Task, currentTask)'>
-	</form>
-	<p ng-repeat = 'message in messages'>{{message.content}} -{{message._user.name}}</p>
-Add message:
-	<form>
-		Content: <input type = 'text' ng-model = 'message'>
-		<input class = 'btn waves-effect waves-light teal lighten-2' type = 'submit' ng-click = 'addMessage(message)'>
-	</form>
+<h2 class = 'viewbar'> {{currentTask.objective}}</h2>
+<button class="viewbar newModal-trigger btn waves-effect waves-light teal lighten-2" href="#modal1" modal dismissible= 'true'>Update Task</button>
+<div class ='modal' id="modal1">
+		<div class= 'modal-content'>
+				<form>
+						<label>Objective </label>
+						<input type = 'text' ng-model = 'Task.objective'>
+						<label for= 'inputDate'> Expiration Date </label>
+							<input input-date
+						    type="text"
+						    name="created"
+						    ng-model="Task.expiration_date"
+						    container="body"
+						    format="yyyy/mm/dd"
+						    months-full="{{ month }}"
+						    months-short="{{ monthShort }}"
+						    weekdays-full="{{ weekdaysFull }}"
+						    weekdays-short="{{ weekdaysShort }}"
+						    weekdays-letter="{{ weekdaysLetter }}"
+						    disable="disable"
+						    min="{{ minDate }}"
+						    max="{{ maxDate }}"
+						    today="today"
+						    clear="clear"
+						    close="close"
+						    select-years="15"
+						    on-start="onStart()"
+						    on-render="onRender()"
+						    on-open="onOpen()"
+						    on-close="onClose()"
+						    on-set="onSet()"
+						    on-stop="onStop()" />
+						   	<label>Time</label>
+						   	<div class= 'row'>
+							    <select required material-select class = 'col s2' ng-model = 'Task.expiration_hour'>
+								    <option name='1' value = '1'>01</option>
+								    <option name='2' value = '2'>02</option>
+								    <option name='3' value = '3'>03</option>
+								    <option name='4' value = '4'>04</option>
+								    <option name='5' value = '5'>05</option>
+								    <option name='6' value = '6'>06</option>
+								    <option name='7' value = '7'>07</option>
+								    <option name='8' value = '8'>08</option>
+								    <option name='9' value = '9'>09</option>
+								    <option name='10' value = '10'>10</option>
+								    <option name='11' value = '11'>11</option>
+								    <option name='12' value = '12'>12</option>
+								</select>
+							    <p class = 'col s1'> : </p>
+							    <select required material-select class = 'col s2' ng-model = 'Task.expiration_minute'>
+							    	<option name='00' value = '00'>00</option>
+								    <option name='05' value = '05'>05</option>
+								    <option name='10' value = '10'>10</option>
+								    <option name='15' value = '15'>15</option>
+								    <option name='20' value = '20'>20</option>
+								    <option name='25' value = '25'>25</option>
+								    <option name='30' value = '30'>30</option>
+								    <option name='35' value = '35'>35</option>
+								    <option name='40' value = '40'>40</option>
+								    <option name='45' value = '45'>45</option>
+								    <option name='50' value = '50'>50</option>
+								    <option name='55' value = '55'>55</option>
+								    <option name='60' value = '60'>60</option>
+								</select>
+							    <p class = 'col s1'> &nbsp </p>
+							    <select required material-select class = 'col s2' ng-model = 'Task.expiration_time'>
+								    <option name='AM' value = 'AM'>AM</option>
+								    <option name='PM' value = 'PM'>PM</option>
+								</select>
+							</div>
+						<input class = 'btn waves-effect waves-light teal lighten-2'  type = 'submit' ng-click = 'updateTask(Task, currentTask)'>
+				</form>
+			</div>
+		</div>
+	<div class = 'container'>
+		<div class = 'row'>
+			<form class = 'col s9'>
+				<h5>Add Message: </h5>
+				<label>Content</label> <input type = 'text' ng-model = 'message'>
+				<input class = 'btn waves-effect waves-light teal lighten-2' type = 'submit' ng-click = 'addMessage(message)'>
+			</form>
+		</div>
+		<div class= 'row'>
+			<table class = 'col s12'>
+				<thead>
+					<tr>
+						<th> Comment </th>
+						<th> User </th>
+					</tr>
+				</thead>
+			</table>
+		</div>
+		<div class = 'row custom2'>
+			<table class = 'col s12'>
+				<tbody>
+					<tr ng-repeat = 'message in messages'>
+						<td>{{message.content}}</td>
+						<td>{{message._user.name}}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
 </div>

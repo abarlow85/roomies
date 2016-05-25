@@ -88,7 +88,7 @@ module.exports = (function(){
 		},
 
 		update: function(req, res) {
-			Task.findOneAndUpdate({_id: req.params.id}, {objective: req.body.objective, expiration_date: req.body.expiration_date, users: req.body.users}, function(err, tasks) {
+			Task.findOneAndUpdate({_id: req.params.id}, {objective: req.body.objective, expiration_date: req.body.expiration_date}, function(err, tasks) {
 				if(err){
 					console.log('cannot update task information');
 				} else {

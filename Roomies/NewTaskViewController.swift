@@ -38,21 +38,24 @@ class NewTaskViewController: UIViewController, UITableViewDataSource, UITableVie
 //        let room = prefs.stringForKey("currentRoom")
         userTableView.dataSource = self
         userTableView.delegate = self
-        
+        self.newTaskText.delegate = self
         errorLabelText.hidden = true
         
     }
     @IBAction func doneButtonPressed(sender: UIBarButtonItem) {
         if newTaskText.text!.isEmpty {
             errorLabelText.text = "Task field is blank"
+            errorLabelText.hidden = false
             return
         }
         if newTaskDate.date.timeIntervalSinceDate(NSDate()) <= 0 {
             errorLabelText.text = "Due date cannot be in the past"
+            errorLabelText.hidden = false
             return
         }
         if responsibleUsers.count == 0 {
             errorLabelText.text = "No roomie was selected"
+            errorLabelText.hidden = false
             return
         }
         
@@ -118,7 +121,7 @@ class NewTaskViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-//        self.view.
+        self.view.endEditing(true)
         return true
     }
     

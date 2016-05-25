@@ -43,23 +43,23 @@ class MyTasksViewController: UITableViewController, CancelButtonDelegate, NewTas
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         tasks = [roomTasks]
-        SocketIOManager.sharedInstance.getTask { (taskInfo) -> Void in
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                //                self.tasks.append(taskInfo)
-                //                self.tableView.reloadData()
-                //                self.scrollToBottom()
-                print("task info: \(taskInfo)")
-                let user = self.prefs.stringForKey("currentUser")!
-                let users = taskInfo["users"] as! NSArray
-                for i in 0..<users.count {
-                    //                    print(users[i])
-                    if users[i]["_id"] as! String == user {
-                        self.alertNewTask()
-                    }
-                }
-                
-            })
-        }
+//        SocketIOManager.sharedInstance.getTask { (taskInfo) -> Void in
+//            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+//                //                self.tasks.append(taskInfo)
+//                //                self.tableView.reloadData()
+//                //                self.scrollToBottom()
+//                let user = self.prefs.stringForKey("currentUser")!
+//                let users = taskInfo["users"] as! NSArray
+//                for i in 0..<users.count {
+//                    //                    print(users[i])
+//                    if users[i]["_id"] as! String == user {
+//                        print("otherView")
+////                        self.alertNewTask()
+//                    }
+//                }
+//                
+//            })
+//        }
     }
     
     
@@ -200,7 +200,7 @@ class MyTasksViewController: UITableViewController, CancelButtonDelegate, NewTas
                     //                    print(room)
                     let users = roomData["users"] as! [NSMutableDictionary]
                     self.roomUsers = users
-                    print(roomData["users"]!)
+//                    print(roomData["users"]!)
                     
                     dispatch_async(dispatch_get_main_queue(), {
                         self.tableView.reloadData()

@@ -4,12 +4,12 @@ Update Task:
 	<form>
 			Objective: <input type = 'text' ng-model = 'Task.objective'>
 			Expiration Date: <input type = 'datetime-local' ng-model = 'Task.expiration_date'>
-			<input type = 'submit' ng-click = 'updateTask(Task, currentTask)'>
+			<input class = 'btn waves-effect waves-light teal lighten-2'  type = 'submit' ng-click = 'updateTask(Task, currentTask)'>
 	</form>
 	<p ng-repeat = 'message in messages'>{{message.content}} -{{message._user.name}}</p>
 Add message:
 	<form>
 		Content: <input type = 'text' ng-model = 'message'>
-		<input type = 'submit' ng-click = 'addMessage(message)'>
+		<input class = 'btn waves-effect waves-light teal lighten-2' type = 'submit' ng-click = 'addMessage(message)'>
 	</form>
 </div>

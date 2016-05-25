@@ -1,7 +1,24 @@
-.splash.ng-leave {
-		transition: 2s linear all;
-		opacity: 1;
-	}
-	.splash.ng-leave.ng-leave-active{
-		opacity: 0;
-	}
+.launchPage {
+	background: url('../img/splash_page.jpg');
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 100%;
+	min-height: 100vh;
+	position: relative;
+}
+.launchPage h1{
+	font-size: 175pt;
+	color: white;
+	position: absolute;
+	margin-top: 550px;
+	margin-left: 500px;
+}
+.link {
+	float:right;
+	display: inline-block;
+}
+
+.modal {
+	width: 450px !important;
+	height: auto !important;
+}

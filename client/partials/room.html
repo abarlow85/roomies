@@ -1,13 +1,13 @@
 <div ng-controller = 'roomPickController'>
-	<button ng-click = 'showRoomAdder()'> Add Room </button>
+	<button class = 'btn waves-effect waves-light teal lighten-2' ng-click = 'showRoomAdder()'> Add Room </button>
 	<div ng-if = "roomAdd == true">
 		<form>
 			Category: <input required type = 'text' ng-model = 'newRoom.category'>
 			Room Name: <input required type = 'text' ng-model = 'newRoom.name'>
-			<input type = 'submit' ng-click ='addNewRoom(newRoom)'>
+			<input class = 'btn waves-effect waves-light teal lighten-2' type = 'submit' ng-click ='addNewRoom(newRoom)'>
 		</form>
 	</div>
 	<h3> Choose Room </h3>
 	Search Rooms: <input type = 'text' ng-model = 'filter'>
-	<p ng-repeat = 'room in rooms | filter:filter | orderBy: "name"'>{{room.name}} <button ng-click = 'chooseRoom(room._id)'>Choose</button></p>
+	<p ng-repeat = 'room in rooms | filter:filter | orderBy: "name"'>{{room.name}} <button class = 'btn waves-effect waves-light teal lighten-2' ng-click = 'chooseRoom(room._id)'>Choose</button></p>
 </div>

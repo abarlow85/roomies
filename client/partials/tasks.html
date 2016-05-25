@@ -1,12 +1,45 @@
 <div ng-controller = 'allTaskController'>
 	<h1>{{room.name}}</h1>
-	<p ng-repeat = 'task in tasks track by $index'>{{task.objective}}<button ng-click = 'removeTask(task)'>Remove Task</button><button ng-click = 'selectTask(task)'>Select</button></p>
-	<div>
-		<form>
-			Objective: <input type = 'text' ng-model = 'newTask.objective'>
-			Expiration Date: <input type = 'datetime-local' ng-model = 'newTask.expiration_date'>
-			<select multiple ng-options = 'user.name for user in users' ng-model = 'newTask.users'>
-			</select>
-			<input type = 'submit' ng-click = 'createTask(newTask)'>
-		</form>
+	<a class="newModal-trigger" href="#modal1" modal>Add a new task </a>
+		<p ng-repeat = 'task in tasks track by $index'>{{task.objective}}
+			<button class = 'btn waves-effect waves-light teal lighten-2' ng-click = 'removeTask(task)'>Remove Task</button>
+			<button class = 'btn waves-effect waves-light teal lighten-2' ng-click = 'selectTask(task)'>Select</button>
+		</p>
+	<div class ='modal' id="modal1">
+		<div class= 'modal-content'>
+			<form>
+				Objective: <input type = 'text' ng-model = 'newTask.objective'>
+				<label for= 'inputDate'> Expiration Date </label>
+				<input input-date
+			    type="text"
+			    name="created"
+			    ng-model="newTask.expiration_date"
+			    container="body"
+			    format="yyyy/mm/dd"
+			    months-full="{{ month }}"
+			    months-short="{{ monthShort }}"
+			    weekdays-full="{{ weekdaysFull }}"
+			    weekdays-short="{{ weekdaysShort }}"
+			    weekdays-letter="{{ weekdaysLetter }}"
+			    disable="disable"
+			    min="{{ minDate }}"
+			    max="{{ maxDate }}"
+			    today="today"
+			    clear="clear"
+			    close="close"
+			    select-years="15"
+			    on-start="onStart()"
+			    on-render="onRender()"
+			    on-open="onOpen()"
+			    on-close="onClose()"
+			    on-set="onSet()"
+			    on-stop="onStop()" />
+			    <label for= 'inputTime'> Time </label>
+			    <input ng-model = 'newTask.expiration_time' class='timepicker' id="input_starttime" input-clock data-twelvehour="true" type="time">
+				<select material-select watch multiple ng-options = 'user.name for user in users' ng-model = 'newTask.users'>
+				</select>
+				<input href="#modal1" modal class = 'newModal-trigger btn waves-effect waves-light teal lighten-2' type = 'submit' ng-click = 'createTask(newTask)'>
+			</form>
+		</div>
+	</div>
 </div>

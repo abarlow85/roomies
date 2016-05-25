@@ -857,9 +857,15 @@ if ($) {
     leanModal: function(option) {
       return this.each(function() {
 
-        var defaults = {
-          starting_top: '4%'
-        },
+         var defaults = {
+	        opacity: 0.7,
+	        in_duration: 350,
+	        out_duration: 250,
+	        ready: undefined,
+	        complete: undefined,
+	        dismissible: false,
+	        starting_top: '4%'
+	      },
         // Override defaults
         options = $.extend(defaults, option);
 

@@ -43,6 +43,11 @@
 .viewbar{
 	display: inline-block;
 }
+.back {
+	float: right;
+	margin-right: 24px;
+	margin-top: 15px;
+}
 h2.viewbar{
 	margin-left: 50px;
 	color:black;

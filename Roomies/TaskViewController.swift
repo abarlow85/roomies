@@ -118,6 +118,7 @@ class TaskViewController: UITableViewController, CancelButtonDelegate, NewTaskVi
             let navigationController = segue.destinationViewController as! UINavigationController
             let controller = navigationController.topViewController as! NewTaskViewController
             controller.userArray = roomUsers
+            controller.cancelButtonDelegate = self
             //            print(roomUsers)
             controller.delegate = self
 

@@ -66,7 +66,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         let userData = NSMutableDictionary()
         //dismiss keyboard
         self.view.endEditing(true)
-        print(textField)
         
         if emailTextField.text!.isEmpty ||
             passwordTextField.text!.isEmpty {

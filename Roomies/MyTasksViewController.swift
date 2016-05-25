@@ -51,18 +51,20 @@ class MyTasksViewController: UITableViewController, CancelButtonDelegate, NewTas
 //                //                self.tasks.append(taskInfo)
 //                //                self.tableView.reloadData()
 //                //                self.scrollToBottom()
-//                print("task info: \(taskInfo)")
+
 //                let user = self.prefs.stringForKey("currentUser")!
 //                let users = taskInfo["users"] as! NSArray
 //                for i in 0..<users.count {
 //                    //                    print(users[i])
 //                    if users[i]["_id"] as! String == user {
-//                        self.alertNewTask()
+//                        print("otherView")
+////                        self.alertNewTask()
 //                    }
 //                }
 //                
 //            })
 //        }
+
     }
     
     override func viewDidDisappear(animated: Bool) {
@@ -72,6 +74,7 @@ class MyTasksViewController: UITableViewController, CancelButtonDelegate, NewTas
         } else {
             observer = true
         }
+
     }
     
     override func viewWillDisappear(animated: Bool) {

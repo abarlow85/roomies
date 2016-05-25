@@ -4,6 +4,11 @@ roomies.controller('allTaskController', function ($scope, $route, $window, $loca
 	$scope.tasks = [];
 	$scope.users = [];
 
+	if($localStorage.login == true){
+		$localStorage.login = false;
+		location.reload();
+	}
+	
 	taskFactory.getRoomById($localStorage.room, function (data){
 		$scope.tasks = data.tasks;
 		$scope.users = data.users;

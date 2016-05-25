@@ -3,13 +3,19 @@ roomies.controller('taskDetailsController', function ($scope, $location, $localS
 	$scope.currentUser = $localStorage.user;
 	$scope.currentTask = $localStorage.currentTask;
 	$scope.messages = [];
-	//BACKEND ROUTE DOESN"T TAKE PARAMETER? check taskFactory update and backend tasks controller + routes
 	$scope.updateTask = function (taskContent, taskId){
-		var task = {};
-		task.objective = taskContent.objective;
-		task.expiration_date = taskContent.expiration_date;
-		task._id = taskId._id;
-		taskFactory.updateTask(task, function (data){
+		if (taskContent.expiration_time == 'PM'){
+			var parsed = parseInt(taskContent.expiration_hour);
+			parsed += 12;
+			taskContent.expiration_hour = String(parsed);
+		}
+		var fullTask = {};
+		fullTask.objective = taskContent.objective;
+		var fulldate = taskContent.expiration_date + " " + taskContent.expiration_hour+':'+taskContent.expiration_minute + " " + taskContent.expiration_time;
+		console.log(fulldate);
+		fullTask.expiration_date = fulldate;
+		fullTask._id = taskId._id;
+		taskFactory.updateTask(fullTask, function (data){
 			if (data){
 				$location.path('/room/' + data._id)
 			}
@@ -30,6 +36,7 @@ roomies.controller('taskDetailsController', function ($scope, $location, $localS
 		messageFactory.addMessage(newMessage, function (data){
 			if (data){
 				$scope.messages.push(data.messages[data.messages.length - 1]);
+				$scope.message = "";
 			}
 		})
 	}

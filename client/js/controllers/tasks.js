@@ -3,20 +3,6 @@ roomies.controller('allTaskController', function ($scope, $route, $window, $loca
 	$scope.currentUser = $localStorage.user
 	$scope.tasks = [];
 	$scope.users = [];
-	$scope.addTask = false;
-
-	$scope.showTaskAdder = function () {
-		if ($scope.addTask == false){
-			$scope.addTask = true;
-		}
-		else{
-			$scope.addTask = false;
-		} 
-	}
-	if($localStorage.login == true){
-		$localStorage.login = false;
-		location.reload();
-	}
 
 	taskFactory.getRoomById($localStorage.room, function (data){
 		$scope.tasks = data.tasks;
@@ -25,12 +11,20 @@ roomies.controller('allTaskController', function ($scope, $route, $window, $loca
 	})
 
 	$scope.createTask = function (taskContent){
+		if (taskContent.expiration_time == 'PM'){
+			var parsed = parseInt(taskContent.expiration_hour);
+			parsed += 12;
+			taskContent.expiration_hour = String(parsed);
+			console.log(taskContent.expiration_hour);
+		}
 		var fullTask = {};
 		fullTask.objective = taskContent.objective;
-		var fulldate = taskContent.expiration_date + " " + taskContent.expiration_time;
+		var fulldate = taskContent.expiration_date + " " + taskContent.expiration_hour+':'+taskContent.expiration_minute + " " + taskContent.expiration_time;
+		console.log(fulldate);
 		fullTask.expiration_date = fulldate;
 		fullTask.users = taskContent.users;
 		fullTask._room = $scope.room;
+
 		taskFactory.createTask(fullTask, function (data){
 			if (data){
 				$scope.tasks.push(data);

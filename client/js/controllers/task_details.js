@@ -3,6 +3,10 @@ roomies.controller('taskDetailsController', function ($scope, $location, $localS
 	$scope.currentUser = $localStorage.user;
 	$scope.currentTask = $localStorage.currentTask;
 	$scope.messages = [];
+	
+	$scope.back = function () {
+		$location.path('/room/' + $scope.room);	
+	}
 	$scope.updateTask = function (taskContent, taskId){
 		if (taskContent.expiration_time == 'PM'){
 			var parsed = parseInt(taskContent.expiration_hour);

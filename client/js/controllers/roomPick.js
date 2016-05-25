@@ -1,5 +1,4 @@
 roomies.controller('roomPickController', function ($scope, $route, $location, $localStorage, roomFactory, userFactory){
-	$scope.roomAdd = false;
 	$scope.rooms = [];
 	$scope.user = $localStorage.user
 	
@@ -7,14 +6,7 @@ roomies.controller('roomPickController', function ($scope, $route, $location, $l
 		$localStorage.login = false;
 		location.reload();
 	}
-	$scope.showRoomAdder = function () {
-		if ($scope.roomAdd == false){
-			$scope.roomAdd = true;
-		}
-		else{
-			$scope.roomAdd = false;
-		} 
-	}
+
 	roomFactory.index(function (data){
 		$scope.rooms = data;
 	})
@@ -22,6 +14,7 @@ roomies.controller('roomPickController', function ($scope, $route, $location, $l
 		newRoom.user = $scope.user
 		roomFactory.addNewRoom(newRoom, function (data){
 			if (data){
+				$localStorage.login = true;
 				$localStorage.room = data._id;
 				$location.path('/room/' + data._id)
 			}

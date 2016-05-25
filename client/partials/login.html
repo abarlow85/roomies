@@ -1,5 +1,4 @@
 <div ng-controller = 'loginController'>
-	<a class="modal-trigger" href="#modal1" modal></a>
 	<div class = 'launchPage'>
 		<div class ='modal' id="modal1">
 			<div class= 'modal-content'>
@@ -8,9 +7,9 @@
 					<h3> Register </h3>
 					<div class = 'userLogin'>
 						<form> 
-							Full Name: <input required type = 'text' ng-model = 'regUser.name'>
-							Email: <input required type = 'text' ng-model = 'regUser.email'>
-							Password: <input required type = 'password' ng-model = 'regUser.password'>
+							<label> Full Name </label> <input required type = 'text' ng-model = 'regUser.name'>
+							<label> Email </label> <input required type = 'text' ng-model = 'regUser.email'>
+							<label> Password </label> <input required type = 'password' ng-model = 'regUser.password'>
 							<input class = 'btn waves-effect waves-light teal lighten-2' type = 'submit' ng-click = 'userRegister(regUser)'>
 						</form>
 					</div>
@@ -20,14 +19,15 @@
 					<h3> Login </h3>
 					<div class = 'userLogin'>
 						<form>
-							Email: <input required type = 'text' ng-model = 'loginUser.email'>
-							Password: <input required type = 'password' ng-model = 'loginUser.password'>
+							<label> Email </label> <input required type = 'text' ng-model = 'loginUser.email'>
+							<label> Password </label> <input required type = 'password' ng-model = 'loginUser.password'>
 							<input class = 'btn waves-effect waves-light teal lighten-2' type = 'submit' ng-click = 'userLogin(loginUser)'>
 						</form>
 					</div>
 				</div>
 			</div>
 		</div>
+		<a class="modal-trigger" href="#modal1" modal></a>
 		<h1> roomies </h1>
 	</div>
 </div>

@@ -19,20 +19,14 @@
                     $('.modal-trigger').click()
                 }, 2000);
 
-                $('.modal-trigger').leanModal({
-                        opacity: .7, 
-                        in_duration: 2000,
-                        dismissable: false
-                    });
-
+                $('.modal-trigger').leanModal({dismissable: true});
                 $('.newModal-trigger').leanModal({
-                        opacity: .7, 
-                        in_duration: 2000,
-                        complete: function () {
-                            console.log('here')
-                         $('.newModal-trigger').click();
-                        }
+                        opacity: .7
                     });
+                $('#submitted').submit(function (){
+                    console.log('here');
+                    $('.newModal-trigger').leanModal({});
+                });
             });
 	    </script>
     	<script type="text/javascript" src="./js/config/routes.js"></script>

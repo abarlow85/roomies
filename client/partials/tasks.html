@@ -8,7 +8,7 @@
 	<div class ='modal' id="modal1">
 		<div class= 'modal-content'>
 			<form>
-				Objective: <input type = 'text' ng-model = 'newTask.objective'>
+				<label>Objective </label> <input type = 'text' ng-model = 'newTask.objective'>
 				<label for= 'inputDate'> Expiration Date </label>
 				<input input-date
 			    type="text"
@@ -36,10 +36,12 @@
 			    on-stop="onStop()" />
 			    <label for= 'inputTime'> Time </label>
 			    <input ng-model = 'newTask.expiration_time' class='timepicker' id="input_starttime" input-clock data-twelvehour="true" type="time">
+			    <label> Responsible Users </label>
 				<select material-select watch multiple ng-options = 'user.name for user in users' ng-model = 'newTask.users'>
 				</select>
-				<input href="#modal1" modal class = 'newModal-trigger btn waves-effect waves-light teal lighten-2' type = 'submit' ng-click = 'createTask(newTask)'>
+				<input id="submitted" class = 'btn waves-effect waves-light teal lighten-2' type = 'submit' ng-click = 'createTask(newTask)'>
 			</form>
 		</div>
+		<a href="#/room/:id" class="modal-action modal-close btn waves-effect waves-light teal lighten-2">Back</a>
 	</div>
 </div>

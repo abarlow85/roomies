@@ -1,9 +1,36 @@
 <div ng-controller = 'taskDetailsController'>
-<h1> {{currentTask.objective}}</h1>
+<h2> {{currentTask.objective}}</h2>
 Update Task:
 	<form>
-			Objective: <input type = 'text' ng-model = 'Task.objective'>
-			Expiration Date: <input type = 'datetime-local' ng-model = 'Task.expiration_date'>
+			<label>Objective </label>
+			<input type = 'text' ng-model = 'Task.objective'>
+			<label for= 'inputDate'> Expiration Date </label>
+				<input input-date
+			    type="text"
+			    name="created"
+			    ng-model="Task.expiration_date"
+			    container="body"
+			    format="yyyy/mm/dd"
+			    months-full="{{ month }}"
+			    months-short="{{ monthShort }}"
+			    weekdays-full="{{ weekdaysFull }}"
+			    weekdays-short="{{ weekdaysShort }}"
+			    weekdays-letter="{{ weekdaysLetter }}"
+			    disable="disable"
+			    min="{{ minDate }}"
+			    max="{{ maxDate }}"
+			    today="today"
+			    clear="clear"
+			    close="close"
+			    select-years="15"
+			    on-start="onStart()"
+			    on-render="onRender()"
+			    on-open="onOpen()"
+			    on-close="onClose()"
+			    on-set="onSet()"
+			    on-stop="onStop()" />
+			   	<label for="input_starttime" class="active">Time</label>
+			    <input ng-model = 'Task.expiration_time' class='timepicker' id="input_starttime" input-clck data-twelvehour="true" type="text">
 			<input class = 'btn waves-effect waves-light teal lighten-2'  type = 'submit' ng-click = 'updateTask(Task, currentTask)'>
 	</form>
 	<p ng-repeat = 'message in messages'>{{message.content}} -{{message._user.name}}</p>

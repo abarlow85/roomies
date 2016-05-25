@@ -23,7 +23,7 @@ roomies.controller('roomPickController', function ($scope, $route, $location, $l
 	$scope.chooseRoom = function (room){
 		var roomData = {};
 		roomData._id = room;
-		roomData.user = $scope.user;
+		roomData.user = $scope.user._id;
 		roomFactory.chooseRoom(roomData, function (data){
 			if (data){
 				$localStorage.room = data._id;

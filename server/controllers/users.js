@@ -40,6 +40,8 @@ module.exports = (function(){
 		},
 
 		add_to_room: function(req, res){
+			console.log("adding to room")
+			console.log(req.body);
 			User.findOne({"_id":req.body.user, "rooms": req.body._id}, function(err, user){
 				if (err) {
 					console.log(err)
@@ -63,8 +65,15 @@ module.exports = (function(){
 							if (err) {
 							console.log(err)
 							} else {
-								console.log('successfully added user to room')
-								res.json(newRoom)
+								User.findByIdAndUpdate(req.body.user, {$push: {_lastRoom: req.body._id}, function (err){
+									if (err) {
+										console.log(err);
+									}else {
+										console.log('successfully added user to room');
+									res.json(newRoom);
+									}
+								}
+								})
 							}
 						});
 					

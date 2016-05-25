@@ -21,4 +21,36 @@
 .modal {
 	width: 450px !important;
 	height: auto !important;
+	overflow-y: visible !important;
 }
+
+
+.newModal-trigger{
+	margin-left: 192px;
+	margin-top: 50px;
+}
+.container table{
+	background-color: white;
+}
+.row.custom {
+	height: 550px;
+	overflow: auto;
+}
+.viewbar{
+	display: inline-block;
+}
+h2.viewbar{
+	margin-left: 50px;
+	color:black;
+}
+button.viewbar{
+	float: right;
+	margin-right: 229px;
+}
+
+td p {
+	display: inline-block;
+}
+/*body{
+	background-color: #BEB7A4;
+}*/

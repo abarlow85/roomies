@@ -24,7 +24,7 @@ module.exports = (function(){
 					if(err){
 						console.log('cannot show all tasks');
 					} else{
-						console.log(task)
+						// console.log(task)
 						res.json(task);
 					}
 			})
@@ -39,7 +39,7 @@ module.exports = (function(){
 					console.log('cannot search for room');
 				} else {
 					console.log('showing room search');
-					console.log(tasks)
+					// console.log(tasks)
 					res.json(tasks);
 
 				}

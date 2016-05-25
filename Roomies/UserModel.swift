@@ -14,6 +14,7 @@ class UserModel {
         
         print(userData);
         if let url = NSURL(string: "http://54.201.88.135/register") {
+//        if let url = NSURL(string: "http://localhost:8000/register") {
             let request = NSMutableURLRequest(URL: url)
             
             request.HTTPMethod = "POST"
@@ -31,6 +32,7 @@ class UserModel {
     static func loginUser(userData: NSMutableDictionary, completionHandler: (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void ) {
         
         if let url = NSURL(string: "http://54.201.88.135/login") {
+//        if let url = NSURL(string: "http://localhost:8000/login") {
             let request = NSMutableURLRequest(URL: url)
             
             request.HTTPMethod = "POST"

@@ -6,12 +6,13 @@ var userList = [];
 var typingUsers = {};
 
 
-module.exports = function(app, passport, server) {
+module.exports = function(app, passport, server, http) {
 
+	// var io = require('socket.io')(http);
 	var io = require('socket.io').listen(server);
 
-	io.sockets.on('connection', function(socket){
-		console.log('connection!');
+	io.on('connection', function(socket){
+		console.log('sockets connection!');
 
 		// socket methods for chat messages
 		socket.on('connected', function(last_room){
@@ -41,9 +42,14 @@ module.exports = function(app, passport, server) {
 		})
 
 		socket.on('newTaskAlert', function(date, objective) {
-			io.emit('getNewTaskAlert', date, objective)
+		io.emit('getNewTaskAlert', date, objective)
 		})
+
 	});
+
+	// io.on('newTaskAlert', function(date, objective) {
+	// 	io.emit('getNewTaskAlert', date, objective)
+	// })
 
 // User routes
 	app.post('/register', passport.authenticate('local-register', {

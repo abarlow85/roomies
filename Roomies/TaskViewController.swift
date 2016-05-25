@@ -15,55 +15,101 @@ class TaskViewController: UITableViewController, CancelButtonDelegate, NewTaskVi
     var roomUsers = [NSMutableDictionary]()
     var tasks = [[NSMutableDictionary]]()
     var nickname: String!
+    var observer: Bool = false
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        checkForObserver()
         let room = prefs.stringForKey("currentRoom")!
         getTasksForRoom(room)
     }
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        let notificationSettings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
-        UIApplication.sharedApplication().registerUserNotificationSettings(notificationSettings)
+        checkForObserver()
+//        let notificationSettings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
+//        UIApplication.sharedApplication().registerUserNotificationSettings(notificationSettings)
         setupNotificationSettings()
     }
-
+    
+    func checkForObserver() {
+        if observer == false {
+            NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(TaskViewController.handleNewTaskUpdateNotification(_:)), name: "newTaskWasAddedNotification", object: nil)
+            NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(TaskViewController.handleTaskUpdateNotification(_:)), name: "TaskWasAddedNotification", object: nil)
+        }
+        observer = true
+    }
+    
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        if observer == true{
+            NSNotificationCenter.defaultCenter().removeObserver(self)
+            observer = false
+        } else {
+            observer = true
+        }
+    }
+    
+    override func viewWillDisappear(animated: Bool){
+        super.viewWillDisappear(animated)
+//        if observer == true{
+//            NSNotificationCenter.defaultCenter().removeObserver(self)
+//            observer = false
+//        } else {
+//            observer = true
+//        }
+//        NSNotificationCenter.defaultCenter().removeObserver(self)
+//        if observer == true{
+//            NSNotificationCenter.defaultCenter().removeObserver(self)
+//        }
+//        if self.navigationController!.viewControllers.contains(self) == false  //any other hierarchy compare if it contains self or not
+//        {
+//            // the view has been removed from the navigation stack or hierarchy, back is probably the cause
+//            // this will be slow with a large stack however.
+//            
+//            NSNotificationCenter.defaultCenter().removeObserver(self)
+//        }
+    }
+    
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         tasks = [roomTasks]
-        SocketIOManager.sharedInstance.getTask { (taskInfo) -> Void in
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-//                print("task info: \(taskInfo)")
-                let user = self.prefs.stringForKey("currentUser")!
-                let users = taskInfo["users"] as! NSArray
-                let objective = taskInfo["objective"] as! String
-                let date = taskInfo["expiration_date"] as! NSString
-                for i in 0..<users.count {
-                    if users[i]["_id"] as! String == user {
-                        self.alertNewTask(objective, expiration: date)
-                    }
-                }
-                let room = self.prefs.stringForKey("currentRoom")!
-                self.getTasksForRoom(room)
-                self.tableView.reloadData()
-                self.scrollToBottom()
-            })
-        }
-        
-        SocketIOManager.sharedInstance.getTaskAlertAndScheduleNotification { (taskInfo) -> Void in
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                let objective = taskInfo["objective"] as! String
-                let date = taskInfo["date"] as! String
-                let dateString = date
-                let dateFormatter = NSDateFormatter()
-                dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-                let dateFromString = dateFormatter.dateFromString(dateString)
-                print("scheduling local notification...")
-                self.scheduleLocalNotification(dateFromString!, withText: objective)
-            })
-        }
+//        SocketIOManager.sharedInstance.getTask { (taskInfo) -> Void in
+//            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+//                //                print("task info: \(taskInfo)")
+//                let user = self.prefs.stringForKey("currentUser")!
+//                let users = taskInfo["users"] as! NSArray
+//                let objective = taskInfo["objective"] as! String
+//                let date = taskInfo["expiration_date"] as! NSString
+//                let room = self.prefs.stringForKey("currentRoom")!
+//                self.getTasksForRoom(room)
+//                self.tableView.reloadData()
+//                self.scrollToBottom()
+//                print("share instance get task function")
+////                print(taskInfo)
+//                for i in 0..<users.count {
+//                    if users[i]["_id"] as! String == user {
+//                        self.alertNewTask(objective, expiration: date)
+//                    }
+//                }
+//            })
+//        }
+
+//        SocketIOManager.sharedInstance.getTaskAlertAndScheduleNotification { (taskInfo) -> Void in
+////            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+//                let objective = taskInfo["objective"] as! String
+//                let date = taskInfo["date"] as! String
+//                let dateString = date
+//                let dateFormatter = NSDateFormatter()
+//                dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+//                let dateFromString = dateFormatter.dateFromString(dateString)
+//                print("scheduling local notification...")
+//                self.scheduleLocalNotification(dateFromString!, withText: objective, withObject: taskInfo)
+////            })
+//        }
     }
     
 
@@ -140,11 +186,12 @@ class TaskViewController: UITableViewController, CancelButtonDelegate, NewTaskVi
     func alertNewTask(objective: String, expiration: NSString) {
         let alertController = UIAlertController(title: "New Task for you!", message: objective, preferredStyle: UIAlertControllerStyle.Alert)
         let OKAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (action) -> Void in
+//            alertController.dismissViewControllerAnimated(true, completion: nil)
             print("adding alert")
         }
         alertController.addAction(OKAction)
-        presentViewController(alertController, animated: true, completion: nil)
-        
+        self.presentViewController(alertController, animated: true, completion: nil)
+//        dismissViewControllerAnimated(true, completion: nil)
     }
     
     func scrollToBottom() {
@@ -157,7 +204,6 @@ class TaskViewController: UITableViewController, CancelButtonDelegate, NewTaskVi
         }
     }
     
-
     func getTasksForRoom(room:String) {
         TaskModel.getTasksForRoom(room) { data, response, error in
             do {
@@ -166,7 +212,7 @@ class TaskViewController: UITableViewController, CancelButtonDelegate, NewTaskVi
                     self.roomTasks = tasks
                     let users = roomData["users"] as! [NSMutableDictionary]
                     self.roomUsers = users
-                    print(roomData["users"]!)
+//                    print(roomData["users"]!)
                     dispatch_async(dispatch_get_main_queue(), {
                         self.tableView.reloadData()
                         self.title = "Room \(roomData["name"]!)"
@@ -179,14 +225,16 @@ class TaskViewController: UITableViewController, CancelButtonDelegate, NewTaskVi
 
     }
     
-    func scheduleLocalNotification(date: NSDate, withText: String) {
+    func scheduleLocalNotification(date: NSDate, withText: String, withObject: [String: AnyObject]) {
         let localNotification = UILocalNotification()
         localNotification.fireDate = fixNotificationDate(date)
         localNotification.alertBody = withText
         localNotification.alertAction = "Dismiss"
-        localNotification.category = "taskReminderCategory"
-        
+        localNotification.category = withText
+//        localNotification.userInfo = withObject
+
         UIApplication.sharedApplication().scheduleLocalNotification(localNotification)
+        
     }
     
     func fixNotificationDate(dateToFix: NSDate) -> NSDate {
@@ -195,6 +243,40 @@ class TaskViewController: UITableViewController, CancelButtonDelegate, NewTaskVi
         let fixedDate: NSDate! = NSCalendar.currentCalendar().dateFromComponents(dateComponents)
         return fixedDate
     }
+    
+    func handleTaskUpdateNotification(notification: NSNotification) {
+        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            let taskInfo = notification.object as! [String: AnyObject]
+            let user = self.prefs.stringForKey("currentUser")!
+            let users = taskInfo["users"] as! NSArray
+            let objective = taskInfo["objective"] as! String
+            let date = taskInfo["expiration_date"] as! NSString
+            let room = self.prefs.stringForKey("currentRoom")!
+            self.getTasksForRoom(room)
+            self.tableView.reloadData()
+            self.scrollToBottom()
+            print("share instance get task function")
+            //                print(taskInfo)
+            for i in 0..<users.count {
+                if users[i]["_id"] as! String == user {
+                    self.alertNewTask(objective, expiration: date)
+                }
+            }
+        })
+    }
+    
+    func handleNewTaskUpdateNotification(notification: NSNotification) {
+        let newTaskInfo = notification.object as! [String: AnyObject]
+        let objective = newTaskInfo["objective"] as! String
+        let date = newTaskInfo["date"] as! String
+        let dateString = date
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        let dateFromString = dateFormatter.dateFromString(dateString)
+        print("scheduling local notification...")
+        self.scheduleLocalNotification(dateFromString!, withText: objective, withObject: newTaskInfo)
+    }
+
     
     func setupNotificationSettings() {
         let notificationSettings: UIUserNotificationSettings! = UIApplication.sharedApplication().currentUserNotificationSettings()
@@ -234,4 +316,8 @@ class TaskViewController: UITableViewController, CancelButtonDelegate, NewTaskVi
             UIApplication.sharedApplication().registerUserNotificationSettings(newNotificationSettings)
         }
     }
+    
+
+    
+    
 }

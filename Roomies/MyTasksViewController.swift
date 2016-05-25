@@ -23,45 +23,73 @@ class MyTasksViewController: UITableViewController, CancelButtonDelegate, NewTas
     var roomUsers = [NSMutableDictionary]()
     var tasks = [[NSMutableDictionary]]()
     var nickname: String!
+    var observer = false
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         let room = prefs.stringForKey("currentRoom")!
         let currentUser = prefs.stringForKey("currentUser")!
         getUserTasksForRoom(room, user: currentUser)
-        
+        checkForObserver()
         
     }
     
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
+        checkForObserver()
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         tasks = [roomTasks]
-        SocketIOManager.sharedInstance.getTask { (taskInfo) -> Void in
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                //                self.tasks.append(taskInfo)
-                //                self.tableView.reloadData()
-                //                self.scrollToBottom()
-                print("task info: \(taskInfo)")
-                let user = self.prefs.stringForKey("currentUser")!
-                let users = taskInfo["users"] as! NSArray
-                for i in 0..<users.count {
-                    //                    print(users[i])
-                    if users[i]["_id"] as! String == user {
-                        self.alertNewTask()
-                    }
-                }
-                
-            })
+//        SocketIOManager.sharedInstance.getTask { (taskInfo) -> Void in
+//            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+//                //                self.tasks.append(taskInfo)
+//                //                self.tableView.reloadData()
+//                //                self.scrollToBottom()
+//                print("task info: \(taskInfo)")
+//                let user = self.prefs.stringForKey("currentUser")!
+//                let users = taskInfo["users"] as! NSArray
+//                for i in 0..<users.count {
+//                    //                    print(users[i])
+//                    if users[i]["_id"] as! String == user {
+//                        self.alertNewTask()
+//                    }
+//                }
+//                
+//            })
+//        }
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        if observer == true{
+            NSNotificationCenter.defaultCenter().removeObserver(self)
+            observer = false
+        } else {
+            observer = true
         }
     }
     
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+//        if observer == true{
+//            NSNotificationCenter.defaultCenter().removeObserver(self)
+//            observer = false
+//        } else {
+//            observer = true
+//        }
+    }
+    
+    func checkForObserver() {
+        if observer == false {
+            NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(TaskViewController.handleTaskUpdateNotification(_:)), name: "TaskWasAddedNotification", object: nil)
+        }
+        observer = true
+    }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "newTaskSegue" {
@@ -148,16 +176,6 @@ class MyTasksViewController: UITableViewController, CancelButtonDelegate, NewTas
     //        }
     //    }
     
-    func alertNewTask() {
-        let alertController = UIAlertController(title: "New Task", message: "There is a new task for you!", preferredStyle: UIAlertControllerStyle.Alert)
-        let OKAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (action) -> Void in
-            print("adding alert")
-        }
-        alertController.addAction(OKAction)
-        presentViewController(alertController, animated: true, completion: nil)
-        
-    }
-    
     func scrollToBottom() {
         let delay = 0.1 * Double(NSEC_PER_SEC)
         
@@ -200,7 +218,7 @@ class MyTasksViewController: UITableViewController, CancelButtonDelegate, NewTas
                     //                    print(room)
                     let users = roomData["users"] as! [NSMutableDictionary]
                     self.roomUsers = users
-                    print(roomData["users"]!)
+//                    print(roomData["users"]!)
                     
                     dispatch_async(dispatch_get_main_queue(), {
                         self.tableView.reloadData()
@@ -214,6 +232,59 @@ class MyTasksViewController: UITableViewController, CancelButtonDelegate, NewTas
             }
             
         }
+    }
+    
+    func handleTaskUpdateNotification(notification: NSNotification) {
+        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            let taskInfo = notification.object as! [String: AnyObject]
+            let user = self.prefs.stringForKey("currentUser")!
+            let users = taskInfo["users"] as! NSArray
+            let objective = taskInfo["objective"] as! String
+            let date = taskInfo["expiration_date"] as! NSString
+            let room = self.prefs.stringForKey("currentRoom")!
+            self.getTasksForRoom(room)
+            self.tableView.reloadData()
+            self.scrollToBottom()
+            print("share instance get task function")
+            //                print(taskInfo)
+            for i in 0..<users.count {
+                if users[i]["_id"] as! String == user {
+                    self.alertNewTask(objective, expiration: date)
+                }
+            }
+        })
+    }
+    
+    func alertNewTask(objective: String, expiration: NSString) {
+        let alertController = UIAlertController(title: "New Task for you!", message: objective, preferredStyle: UIAlertControllerStyle.Alert)
+        let OKAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (action) -> Void in
+            //            alertController.dismissViewControllerAnimated(true, completion: nil)
+            print("adding alert")
+        }
+        alertController.addAction(OKAction)
+        self.presentViewController(alertController, animated: true, completion: nil)
+        //        dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func getTasksForRoom(room:String) {
+        TaskModel.getTasksForRoom(room) { data, response, error in
+            do {
+                if let roomData = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as? NSMutableDictionary {
+                    let tasks = roomData["tasks"] as! [NSMutableDictionary]
+                    self.roomTasks = tasks
+                    let users = roomData["users"] as! [NSMutableDictionary]
+                    self.roomUsers = users
+                    //                    print(roomData["users"]!)
+                    dispatch_async(dispatch_get_main_queue(), {
+                        self.tableView.reloadData()
+                        self.title = "Room \(roomData["name"]!)"
+                    })
+                }
+            } catch {
+                print("Something went wrong")
+            }
+        }
+        
     }
     
 }

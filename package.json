@@ -2,14 +2,15 @@
   "name": "roomie_iOS",
   "version": "0.0.1",
   "dependencies": {
+    "bcrypt-nodejs": "latest",
     "body-parser": "latest",
+    "connect-flash": "latest",
     "express": "latest",
-    "mongoose": "latest",
-    "socket.io": "latest",
-    "passport" : "latest",         
-    "passport-local" : "latest",
-    "bcrypt-nodejs" : "latest",
     "express-session": "latest",
-    "connect-flash" : "latest" 
-	}
+    "http": "0.0.0",
+    "mongoose": "latest",
+    "passport": "latest",
+    "passport-local": "latest",
+    "socket.io": "latest"
+  }
 }

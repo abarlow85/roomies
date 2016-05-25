@@ -1,6 +1,7 @@
 var express = require('express');
 var path = require('path');
 var app = express();
+var http = require('http').Server(app);
 var bodyParser = require('body-parser');
 var passport = require('passport');
 var session = require('express-session');
@@ -21,4 +22,4 @@ var server = app.listen(8000, function() {
 	console.log('go to localhost:8000')
 });
 
-require('./server/config/routes.js')(app, passport, server);
+require('./server/config/routes.js')(app, passport, server, http);

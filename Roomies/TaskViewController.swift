@@ -195,15 +195,15 @@ class TaskViewController: UITableViewController, CancelButtonDelegate, NewTaskVi
 //        dismissViewControllerAnimated(true, completion: nil)
     }
     
-    func scrollToBottom() {
-        let delay = 0.1 * Double(NSEC_PER_SEC)
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(delay)), dispatch_get_main_queue()) { () -> Void in
-            if self.tasks.count > 0 {
-                let lastRowIndexPath = NSIndexPath(forRow: self.tasks.count - 1, inSection: 0)
-                self.tableView.scrollToRowAtIndexPath(lastRowIndexPath, atScrollPosition: UITableViewScrollPosition.Bottom, animated: true)
-            }
-        }
-    }
+//    func scrollToBottom() {
+//        let delay = 0.1 * Double(NSEC_PER_SEC)
+//        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(delay)), dispatch_get_main_queue()) { () -> Void in
+//            if self.tasks.count > 0 {
+//                let lastRowIndexPath = NSIndexPath(forRow: self.tasks.count - 1, inSection: 0)
+//                self.tableView.scrollToRowAtIndexPath(lastRowIndexPath, atScrollPosition: UITableViewScrollPosition.Bottom, animated: true)
+//            }
+//        }
+//    }
     
     func getTasksForRoom(room:String) {
         TaskModel.getTasksForRoom(room) { data, response, error in
@@ -231,7 +231,7 @@ class TaskViewController: UITableViewController, CancelButtonDelegate, NewTaskVi
         localNotification.fireDate = fixNotificationDate(date)
         localNotification.alertBody = withText
         localNotification.alertAction = "Dismiss"
-        localNotification.category = withText
+        localNotification.category = "taskReminderCategory"
 //        localNotification.userInfo = withObject
 
         UIApplication.sharedApplication().scheduleLocalNotification(localNotification)
@@ -255,7 +255,7 @@ class TaskViewController: UITableViewController, CancelButtonDelegate, NewTaskVi
             let room = self.prefs.stringForKey("currentRoom")!
             self.getTasksForRoom(room)
             self.tableView.reloadData()
-            self.scrollToBottom()
+//            self.scrollToBottom()
             print("share instance get task function")
             //                print(taskInfo)
             for i in 0..<users.count {

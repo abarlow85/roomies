@@ -1,32 +1,33 @@
 <div ng-controller = 'loginController'>
-	<div>
-		<img src = "../img/splash_page.jpg"> 
-	</div>
-	<div class = 'modal'>
-		<div class= 'modal-content'>
-			<div ng-if = 'newUser == true'>
-				<a href= "" ng-click = 'toggleForm()'>Returning User? </a>
-				<h3> Register </h3>
-				<div class = 'userLogin'>
-					<form> 
-						Full Name: <input required type = 'text' ng-model = 'regUser.name'>
-						Email: <input required type = 'text' ng-model = 'regUser.email'>
-						Password: <input required type = 'password' ng-model = 'regUser.password'>
-						<input type = 'submit' ng-click = 'userRegister(regUser)'>
-					</form>
+	<div class = 'launchPage'>
+		<div class ='modal' id="modal1">
+			<div class= 'modal-content'>
+				<div ng-if = 'newUser == true'>
+					<a class='link' href= "" ng-click = 'toggleForm()'>Returning User? </a>
+					<h3> Register </h3>
+					<div class = 'userLogin'>
+						<form> 
+							<label> Full Name </label> <input required type = 'text' ng-model = 'regUser.name'>
+							<label> Email </label> <input required type = 'text' ng-model = 'regUser.email'>
+							<label> Password </label> <input required type = 'password' ng-model = 'regUser.password'>
+							<input class = 'btn waves-effect waves-light teal lighten-2' type = 'submit' ng-click = 'userRegister(regUser)'>
+						</form>
+					</div>
 				</div>
-			</div>
-			<div ng-if = 'newUser == false'>
-				<a href = "" ng-click = 'toggleForm()'> New User? </a>
-				<h3> Login </h3>
-				<div class = 'userLogin'>
-					<form>
-						Email: <input required type = 'text' ng-model = 'loginUser.email'>
-						Password: <input required type = 'password' ng-model = 'loginUser.password'>
-						<input type = 'submit' ng-click = 'userLogin(loginUser)'>
-					</form>
+				<div ng-if = 'newUser == false'>
+					<a class='link' href = "" ng-click = 'toggleForm()'> New User? </a>
+					<h3> Login </h3>
+					<div class = 'userLogin'>
+						<form>
+							<label> Email </label> <input required type = 'text' ng-model = 'loginUser.email'>
+							<label> Password </label> <input required type = 'password' ng-model = 'loginUser.password'>
+							<input class = 'btn waves-effect waves-light teal lighten-2' type = 'submit' ng-click = 'userLogin(loginUser)'>
+						</form>
+					</div>
 				</div>
 			</div>
 		</div>
+		<a class="modal-trigger" href="#modal1" modal></a>
+		<h1> roomies </h1>
 	</div>
 </div>

@@ -1,16 +1,6 @@
 roomies.controller('loginController', function ($scope, $location, $localStorage, userFactory){
 	$scope.newUser = false;
-
-	$scope.splashPage = true;
-
-	if($scope.splashPage == true){
-		console.log($scope.splashPage);
-		setTimeout(function() {
-			$scope.splashPage = false;
-			$scope.$apply();
-			console.log($scope.splashPage);
-		}, 4000);
-	}
+	$localStorage.login = true;
 	$scope.toggleForm = function () {
 		if ($scope.newUser == false){
 			$scope.newUser = true;

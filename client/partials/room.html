@@ -1,13 +1,18 @@
 <div ng-controller = 'roomPickController'>
-	<button ng-click = 'showRoomAdder()'> Add Room </button>
-	<div ng-if = "roomAdd == true">
-		<form>
-			Category: <input required type = 'text' ng-model = 'newRoom.category'>
-			Room Name: <input required type = 'text' ng-model = 'newRoom.name'>
-			<input type = 'submit' ng-click ='addNewRoom(newRoom)'>
-		</form>
+	<button class = 'newModal-trigger btn waves-effect waves-light teal lighten-2' href= '#modal1' modal> Add Room </button>
+	<div class ='modal' id="modal1">
+		<div class= 'modal-content'>
+			<form>
+				<label> Category </label> <input required type = 'text' ng-model = 'newRoom.category'>
+				<label> Room Name </label> <input required type = 'text' ng-model = 'newRoom.name'>
+				<input class = 'btn waves-effect waves-light teal lighten-2' type = 'submit' ng-click ='addNewRoom(newRoom)'>
+			</form>
+		</div>
+		<div class="modal-footer">
+      <a href="#/room" class="modal-action modal-close btn waves-effect waves-light teal lighten-2">Back</a>
+    </div>
 	</div>
 	<h3> Choose Room </h3>
 	Search Rooms: <input type = 'text' ng-model = 'filter'>
-	<p ng-repeat = 'room in rooms | filter:filter | orderBy: "name"'>{{room.name}} <button ng-click = 'chooseRoom(room._id)'>Choose</button></p>
+	<p ng-repeat = 'room in rooms | filter:filter | orderBy: "name"'>{{room.name}} <button class = 'btn waves-effect waves-light teal lighten-2' ng-click = 'chooseRoom(room._id)'>Choose</button></p>
 </div>

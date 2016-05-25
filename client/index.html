@@ -7,12 +7,25 @@
         <script src="../bower_components/ngstorage/ngStorage.js"></script>
         <script src="../bower_components/angular-animate/angular-animate.js"></script>
         <script src="../bower_components/angular-materialize/angular-materialize.js"></script>
+        <script src="../bower_components/materialize-clockpicker/dist/js/materialize.clockpicker.js"></script>
+        <link rel='stylesheet' href="../bower_components/materialize-clockpicker/dist/css/materialize.clockpicker.css">
+
 	    <script>
 	    	var roomies = angular.module('roomies', ['ngRoute', 'ngStorage', 'ngAnimate', 'ui.materialize']);
             $(document).ready(function() {
-                $('#modal1').openModal({
-                    opacity: .5, 
-                    in_duration: 3000
+                $('select').material_select();
+
+                setTimeout(function() {
+                    $('.modal-trigger').click()
+                }, 2000);
+
+                $('.modal-trigger').leanModal({dismissable: true});
+                $('.newModal-trigger').leanModal({
+                        opacity: .7
+                    });
+                $('#submitted').submit(function (){
+                    console.log('here');
+                    $('.newModal-trigger').leanModal({});
                 });
             });
 	    </script>

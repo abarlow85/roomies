@@ -36,6 +36,10 @@
 	height: 550px;
 	overflow: auto;
 }
+.row.custom2 {
+	height: 350px;
+	overflow: auto;
+}
 .viewbar{
 	display: inline-block;
 }

@@ -34,7 +34,7 @@ class TaskViewController: UITableViewController, CancelButtonDelegate, NewTaskVi
     
     func checkForObserver() {
         if observer == false {
-            NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(TaskViewController.handleNewTaskUpdateNotification(_:)), name: "newTaskWasAddedNotification", object: nil)
+//            NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(TaskViewController.handleNewTaskUpdateNotification(_:)), name: "newTaskWasAddedNotification", object: nil)
             NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(TaskViewController.handleTaskUpdateNotification(_:)), name: "TaskWasAddedNotification", object: nil)
         }
         observer = true
@@ -191,6 +191,7 @@ class TaskViewController: UITableViewController, CancelButtonDelegate, NewTaskVi
             print("adding alert")
         }
         alertController.addAction(OKAction)
+        print("alerting responsible users")
         self.presentViewController(alertController, animated: true, completion: nil)
 //        dismissViewControllerAnimated(true, completion: nil)
     }
@@ -233,7 +234,7 @@ class TaskViewController: UITableViewController, CancelButtonDelegate, NewTaskVi
         localNotification.alertAction = "Dismiss"
         localNotification.category = "taskReminderCategory"
 //        localNotification.userInfo = withObject
-
+        print("scheduling local notification...")
         UIApplication.sharedApplication().scheduleLocalNotification(localNotification)
         
     }
@@ -256,27 +257,24 @@ class TaskViewController: UITableViewController, CancelButtonDelegate, NewTaskVi
             self.getTasksForRoom(room)
             self.tableView.reloadData()
 //            self.scrollToBottom()
-            print("share instance get task function")
-            //                print(taskInfo)
+            let dateString = date
+            let dateFormatter = NSDateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+            let dateFromString = dateFormatter.dateFromString(dateString as! String)
+            
             for i in 0..<users.count {
                 if users[i]["_id"] as! String == user {
                     self.alertNewTask(objective, expiration: date)
+                    self.scheduleLocalNotification(dateFromString!, withText: objective, withObject: taskInfo)
                 }
             }
         })
     }
     
-    func handleNewTaskUpdateNotification(notification: NSNotification) {
-        let newTaskInfo = notification.object as! [String: AnyObject]
-        let objective = newTaskInfo["objective"] as! String
-        let date = newTaskInfo["date"] as! String
-        let dateString = date
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        let dateFromString = dateFormatter.dateFromString(dateString)
-        print("scheduling local notification...")
-        self.scheduleLocalNotification(dateFromString!, withText: objective, withObject: newTaskInfo)
-    }
+//    func handleNewTaskUpdateNotification(notification: NSNotification) {
+//        let newTaskInfo = notification.object as! [String: AnyObject]
+//        
+//    }
 
     
     func setupNotificationSettings() {

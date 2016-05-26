@@ -39,8 +39,8 @@ module.exports = function(app, passport, server, http) {
 		// })
 
 		// socket methods for tasks
-		socket.on('task', function(objective, users, expiration) {
-			io.emit('newTask', objective, users, expiration);
+		socket.on('task', function(dataArray) {
+			io.emit('newTask', dataArray);
 			console.log('objective, users, expiration');
 			console.log(objective, users, expiration);
 		})

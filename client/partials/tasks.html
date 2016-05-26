@@ -3,6 +3,9 @@
 	<button class="viewbar newModal-trigger btn waves-effect waves-light teal lighten-2" href="#modal1" modal dismissible= 'true'>Add a new task </button>
 	<hr>
 	<div class = 'container'>
+		<div ng-if= "newUserShowing" class = 'notifications'>
+			<p> {{newUser}} joined the room. </p>
+		</div>
 		<div class= 'row'>
 			<table class = 'col s6'>
 				<thead>

@@ -25,7 +25,6 @@ module.exports = (function(){
 					console.log('cannot search for room');
 				} else {
 					console.log('showing room search');
-					console.log(room)
 					res.json(room);
 
 				}

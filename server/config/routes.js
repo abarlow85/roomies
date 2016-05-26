@@ -17,13 +17,15 @@ module.exports = function(app, passport, server, http) {
 		// socket methods for chat messages
 		socket.on('connected', function(last_room){
 			console.log('user connected');
-			subscribe(socket, {room: last_room});
+			// subscribe(socket, {room: last_room});
 			
 			users.login(function(output){
-				socket.broadcast.emit('new_user', output);
+				socket.emit('new_user', output);
 			})
 		})
-
+		socket.on('userPickedRoom', function (userObject){
+			socket.broadcast.emit('userJoinedRoom', userObject.name);
+		})
 		// socket.on('subscribe', function(){
 		// 	users.subscribe(socket, data);
 		// })

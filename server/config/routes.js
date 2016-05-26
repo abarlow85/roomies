@@ -17,13 +17,15 @@ module.exports = function(app, passport, server, http) {
 		// socket methods for chat messages
 		socket.on('connected', function(last_room){
 			console.log('user connected');
-			subscribe(socket, {room: last_room});
+			// subscribe(socket, {room: last_room});
 			
 			users.login(function(output){
-				socket.broadcast.emit('new_user', output);
+				socket.emit('new_user', output);
 			})
 		})
-
+		socket.on('userPickedRoom', function (userObject){
+			socket.broadcast.emit('userJoinedRoom', userObject.name);
+		})
 		// socket.on('subscribe', function(){
 		// 	users.subscribe(socket, data);
 		// })
@@ -37,8 +39,9 @@ module.exports = function(app, passport, server, http) {
 		// })
 
 		// socket methods for tasks
-		socket.on('task', function(objective, users, expiration) {
-			io.emit('newTask', objective, users, expiration);
+		socket.on('task', function(dataArray) {
+			io.emit('newTask', dataArray);
+			console.log('objective, users, expiration');
 		})
 
 		socket.on('newTaskAlert', function(date, objective) {
@@ -47,6 +50,9 @@ module.exports = function(app, passport, server, http) {
 
 		socket.on('taskDeletedOrCompleted', function(message){
 			io.emit('getTaskDeletedOrCompleted', message)
+		})
+		socket.on('newMessage', function (){
+			io.emit('emitNewMessage')
 		})
 
 	});

@@ -76,6 +76,7 @@ class TaskViewController: UITableViewController, CancelButtonDelegate, NewTaskVi
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         tasks = [roomTasks]
+//        update()
 //        SocketIOManager.sharedInstance.getTask { (taskInfo) -> Void in
 //            dispatch_async(dispatch_get_main_queue(), { () -> Void in
 //                //                print("task info: \(taskInfo)")
@@ -115,6 +116,7 @@ class TaskViewController: UITableViewController, CancelButtonDelegate, NewTaskVi
         print("updating data...")
         let room = self.prefs.stringForKey("currentRoom")!
         self.getTasksForRoom(room)
+//        update()
         dispatch_async(dispatch_get_main_queue(), {
             self.tableView.reloadData()
         })
@@ -164,6 +166,7 @@ class TaskViewController: UITableViewController, CancelButtonDelegate, NewTaskVi
             let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: roomTasks[indexPath.row]["objective"] as! String)
             attributeString.addAttribute(NSStrikethroughStyleAttributeName, value: 2, range: NSMakeRange(0, attributeString.length))
             cell?.objectiveLabel?.attributedText = attributeString;
+            cell?.dueDateLabel.text = "Task completed"
             
         }
         
@@ -329,7 +332,7 @@ class TaskViewController: UITableViewController, CancelButtonDelegate, NewTaskVi
 //            self.scrollToBottom()
             let dateString = date
             let dateFormatter = NSDateFormatter()
-            dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+            dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
             let dateFromString = dateFormatter.dateFromString(dateString as! String)
             
             for i in 0..<users.count {
@@ -384,6 +387,50 @@ class TaskViewController: UITableViewController, CancelButtonDelegate, NewTaskVi
             let newNotificationSettings = UIUserNotificationSettings(forTypes: notificationTypes, categories: categoriesForSettings as! Set<UIUserNotificationCategory>)
             UIApplication.sharedApplication().registerUserNotificationSettings(newNotificationSettings)
         }
+    }
+    
+    func update() {
+        let now = NSDate()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        for newTask in roomTasks {
+            let dueDateString = newTask["expiration_date"] as! String
+            let completed = newTask["completed"] as! String
+            let dueDate = self.dateFormatter.dateFromString(dueDateString)!
+            var timeLeft = Int(dueDate.timeIntervalSinceDate(now))
+            let days = timeLeft / (60*60*24)
+            timeLeft -= (days*60*60*24)
+            let hours = timeLeft / (60*60)
+            timeLeft -= (hours*60*60)
+            let minutes = timeLeft / (60)
+            timeLeft -= (minutes*60)
+            print("days: \(days)")
+            print("hours: \(hours)")
+            print("minutes: \(minutes)")
+            var timeLeftString = ""
+            if days > 0 {
+                timeLeftString += "\(days)d "
+            }
+            if hours > 0 {
+                timeLeftString += "\(hours)h "
+            }
+            if minutes >= 0 {
+                timeLeftString += "\(minutes)m "
+            }
+            if timeLeft <= 0 && completed == "notcompleted" {
+                timeLeftString = "Task not completed"
+            }
+            if completed == "completed" {
+                timeLeftString = "Task completed"
+            } else {
+                timeLeftString += "left"
+            }
+            
+            newTask["timeLeft"] = timeLeftString
+            
+        }
+        tableView.reloadData()
+        
+        //        print(timeLeft)
     }
     
 

@@ -14,10 +14,10 @@ roomies.factory('taskFactory', function ($http){
 		})
 	}
 	factory.createTask = function (info, callback){
-		console.log(info);
 		$http.post('/tasks/create', info).success(function (output){
 			if (output){
 				callback(output);
+				console.log(output);
 			}
 		})
 	}

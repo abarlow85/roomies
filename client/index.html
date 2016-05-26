@@ -7,8 +7,8 @@
         <script src="../bower_components/ngstorage/ngStorage.js"></script>
         <script src="../bower_components/angular-animate/angular-animate.js"></script>
         <script src="../bower_components/angular-materialize/angular-materialize.js"></script>
-        <script src="../bower_components/angular-materialize/js/materialize.clockpicker.js"></script>
-        <link rel='stylesheet' href="../bower_components/angular-materialize/css/materialize.clockpicker.css"></link>
+        <script src="../bower_components/angular-socket-io/socket.js"></script>
+        <script src= '/socket.io/socket.io.js'></script>
 
 	    <script>
 	    	var roomies = angular.module('roomies', ['ngRoute', 'ngStorage', 'ngAnimate', 'ui.materialize']);
@@ -23,10 +23,10 @@
                 $('.newModal-trigger').leanModal({
                         opacity: .7
                     });
-                $('#submitted').submit(function (){
-                    console.log('here');
-                    $('.newModal-trigger').click();
-                });
+                // $('#submitted').submit(function (){
+                //     console.log('here');
+                //     $('.newModal-trigger').click();
+                // });
             });
 	    </script>
     	<script type="text/javascript" src="./js/config/routes.js"></script>
@@ -38,6 +38,7 @@
     	<script type="text/javascript" src="./js/factories/room.js"></script>
     	<script type="text/javascript" src="./js/factories/task.js"></script>
     	<script type="text/javascript" src="./js/factories/user.js"></script>
+        <script type="text/javascript" src="./js/factories/socket.js"></script>
         <script type="text/javascript" src="./js/materialize.js"></script>
         <link type="text/css" rel = 'stylesheet' href="./css/overAll_css.css"></link>
         <link type="text/css" rel = 'stylesheet' href="./css/materialize.css"></link>

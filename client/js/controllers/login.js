@@ -1,4 +1,4 @@
-roomies.controller('loginController', function ($scope, $location, $localStorage, userFactory){
+roomies.controller('loginController', function ($scope, $location, $localStorage, userFactory, socketFactory){
 	$scope.newUser = false;
 	$localStorage.login = true;
 	$scope.toggleForm = function () {

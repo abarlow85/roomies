@@ -68,8 +68,8 @@ class SocketIOManager: NSObject {
         }
 //        let taskUsers = task["users"] as! String
         let taskExpirationDate = task["expiration_date"] as! String
-        print("sending task")
-        socket.emit("task", taskObjective, taskUsers, taskExpirationDate)
+        print("sending task123")
+        socket.emit("task", [taskObjective, taskUsers, taskExpirationDate])
 
     }
     
@@ -82,12 +82,12 @@ class SocketIOManager: NSObject {
     
     func getTask(completionHandler: (taskInfo: [String:AnyObject]) -> Void) {
         socket.on("newTask") { (dataArray, socketAck) -> Void in
-            
+            print(dataArray)
             var taskDictionary = [String: AnyObject]()
-            taskDictionary["objective"] = dataArray[0]
-            taskDictionary["users"] = dataArray[1]
-            taskDictionary["expiration_date"] = dataArray[2]
-            print("getting task")
+            taskDictionary["objective"] = dataArray[0][0]
+            taskDictionary["users"] = dataArray[0][1]
+            taskDictionary["expiration_date"] = dataArray[0][2]
+            print("getting task123")
 //            print(dataArray)
 //            let data = dataArray[0] as! String
             completionHandler(taskInfo: taskDictionary)
@@ -97,6 +97,7 @@ class SocketIOManager: NSObject {
 //    
     private func listenForOtherTasks() {
         socket.on("getNewTaskAlert") { (dataArray, socketAck) -> Void in
+            print(dataArray)
             var taskDictionary = [String: AnyObject]()
             taskDictionary["date"] = dataArray[0]
             taskDictionary["objective"] = dataArray[1]
@@ -105,10 +106,10 @@ class SocketIOManager: NSObject {
         
         socket.on("newTask") { (dataArray, socketAck) -> Void in
             var taskDictionary = [String: AnyObject]()
-            taskDictionary["objective"] = dataArray[0]
-            taskDictionary["users"] = dataArray[1]
-            taskDictionary["expiration_date"] = dataArray[2]
-            print("getting task")
+            taskDictionary["objective"] = dataArray[0][0]
+            taskDictionary["users"] = dataArray[0][1]
+            taskDictionary["expiration_date"] = dataArray[0][2]
+            print("getting task456")
             NSNotificationCenter.defaultCenter().postNotificationName("TaskWasAddedNotification", object: taskDictionary)
         }
         

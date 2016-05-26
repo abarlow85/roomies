@@ -1,22 +1,47 @@
-roomies.controller('allTaskController', function ($scope, $route, $window, $localStorage, $location, taskFactory){
+roomies.controller('allTaskController', function ($scope, $route, $window, $localStorage, $location, taskFactory, socketFactory){
 	$scope.room = {};
 	$scope.currentUser = $localStorage.user
 	$scope.tasks = [];
 	$scope.users = [];
+	$scope.newUser = "";
 
 	if($localStorage.login == true){
 		$localStorage.login = false;
 		location.reload();
 	}
-	
+	socketFactory.on('userJoinedRoom', function (userName){
+		$scope.newUser = userName
+		console.log($scope.newUser);
+		$scope.newUserShowing = true;
+		$scope.$apply()
+		setTimeout(function () {
+			$scope.newUserShowing = false;
+			console.log('timing out');
+			$scope.$apply()
+		}, 6000);
+	})
+	socketFactory.on('newTask', function (var1, var2, var3){
+		console.log("newTask Socket")
+		taskFactory.getRoomById($localStorage.room, function (data){
+			$scope.tasks = data.tasks;
+			$scope.users = data.users;
+			$scope.room = data;
+		})
+	})
+	socketFactory.on('getTaskDeletedOrCompleted', function (var1){
+		taskFactory.getRoomById($localStorage.room, function (data){
+			$scope.tasks = data.tasks;
+			$scope.users = data.users;
+			$scope.room = data;
+			$scope.$apply();
+		})
+	})
+
 	taskFactory.getRoomById($localStorage.room, function (data){
 		$scope.tasks = data.tasks;
 		$scope.users = data.users;
 		$scope.room = data;
 	})
-	$scope.back = function () {
-		
-	}
 	$scope.createTask = function (taskContent){
 		if (taskContent.expiration_time == 'PM'){
 			var parsed = parseInt(taskContent.expiration_hour);
@@ -26,16 +51,16 @@ roomies.controller('allTaskController', function ($scope, $route, $window, $loca
 		}
 		var fullTask = {};
 		fullTask.objective = taskContent.objective;
-		var fulldate = taskContent.expiration_date + " " + taskContent.expiration_hour+':'+taskContent.expiration_minute + " " + taskContent.expiration_time;
+		var fulldate = taskContent.expiration_date + " " + taskContent.expiration_hour+':'+taskContent.expiration_minute;
 		console.log(fulldate);
 		fullTask.expiration_date = fulldate;
 		fullTask.users = taskContent.users;
 		fullTask._room = $scope.room;
-
 		taskFactory.createTask(fullTask, function (data){
 			if (data){
 				$scope.tasks.push(data);
 				$scope.newTask = {};
+				socketFactory.emit('task', [fullTask.objective, fullTask.users, fullTask.expiration_date]);
 			}
 		})
 	}
@@ -43,6 +68,7 @@ roomies.controller('allTaskController', function ($scope, $route, $window, $loca
 		taskFactory.removeTask(task, function (data){
 			if (data){
 				$scope.tasks.splice($scope.tasks.indexOf(task), 1);
+				socketFactory.emit('taskDeletedOrCompleted');
 			}
 		})
 	}

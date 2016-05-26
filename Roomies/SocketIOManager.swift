@@ -84,10 +84,10 @@ class SocketIOManager: NSObject {
         socket.on("newTask") { (dataArray, socketAck) -> Void in
             print(dataArray)
             var taskDictionary = [String: AnyObject]()
-            taskDictionary["objective"] = dataArray[0][0]
-            taskDictionary["users"] = dataArray[0][1]
-            taskDictionary["expiration_date"] = dataArray[0][2]
-            print("getting task123")
+            taskDictionary["objective"] = (dataArray[0] as! NSArray)[0]
+            taskDictionary["users"] = (dataArray[0] as! NSArray)[1]
+            taskDictionary["expiration_date"] = (dataArray[0] as! NSArray)[2]
+            print("getting task")
 //            print(dataArray)
 //            let data = dataArray[0] as! String
             completionHandler(taskInfo: taskDictionary)
@@ -106,10 +106,10 @@ class SocketIOManager: NSObject {
         
         socket.on("newTask") { (dataArray, socketAck) -> Void in
             var taskDictionary = [String: AnyObject]()
-            taskDictionary["objective"] = dataArray[0][0]
-            taskDictionary["users"] = dataArray[0][1]
-            taskDictionary["expiration_date"] = dataArray[0][2]
-            print("getting task456")
+            taskDictionary["objective"] = (dataArray[0] as! NSArray)[0]
+            taskDictionary["users"] = (dataArray[0] as! NSArray)[1]
+            taskDictionary["expiration_date"] = (dataArray[0] as! NSArray)[2]
+            print("getting task")
             NSNotificationCenter.defaultCenter().postNotificationName("TaskWasAddedNotification", object: taskDictionary)
         }
         

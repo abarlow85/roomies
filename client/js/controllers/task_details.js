@@ -31,7 +31,7 @@ roomies.controller('taskDetailsController', function ($scope, $location, $localS
 		$scope.messages = data.messages;
 	})
 
-	socketFactory.on('emitNewMessage', function (){
+	socketFactory.on('emitNewMessage', function (dataArray){
 		taskFactory.getTaskById($localStorage.currentTask, function (data){
 			$scope.messages = data.messages;
 		})
@@ -42,12 +42,15 @@ roomies.controller('taskDetailsController', function ($scope, $location, $localS
 		newMessage._user = $scope.currentUser._id;
 		newMessage._task = $scope.currentTask._id;
 		newMessage.content = message;
-		console.log(newMessage);
+		// console.log(newMessage);
 		messageFactory.addMessage(newMessage, function (data){
 			if (data){
 				$scope.messages.push(data.messages[data.messages.length - 1]);
 				$scope.message = "";
-				socketFactory.emit('newMessage');
+				var messageData = data.messages[data.messages.length-1]
+				var dataArray = [messageData._user._id, messageData._user.name, messageData.content]
+				console.log(dataArray)
+				socketFactory.emit('newMessage', dataArray);
 			}
 		})
 	}

@@ -2,6 +2,7 @@ roomies.controller('loginController', function ($scope, $location, $localStorage
 	$scope.newUser = false;
 	$localStorage.login = true;
 	$scope.toggleForm = function () {
+		$scope.loginError = ""
 		if ($scope.newUser == false){
 			$scope.newUser = true;
 		}
@@ -25,7 +26,7 @@ roomies.controller('loginController', function ($scope, $location, $localStorage
 		userFactory.login(loginUser, function (data){
 			console.log('Logging in: ' + data);
 			if (data.error){
-				console.log('error');
+				$scope.loginError = data.error;
 			}
 			else if (data){
 				console.log(data)

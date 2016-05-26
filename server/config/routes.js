@@ -51,8 +51,8 @@ module.exports = function(app, passport, server, http) {
 		socket.on('taskDeletedOrCompleted', function(message){
 			io.emit('getTaskDeletedOrCompleted', message)
 		})
-		socket.on('newMessage', function (){
-			io.emit('emitNewMessage')
+		socket.on('newMessage', function (dataArray){
+			io.emit('emitNewMessage', dataArray)
 		})
 
 	});

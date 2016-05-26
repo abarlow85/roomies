@@ -1,4 +1,4 @@
-roomies.controller('roomPickController', function ($scope, $route, $location, $localStorage, roomFactory, userFactory){
+roomies.controller('roomPickController', function ($scope, $route, $location, $localStorage, roomFactory, userFactory, socketFactory){
 	$scope.rooms = [];
 	$scope.user = $localStorage.user
 	
@@ -6,7 +6,7 @@ roomies.controller('roomPickController', function ($scope, $route, $location, $l
 		$localStorage.login = false;
 		location.reload();
 	}
-
+	
 	roomFactory.index(function (data){
 		$scope.rooms = data;
 	})
@@ -26,6 +26,7 @@ roomies.controller('roomPickController', function ($scope, $route, $location, $l
 		roomData.user = $scope.user._id;
 		roomFactory.chooseRoom(roomData, function (data){
 			if (data){
+				socketFactory.emit('userPickedRoom', $scope.user);
 				$localStorage.room = data._id;
 				$location.path('/room/' + data._id )
 			}

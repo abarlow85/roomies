@@ -1,4 +1,4 @@
-roomies.controller('taskDetailsController', function ($scope, $location, $localStorage, taskFactory, messageFactory){
+roomies.controller('taskDetailsController', function ($scope, $location, $localStorage, taskFactory, messageFactory, socketFactory){
 	$scope.room = $localStorage.room;
 	$scope.currentUser = $localStorage.user;
 	$scope.currentTask = $localStorage.currentTask;
@@ -22,6 +22,8 @@ roomies.controller('taskDetailsController', function ($scope, $location, $localS
 		taskFactory.updateTask(fullTask, function (data){
 			if (data){
 				$location.path('/room/' + data._id)
+				socketFactory.emit('task');
+				location.reload();
 			}
 		})
 	}
@@ -29,7 +31,11 @@ roomies.controller('taskDetailsController', function ($scope, $location, $localS
 		$scope.messages = data.messages;
 	})
 
-
+	socketFactory.on('emitNewMessage', function (){
+		taskFactory.getTaskById($localStorage.currentTask, function (data){
+			$scope.messages = data.messages;
+		})
+	})
 	$scope.addMessage = function (message){
 		var newMessage = {};
 		newMessage._room = $scope.room;
@@ -41,6 +47,7 @@ roomies.controller('taskDetailsController', function ($scope, $location, $localS
 			if (data){
 				$scope.messages.push(data.messages[data.messages.length - 1]);
 				$scope.message = "";
+				socketFactory.emit('newMessage');
 			}
 		})
 	}

@@ -26,6 +26,7 @@
 						<td><p ng-repeat = 'user in task.users'>{{user.name}}{{$last ? '' : ', '}} &nbsp</p></td>
 						<td><button class = 'btn waves-effect waves-light teal lighten-2' ng-click = 'selectTask(task)'>Select</button></td>
 						<td><button class = 'btn waves-effect waves-light teal lighten-2' ng-click = 'removeTask(task)'>Remove Task</button></td>
+						<!-- <td><button class = 'btn waves-effect waves-light teal lighten-2' ng-click = 'completeTask(task)'>Complete</button></td> -->
 					</tr>
 				</tbody>
 			</table>
@@ -33,7 +34,7 @@
 	</div>
 	<div class ='modal' id="modal1">
 		<div class= 'modal-content'>
-			<form>
+			<form name = 'submit'>
 				<label>Objective </label>
 				<input required type = 'text' ng-model = 'newTask.objective'>
 

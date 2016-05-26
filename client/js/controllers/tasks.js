@@ -13,11 +13,10 @@ roomies.controller('allTaskController', function ($scope, $route, $window, $loca
 		$scope.newUser = userName
 		console.log($scope.newUser);
 		$scope.newUserShowing = true;
-		$scope.$apply()
 		setTimeout(function () {
 			$scope.newUserShowing = false;
 			console.log('timing out');
-			$scope.$apply()
+			$scope.$apply();
 		}, 6000);
 	})
 	socketFactory.on('newTask', function (var1, var2, var3){
@@ -33,7 +32,6 @@ roomies.controller('allTaskController', function ($scope, $route, $window, $loca
 			$scope.tasks = data.tasks;
 			$scope.users = data.users;
 			$scope.room = data;
-			$scope.$apply();
 		})
 	})
 
@@ -65,6 +63,10 @@ roomies.controller('allTaskController', function ($scope, $route, $window, $loca
 				$scope.tasks.push(data);
 				$scope.newTask = {};
 				socketFactory.emit('task', [fullTask.objective, fullTask.users, fullTask.expiration_date]);
+				// var result = document.getElementsByClassName('newModal-trigger');
+				document.onclick = function () {
+					console.log('clicked');
+				}();
 			}
 		})
 	}

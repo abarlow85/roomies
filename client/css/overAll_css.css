@@ -51,10 +51,18 @@
 h2.viewbar{
 	margin-left: 50px;
 	color:black;
+	margin-bottom: 5px !important;
 }
 button.viewbar{
 	float: right;
 	margin-right: 229px;
+}
+a.navLink {
+	text-decoration: none;
+	font-weight: bold;
+	display: block;
+	margin-left: 100px;
+	color: #4db6ac;
 }
 
 td p {

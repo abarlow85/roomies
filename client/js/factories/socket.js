@@ -1,6 +1,6 @@
 roomies.factory('socketFactory', function ($rootScope){
-	var socket = io.connect();
-
+	// var socket = io.connect();
+	var socket = io.connect({'force new connection': true});
 	return {
 		on: function (eventName, callback) {
 			socket.on(eventName, callback); 

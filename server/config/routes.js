@@ -42,7 +42,6 @@ module.exports = function(app, passport, server, http) {
 		socket.on('task', function(dataArray) {
 			io.emit('newTask', dataArray);
 			console.log('objective, users, expiration');
-			console.log(objective, users, expiration);
 		})
 
 		socket.on('newTaskAlert', function(date, objective) {

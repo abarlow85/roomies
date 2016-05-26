@@ -33,6 +33,7 @@ roomies.controller('allTaskController', function ($scope, $route, $window, $loca
 			$scope.tasks = data.tasks;
 			$scope.users = data.users;
 			$scope.room = data;
+			$scope.$apply();
 		})
 	})
 

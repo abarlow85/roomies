@@ -54,12 +54,11 @@ roomies.controller('allTaskController', function ($scope, $route, $window, $loca
 		fullTask.expiration_date = fulldate;
 		fullTask.users = taskContent.users;
 		fullTask._room = $scope.room;
-
 		taskFactory.createTask(fullTask, function (data){
 			if (data){
 				$scope.tasks.push(data);
 				$scope.newTask = {};
-				socketFactory.emit('task', fullTask.objective, fullTask.users, fullTask.expiration_date);
+				socketFactory.emit('task', [fullTask.objective, fullTask.users, fullTask.expiration_date]);
 			}
 		})
 	}

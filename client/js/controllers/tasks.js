@@ -14,7 +14,9 @@ roomies.controller('allTaskController', function ($scope, $route, $window, $loca
 		$scope.users = data.users;
 		$scope.room = data;
 	})
-
+	$scope.back = function () {
+		
+	}
 	$scope.createTask = function (taskContent){
 		if (taskContent.expiration_time == 'PM'){
 			var parsed = parseInt(taskContent.expiration_hour);

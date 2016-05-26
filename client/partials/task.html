@@ -1,7 +1,8 @@
 <div ng-controller = 'taskDetailsController'>
-<h2 class = 'viewbar'> {{currentTask.objective}}</h2>
-<button class="viewbar newModal-trigger btn waves-effect waves-light teal lighten-2" href="#modal1" modal dismissible= 'true'>Update Task</button>
-<div class ='modal' id="modal1">
+	<h2 class = 'viewbar'> {{currentTask.objective}}</h2>
+	<button class="viewbar newModal-trigger btn waves-effect waves-light teal lighten-2" href="#modal1" modal dismissible= 'true'>Update Task</button>
+	<hr>
+	<div class ='modal' id="modal1">
 		<div class= 'modal-content'>
 				<form>
 						<label>Objective </label>
@@ -74,6 +75,7 @@
 			</div>
 		</div>
 	<div class = 'container'>
+		<button ng-click='back()' class="back btn waves-effect waves-light teal lighten-2">Back</button>
 		<div class = 'row'>
 			<form class = 'col s9'>
 				<h5>Add Message: </h5>

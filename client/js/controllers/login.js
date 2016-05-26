@@ -28,6 +28,8 @@ roomies.controller('loginController', function ($scope, $location, $localStorage
 				console.log('error');
 			}
 			else if (data){
+				console.log(data)
+				console.log(data._lastRoom);
 				var room_id = data._lastRoom;
 				$localStorage.user = data;
 				$localStorage.room = data._lastRoom;

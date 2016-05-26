@@ -204,6 +204,7 @@ class TaskViewController: UITableViewController, CancelButtonDelegate, NewTaskVi
                     if let jsonResult = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as? NSMutableDictionary {
                         print(jsonResult)
                         self.roomTasks[indexPath.row]["completed"] = "completed"
+                        SocketIOManager.sharedInstance.deleteOrCompleteTask()
                         dispatch_async(dispatch_get_main_queue(), {
                             self.tableView.reloadData()
                         })

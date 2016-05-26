@@ -43,10 +43,14 @@ roomies.controller('allTaskController', function ($scope, $route, $window, $loca
 		$scope.room = data;
 	})
 	$scope.createTask = function (taskContent){
-		if (taskContent.expiration_time == 'PM'){
+		if (taskContent.expiration_time == 'PM' && taskContent.expiration_hour != '12'){
 			var parsed = parseInt(taskContent.expiration_hour);
 			parsed += 12;
 			taskContent.expiration_hour = String(parsed);
+			console.log(taskContent.expiration_hour);
+		}
+		if (taskContent.expiration_time == 'AM' && taskContent.expiration_hour == '12'){
+			taskContent.expiration_hour = '00';
 			console.log(taskContent.expiration_hour);
 		}
 		var fullTask = {};

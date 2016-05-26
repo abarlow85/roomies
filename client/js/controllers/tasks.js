@@ -59,7 +59,7 @@ roomies.controller('allTaskController', function ($scope, $route, $window, $loca
 			if (data){
 				$scope.tasks.push(data);
 				$scope.newTask = {};
-				socketFactory.emit('task');
+				socketFactory.emit('task', fullTask.objective, fullTask.users, fullTask.expiration_date);
 			}
 		})
 	}

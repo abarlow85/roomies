@@ -23,9 +23,12 @@
                 $('.newModal-trigger').leanModal({
                         opacity: .7
                     });
-                $('#submitted').submit(function (){
-                    console.log('here');
-                    $('.newModal-trigger').click();
+                // $('#submitted').submit(function (){
+                //     console.log('here');
+                //     $('.newModal-trigger').click();
+                // });
+            $('form[name="submit"]')[0].submit(function (){
+                console.log('submitting');
                 });
             });
 	    </script>

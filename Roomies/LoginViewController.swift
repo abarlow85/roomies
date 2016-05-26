@@ -121,7 +121,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                             })
                         } else {
                             let user = jsonResult["_id"] as! String
+                            let userName = jsonResult["name"] as! String
                             self.prefs.setValue(user, forKey: "currentUser")
+                            self.prefs.setValue(userName, forKey: "userName")
                             dispatch_async(dispatch_get_main_queue(), {
                                 self.performSegueWithIdentifier("NewRoomSelectionSegue", sender: jsonResult)
                             })
@@ -155,7 +157,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                             })
                         } else {
                             let user = jsonResult["_id"] as! String
+                            let userName = jsonResult["name"] as! String
                             self.prefs.setValue(user, forKey: "currentUser")
+                            self.prefs.setValue(userName, forKey: "userName")
 //                            print(jsonResult)
                             dispatch_async(dispatch_get_main_queue(), {
                                 

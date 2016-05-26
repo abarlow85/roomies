@@ -53,6 +53,7 @@
 		A688D5CD1CF39202007E3D11 /* SwiftRegex.swift in Sources */ = {isa = PBXBuildFile; fileRef = A688D5B61CF39202007E3D11 /* SwiftRegex.swift */; };
 		A688D5CE1CF39202007E3D11 /* WebSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = A688D5B71CF39202007E3D11 /* WebSocket.swift */; };
 		A688D5D01CF39224007E3D11 /* SocketIOManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A688D5CF1CF39224007E3D11 /* SocketIOManager.swift */; };
+		A6D17BEE1CF781B70071B8F0 /* MessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6D17BED1CF781B70071B8F0 /* MessageModel.swift */; };
 		CF6F4F7BFE2AC124F8ADAAFD /* Pods_RoomiesTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C13C467F7BBA1F10FAACEE4 /* Pods_RoomiesTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -131,6 +132,7 @@
 		A688D5B61CF39202007E3D11 /* SwiftRegex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftRegex.swift; sourceTree = "<group>"; };
 		A688D5B71CF39202007E3D11 /* WebSocket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebSocket.swift; sourceTree = "<group>"; };
 		A688D5CF1CF39224007E3D11 /* SocketIOManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketIOManager.swift; sourceTree = "<group>"; };
+		A6D17BED1CF781B70071B8F0 /* MessageModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageModel.swift; sourceTree = "<group>"; };
 		CE2D0F2247121F8BBEF925F7 /* Pods-RoomiesTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RoomiesTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-RoomiesTests/Pods-RoomiesTests.release.xcconfig"; sourceTree = "<group>"; };
 		E5397E85D8AA695061FA7A8E /* Pods_RoomiesUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RoomiesUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCD591CD5B8797E7F1427C5F /* Pods-Roomies.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Roomies.release.xcconfig"; path = "Pods/Target Support Files/Pods-Roomies/Pods-Roomies.release.xcconfig"; sourceTree = "<group>"; };
@@ -204,6 +206,7 @@
 				7089E0D71CEFF28800485CD4 /* CancelButtonDelegate.swift */,
 				70C9FA621CF3B3BB00E1801F /* NewTaskViewControllerDelegate.swift */,
 				7089E0DD1CF0195800485CD4 /* TaskModel.swift */,
+				A6D17BED1CF781B70071B8F0 /* MessageModel.swift */,
 				7089E0D11CEFE66800485CD4 /* RoomModel.swift */,
 				7089E0CD1CEFE23800485CD4 /* UserModel.swift */,
 				7089E0E11CF0217B00485CD4 /* TaskCell.swift */,
@@ -583,6 +586,7 @@
 				A688D5C61CF39202007E3D11 /* SocketIOClientStatus.swift in Sources */,
 				A688D5B81CF39202007E3D11 /* NSCharacterSet.swift in Sources */,
 				A688D5D01CF39224007E3D11 /* SocketIOManager.swift in Sources */,
+				A6D17BEE1CF781B70071B8F0 /* MessageModel.swift in Sources */,
 				A688D5BE1CF39202007E3D11 /* SocketEnginePacketType.swift in Sources */,
 				A688D5CC1CF39202007E3D11 /* String.swift in Sources */,
 				70C9FA611CF38CDD00E1801F /* NewTaskViewController.swift in Sources */,

@@ -58,7 +58,7 @@ class TaskDetailsViewController: UIViewController, UITableViewDataSource, UITabl
         cell.textLabel?.text =  users[indexPath.row]["name"] as? String
         cell.textLabel?.font = UIFont(name: "Chalkduster", size: 17.0)
         cell.selectionStyle = .None
-        cell.backgroundColor = UIColor(red:197/255.0, green:224/255.0, blue:216/255.0, alpha: 1.0)
+        cell.backgroundColor = UIColor(red:77/255.0, green:182/255.0, blue:172/255.0, alpha: 1.0)
         return cell
     }
     

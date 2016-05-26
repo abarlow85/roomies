@@ -57,11 +57,16 @@ button.viewbar{
 	float: right;
 	margin-right: 229px;
 }
+.navLink {
+	display: block;
+	width: auto;
+	margin-left: 50px;
+}
+
 a.navLink {
 	text-decoration: none;
+	display: inline-block;
 	font-weight: bold;
-	display: block;
-	margin-left: 100px;
 	color: #4db6ac;
 }
 

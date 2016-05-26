@@ -65,14 +65,14 @@ module.exports = (function(){
 							if (err) {
 							console.log(err)
 							} else {
-								User.findByIdAndUpdate(req.body.user, {$push: {_lastRoom: req.body._id}, function (err){
+								console.log('here')
+								User.findByIdAndUpdate(req.body.user, {_lastRoom: req.body._id}, function (err){
 									if (err) {
 										console.log(err);
 									}else {
 										console.log('successfully added user to room');
 									res.json(newRoom);
 									}
-								}
 								})
 							}
 						});

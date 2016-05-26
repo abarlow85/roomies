@@ -10,6 +10,14 @@ roomies.controller('loginController', function ($scope, $location, $localStorage
 			$scope.newUser = false;
 		}
 	}
+	function modalDismiss(){
+		var modal = angular.element(document.getElementById('modal1'));
+		modal[0].style.display = "none";
+		var overlay = angular.element(document.getElementsByClassName('lean-overlay'))
+		overlay[0].style.display = "none";
+
+	}
+
 	$scope.userRegister = function (regUser) {
 		console.log(regUser);
 		userFactory.register(regUser, function (data){
@@ -18,6 +26,7 @@ roomies.controller('loginController', function ($scope, $location, $localStorage
 			}
 			else if(data) {
 				$localStorage.user = data
+				modalDismiss();
 				$location.path('/room');
 			}
 		})
@@ -34,6 +43,7 @@ roomies.controller('loginController', function ($scope, $location, $localStorage
 				var room_id = data._lastRoom;
 				$localStorage.user = data;
 				$localStorage.room = data._lastRoom;
+				modalDismiss();
 				$location.path('/room/' + room_id);
 			}
 		})

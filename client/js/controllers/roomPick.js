@@ -2,9 +2,12 @@ roomies.controller('roomPickController', function ($scope, $route, $location, $l
 	$scope.rooms = [];
 	$scope.user = $localStorage.user
 	
-	if($localStorage.login == true){
-		$localStorage.login = false;
-		location.reload();
+	function modalDismiss(){
+		var modal = angular.element(document.getElementById('modal1'));
+		modal[0].style.display = "none";
+		var overlay = angular.element(document.getElementsByClassName('lean-overlay'))
+		overlay[0].style.display = "none";
+
 	}
 	
 	roomFactory.index(function (data){
@@ -16,16 +19,19 @@ roomies.controller('roomPickController', function ($scope, $route, $location, $l
 			if (data){
 				$localStorage.login = true;
 				$localStorage.room = data._id;
+				modalDismiss();
 				$location.path('/room/' + data._id)
 			}
 		})
 	}
 	$scope.chooseRoom = function (room){
+		console.log(room);
 		var roomData = {};
 		roomData._id = room;
 		roomData.user = $scope.user._id;
 		roomFactory.chooseRoom(roomData, function (data){
 			if (data){
+				console.log(data);
 				socketFactory.emit('userPickedRoom', $scope.user);
 				$localStorage.room = data._id;
 				$location.path('/room/' + data._id )

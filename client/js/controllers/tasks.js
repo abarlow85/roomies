@@ -5,10 +5,6 @@ roomies.controller('allTaskController', function ($scope, $route, $window, $loca
 	$scope.users = [];
 	$scope.newUser = "";
 
-	if($localStorage.login == true){
-		$localStorage.login = false;
-		location.reload();
-	}
 	socketFactory.on('userJoinedRoom', function (userName){
 		$scope.newUser = userName
 		console.log($scope.newUser);
@@ -63,13 +59,25 @@ roomies.controller('allTaskController', function ($scope, $route, $window, $loca
 				$scope.tasks.push(data);
 				$scope.newTask = {};
 				socketFactory.emit('task', [fullTask.objective, fullTask.users, fullTask.expiration_date]);
-				// var result = document.getElementsByClassName('newModal-trigger');
-				document.onclick = function () {
-					console.log('clicked');
-				}();
+				modalDismiss();
 			}
 		})
 	}
+	//fixing materialize's terrible design
+	function modalDismiss(){
+		var modal = angular.element(document.getElementById('modal1'));
+		modal[0].style.display = "none";
+		var overlay = angular.element(document.getElementsByClassName('lean-overlay'))
+		overlay[0].style.display = "none";
+
+	}
+	$scope.modalShow = function () {
+		var modal = angular.element(document.getElementById('modal1'));
+		modal[0].style.display = "block";
+		var overlay = angular.element(document.getElementsByClassName('lean-overlay'))
+		overlay[0].style.display = "block";
+	}
+
 	$scope.removeTask = function (task){
 		taskFactory.removeTask(task, function (data){
 			if (data){

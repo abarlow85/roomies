@@ -23,13 +23,13 @@
 		<div class = 'row custom'>
 			<table style='table-layout: fixed;' class = 'col s12'>
 				<tbody>
-					<tr ng-repeat = 'task in tasks track by $index'>
+					<tr ng-repeat = 'task in tasks track by $index' ng-class = "{completed: task.completed == 'completed' && $index}">
 						<td style="width: 150px; word-wrap: break-word;">{{task.objective}}</td>
 						<td style="width: 150px; word-wrap: break-word;">{{task.expiration_date}}</td>
 						<td><p ng-repeat = 'user in task.users'>{{user.name}}{{$last ? '' : ', '}} &nbsp</p></td>
 						<td><button class = 'btn waves-effect waves-light teal lighten-2' ng-click = 'selectTask(task)'>Select</button></td>
 						<td><button class = 'btn waves-effect waves-light teal lighten-2' ng-click = 'removeTask(task)'>Remove Task</button></td>
-						<!-- <td><button class = 'btn waves-effect waves-light teal lighten-2' ng-click = 'completeTask(task)'>Complete</button></td> -->
+						<td><button class = 'btn waves-effect waves-light teal lighten-2' ng-click = 'completeTask(task)'>Complete</button></td>
 					</tr>
 				</tbody>
 			</table>

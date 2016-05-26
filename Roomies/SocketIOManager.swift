@@ -72,8 +72,14 @@ class SocketIOManager: NSObject {
         socket.emit("task", taskObjective, taskUsers, taskExpirationDate)
 
     }
-//
-//    
+    
+    func deleteOrCompleteTask() {
+        print("running deleteOrCompleteTask function")
+        let message = "message"
+        socket.emit("taskDeletedOrCompleted", message)
+        
+    }
+    
     func getTask(completionHandler: (taskInfo: [String:AnyObject]) -> Void) {
         socket.on("newTask") { (dataArray, socketAck) -> Void in
             
@@ -104,6 +110,11 @@ class SocketIOManager: NSObject {
             taskDictionary["expiration_date"] = dataArray[2]
             print("getting task")
             NSNotificationCenter.defaultCenter().postNotificationName("TaskWasAddedNotification", object: taskDictionary)
+        }
+        
+        socket.on("getTaskDeletedOrCompleted") { (dataArray, socketAck) -> Void in
+            print("is this working???")
+            NSNotificationCenter.defaultCenter().postNotificationName("taskWasDeletedOrCompletedNotification", object: nil)
         }
         
 //        socket.on("userConnectUpdate") { (dataArray, socketAck) -> Void in

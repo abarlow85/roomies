@@ -25,7 +25,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 }
             }
         }
-        
         return true
     }
 
@@ -37,7 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidEnterBackground(application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-//        SocketIOManager.sharedInstance.closeConnection()
+        SocketIOManager.sharedInstance.closeConnection()
     }
 
     func applicationWillEnterForeground(application: UIApplication) {
@@ -54,12 +53,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
-        if let userInfo = notification.userInfo {
-            print("Hi there!!")
+        print("did receive local notification")
+//        if let userInfo = notification.userInfo {
 //            let customField1 = userInfo["_room"] as! String
 //            print("didReceiveLocalNotification: \(customField1)")
-        }
+//        }
     }
+    
+    func application(application: UIApplication, didRegisterUserNotificationSettings notificationSettings: UIUserNotificationSettings) {
+        print("notification settings already registered")
+    }
+    
+    
 
 }
 

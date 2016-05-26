@@ -42,7 +42,11 @@ module.exports = function(app, passport, server, http) {
 		})
 
 		socket.on('newTaskAlert', function(date, objective) {
-		io.emit('getNewTaskAlert', date, objective)
+			io.emit('getNewTaskAlert', date, objective)
+		})
+
+		socket.on('taskDeletedOrCompleted', function(message){
+			io.emit('getTaskDeletedOrCompleted', message)
 		})
 
 	});

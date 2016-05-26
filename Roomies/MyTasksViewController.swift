@@ -90,8 +90,19 @@ class MyTasksViewController: UITableViewController, CancelButtonDelegate, NewTas
     func checkForObserver() {
         if observer == false {
             NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(TaskViewController.handleTaskUpdateNotification(_:)), name: "TaskWasAddedNotification", object: nil)
+            NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(TaskViewController.updateData(_:)), name: "taskWasDeletedOrCompletedNotification", object: nil)
         }
         observer = true
+    }
+    
+    func updateData(notification: NSNotification){
+        print("updating data...")
+        let room = prefs.stringForKey("currentRoom")!
+        let currentUser = prefs.stringForKey("currentUser")!
+        getUserTasksForRoom(room, user: currentUser)
+        dispatch_async(dispatch_get_main_queue(), {
+            self.tableView.reloadData()
+        })
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -130,8 +141,67 @@ class MyTasksViewController: UITableViewController, CancelButtonDelegate, NewTas
         cell?.objectiveLabel.text = roomTasks[indexPath.row]["objective"] as? String
         cell?.dueDateLabel.text = roomTasks[indexPath.row]["expiration_date"] as? String
         
+        let completed = self.roomTasks[indexPath.row]["completed"]! as! String
+        if completed == "notcompleted" {
+            cell?.objectiveLabel?.text = roomTasks[indexPath.row]["objective"] as! String
+        } else {
+            let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: roomTasks[indexPath.row]["objective"] as! String)
+            attributeString.addAttribute(NSStrikethroughStyleAttributeName, value: 2, range: NSMakeRange(0, attributeString.length))
+            cell?.objectiveLabel?.attributedText = attributeString;
+            
+        }
+        
         return cell!
     }
+    
+    override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+        let delete = UITableViewRowAction(style: .Destructive, title: "Delete") { (action, indexPath) in
+            // delete item at indexPath
+            let task = self.roomTasks[indexPath.row]
+            TaskModel.removeTask(task) {
+                data, response, error in
+                do {
+                    if let jsonResult = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as? NSMutableDictionary {
+                        print(jsonResult)
+                        self.roomTasks.removeAtIndex(indexPath.row)
+                        dispatch_async(dispatch_get_main_queue(), {
+                            SocketIOManager.sharedInstance.deleteOrCompleteTask()
+                            self.tableView.reloadData()
+                        })
+                    }
+                    
+                } catch {
+                    print("Something went wrong")
+                }
+                //                tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+            }
+        }
+        
+        let share = UITableViewRowAction(style: .Normal, title: "Completed") { (action, indexPath) in
+            // complete item at indexPath
+            let task = self.roomTasks[indexPath.row]
+            TaskModel.updateTaskToCompleted(task){
+                data, response, error in
+                do {
+                    if let jsonResult = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as? NSMutableDictionary {
+                        print(jsonResult)
+                        self.roomTasks[indexPath.row]["completed"] = "completed"
+                        dispatch_async(dispatch_get_main_queue(), {
+                            self.tableView.reloadData()
+                        })
+                    }
+                    
+                } catch {
+                    print("Something went wrong")
+                }
+            }
+            
+        }
+        
+        share.backgroundColor = UIColor.blueColor()
+        return [delete, share]
+    }
+    
     
     override func tableView(tableView: UITableView, accessoryButtonTappedForRowWithIndexPath indexPath: NSIndexPath) {
         performSegueWithIdentifier("TaskDetailsSegue", sender: tableView.cellForRowAtIndexPath(indexPath))

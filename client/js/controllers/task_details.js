@@ -7,7 +7,13 @@ roomies.controller('taskDetailsController', function ($scope, $location, $localS
 	$scope.currentTask.expiration_min = $scope.currentTask.expiration_date.slice(14,16);
 	$scope.messages = [];
 	
+	function modalDismiss(){
+			var modal = angular.element(document.getElementById('modal1'));
+			modal[0].style.display = "none";
+			var overlay = angular.element(document.getElementsByClassName('lean-overlay'))
+			overlay[0].style.display = "none";
 
+		}
 	$scope.back = function () {
 		$location.path('/room/' + $scope.room);	
 	}
@@ -30,15 +36,12 @@ roomies.controller('taskDetailsController', function ($scope, $location, $localS
 		fullTask._id = taskId._id;
 		taskFactory.updateTask(fullTask, function (data){
 			if (data){
+				modalDismiss();
 				$location.path('/room/' + data._id)
 				socketFactory.emit('task');
-				location.reload();
 			}
 		})
 	}
-	$scope.$watch('Task', function (){
-		console.log('watching');
-	}, true);
 	taskFactory.getTaskById($localStorage.currentTask, function (data){
 		$scope.messages = data.messages;
 	})

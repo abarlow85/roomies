@@ -13,11 +13,10 @@ roomies.controller('allTaskController', function ($scope, $route, $window, $loca
 		$scope.newUser = userName
 		console.log($scope.newUser);
 		$scope.newUserShowing = true;
-		$scope.$apply()
 		setTimeout(function () {
 			$scope.newUserShowing = false;
 			console.log('timing out');
-			$scope.$apply()
+			$scope.$apply();
 		}, 6000);
 	})
 	socketFactory.on('newTask', function (var1, var2, var3){
@@ -33,7 +32,6 @@ roomies.controller('allTaskController', function ($scope, $route, $window, $loca
 			$scope.tasks = data.tasks;
 			$scope.users = data.users;
 			$scope.room = data;
-			$scope.$apply();
 		})
 	})
 
@@ -43,10 +41,14 @@ roomies.controller('allTaskController', function ($scope, $route, $window, $loca
 		$scope.room = data;
 	})
 	$scope.createTask = function (taskContent){
-		if (taskContent.expiration_time == 'PM'){
+		if (taskContent.expiration_time == 'PM' && taskContent.expiration_hour != '12'){
 			var parsed = parseInt(taskContent.expiration_hour);
 			parsed += 12;
 			taskContent.expiration_hour = String(parsed);
+			console.log(taskContent.expiration_hour);
+		}
+		if (taskContent.expiration_time == 'AM' && taskContent.expiration_hour == '12'){
+			taskContent.expiration_hour = '00';
 			console.log(taskContent.expiration_hour);
 		}
 		var fullTask = {};
@@ -61,6 +63,10 @@ roomies.controller('allTaskController', function ($scope, $route, $window, $loca
 				$scope.tasks.push(data);
 				$scope.newTask = {};
 				socketFactory.emit('task', [fullTask.objective, fullTask.users, fullTask.expiration_date]);
+				// var result = document.getElementsByClassName('newModal-trigger');
+				document.onclick = function () {
+					console.log('clicked');
+				}();
 			}
 		})
 	}

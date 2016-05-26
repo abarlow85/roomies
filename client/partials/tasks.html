@@ -1,6 +1,7 @@
 <div ng-controller = 'allTaskController'>
 	<h2 class= 'viewbar'>{{room.name}}</h2>
 	<button class="viewbar newModal-trigger btn waves-effect waves-light teal lighten-2" href="#modal1" modal dismissible= 'true'>Add a new task </button>
+	<a class = 'navLink' href='#/room'>[ Or choose a different room ]</a>
 	<hr>
 	<div class = 'container'>
 		<div class = 'row'>
@@ -18,11 +19,11 @@
 			</table>
 		</div>
 		<div class = 'row custom'>
-			<table class = 'col s12'>
+			<table style='table-layout: fixed;' class = 'col s12'>
 				<tbody>
 					<tr ng-repeat = 'task in tasks track by $index'>
-						<td>{{task.objective}}</td>
-						<td>{{task.expiration_date}}</td>
+						<td style="width: 150px; word-wrap: break-word;">{{task.objective}}</td>
+						<td style="width: 150px; word-wrap: break-word;">{{task.expiration_date}}</td>
 						<td><p ng-repeat = 'user in task.users'>{{user.name}}{{$last ? '' : ', '}} &nbsp</p></td>
 						<td><button class = 'btn waves-effect waves-light teal lighten-2' ng-click = 'selectTask(task)'>Select</button></td>
 						<td><button class = 'btn waves-effect waves-light teal lighten-2' ng-click = 'removeTask(task)'>Remove Task</button></td>
@@ -67,15 +68,15 @@
 			   	<label>Time</label>
 			   	<div class= 'row'>
 				    <select required material-select class = 'col s2' ng-model = 'newTask.expiration_hour'>
-					    <option name='1' value = '1'>01</option>
-					    <option name='2' value = '2'>02</option>
-					    <option name='3' value = '3'>03</option>
-					    <option name='4' value = '4'>04</option>
-					    <option name='5' value = '5'>05</option>
-					    <option name='6' value = '6'>06</option>
-					    <option name='7' value = '7'>07</option>
-					    <option name='8' value = '8'>08</option>
-					    <option name='9' value = '9'>09</option>
+					    <option name='1' value = '01'>01</option>
+					    <option name='2' value = '02'>02</option>
+					    <option name='3' value = '03'>03</option>
+					    <option name='4' value = '04'>04</option>
+					    <option name='5' value = '05'>05</option>
+					    <option name='6' value = '06'>06</option>
+					    <option name='7' value = '07'>07</option>
+					    <option name='8' value = '08'>08</option>
+					    <option name='9' value = '09'>09</option>
 					    <option name='10' value = '10'>10</option>
 					    <option name='11' value = '11'>11</option>
 					    <option name='12' value = '12'>12</option>

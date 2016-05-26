@@ -10,7 +10,7 @@
 							<label> Full Name </label> <input required type = 'text' ng-model = 'regUser.name'>
 							<label> Email </label> <input required type = 'text' ng-model = 'regUser.email'>
 							<label> Password </label> <input required type = 'password' ng-model = 'regUser.password'>
-							<input class = 'btn waves-effect waves-light teal lighten-2' type = 'submit' ng-click = 'userRegister(regUser)'>
+							<input class = 'btn waves-effect waves-light teal lighten-2' type = 'submit' ng-click = 'userRegister(regUser)'><p style='display: inline; margin-left: 30px; color: red;'>{{loginError}}</p>
 						</form>
 					</div>
 				</div>
@@ -21,7 +21,7 @@
 						<form>
 							<label> Email </label> <input required type = 'text' ng-model = 'loginUser.email'>
 							<label> Password </label> <input required type = 'password' ng-model = 'loginUser.password'>
-							<input class = 'btn waves-effect waves-light teal lighten-2' type = 'submit' ng-click = 'userLogin(loginUser)'>
+							<input class = 'btn waves-effect waves-light teal lighten-2' type = 'submit' ng-click = 'userLogin(loginUser)'><p style='display: inline; margin-left: 30px; color: red;'>{{loginError}}</p>
 						</form>
 					</div>
 				</div>

@@ -18,9 +18,16 @@ roomies.controller('allTaskController', function ($scope, $route, $window, $loca
 			$scope.newUserShowing = false;
 			console.log('timing out');
 			$scope.$apply()
-		}, 5000);
+		}, 6000);
 	})
 	socketFactory.on('newTask', function (var1, var2, var3){
+		taskFactory.getRoomById($localStorage.room, function (data){
+			$scope.tasks = data.tasks;
+			$scope.users = data.users;
+			$scope.room = data;
+		})
+	})
+	socketFactory.on('getTaskDeletedOrCompleted', function (var1){
 		taskFactory.getRoomById($localStorage.room, function (data){
 			$scope.tasks = data.tasks;
 			$scope.users = data.users;
@@ -60,7 +67,7 @@ roomies.controller('allTaskController', function ($scope, $route, $window, $loca
 		taskFactory.removeTask(task, function (data){
 			if (data){
 				$scope.tasks.splice($scope.tasks.indexOf(task), 1);
-				socketFactory.emit('')
+				socketFactory.emit('taskDeletedOrCompleted');
 			}
 		})
 	}

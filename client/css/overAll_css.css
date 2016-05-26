@@ -61,10 +61,17 @@ td p {
 	display: inline-block;
 }
 .notifications{
+	text-align: center;
+	color: white;
+	padding: 15px 0px;
 	border-radius: 5px;
 	border-width: 1px;
 	border-style: solid;
-	border-color: black;
+	border-color: #4db6ac;
+	background-color: #4db6ac;
+	display: block;
+}
+.notifications p {
 }
 .notifications.ng-enter {
 	transition: 0.5s linear all;
@@ -74,7 +81,7 @@ td p {
 	opacity: 1;
 }
 .notifications.ng-leave {
-	transition: 0.5s linear all;
+	transition: 1.5s linear all;
 	opacity: 1;
 }
 .notifications.ng-leave.ng-leave-active {

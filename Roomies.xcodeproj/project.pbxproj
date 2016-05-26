@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6A76D42D56B1889E1DB91702 /* Pods_Roomies.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B113544DAFB8D28CD006D7D /* Pods_Roomies.framework */; };
 		7089E0A01CEFBF6100485CD4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7089E09F1CEFBF6100485CD4 /* AppDelegate.swift */; };
 		7089E0A21CEFBF6100485CD4 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7089E0A11CEFBF6100485CD4 /* LoginViewController.swift */; };
 		7089E0A51CEFBF6100485CD4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7089E0A31CEFBF6100485CD4 /* Main.storyboard */; };
@@ -26,6 +27,8 @@
 		70C9FA631CF3B3BB00E1801F /* NewTaskViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C9FA621CF3B3BB00E1801F /* NewTaskViewControllerDelegate.swift */; };
 		70C9FA651CF4DD6D00E1801F /* MyTasksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C9FA641CF4DD6D00E1801F /* MyTasksViewController.swift */; };
 		70C9FA671CF4F18100E1801F /* TaskDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C9FA661CF4F18100E1801F /* TaskDetailsViewController.swift */; };
+		9E29EDC65063E62E8F477A7E /* Pods_RoomiesUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5397E85D8AA695061FA7A8E /* Pods_RoomiesUITests.framework */; };
+		A68242771CF6D2AA00073764 /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68242761CF6D2AA00073764 /* MessagesViewController.swift */; };
 		A688D5B81CF39202007E3D11 /* NSCharacterSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A688D5A11CF39202007E3D11 /* NSCharacterSet.swift */; };
 		A688D5B91CF39202007E3D11 /* SocketAckEmitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A688D5A21CF39202007E3D11 /* SocketAckEmitter.swift */; };
 		A688D5BA1CF39202007E3D11 /* SocketAckManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A688D5A31CF39202007E3D11 /* SocketAckManager.swift */; };
@@ -50,6 +53,7 @@
 		A688D5CD1CF39202007E3D11 /* SwiftRegex.swift in Sources */ = {isa = PBXBuildFile; fileRef = A688D5B61CF39202007E3D11 /* SwiftRegex.swift */; };
 		A688D5CE1CF39202007E3D11 /* WebSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = A688D5B71CF39202007E3D11 /* WebSocket.swift */; };
 		A688D5D01CF39224007E3D11 /* SocketIOManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A688D5CF1CF39224007E3D11 /* SocketIOManager.swift */; };
+		CF6F4F7BFE2AC124F8ADAAFD /* Pods_RoomiesTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C13C467F7BBA1F10FAACEE4 /* Pods_RoomiesTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +74,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		34E672E8D07640894578F340 /* Pods-RoomiesTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RoomiesTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RoomiesTests/Pods-RoomiesTests.debug.xcconfig"; sourceTree = "<group>"; };
+		3C13C467F7BBA1F10FAACEE4 /* Pods_RoomiesTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RoomiesTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		460CFC11264908C79FA6C87D /* Pods-Roomies.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Roomies.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Roomies/Pods-Roomies.debug.xcconfig"; sourceTree = "<group>"; };
+		46928A10E04D81B83BE6EB7E /* Pods-RoomiesUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RoomiesUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RoomiesUITests/Pods-RoomiesUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		5EBDEE3FB6622D26AD9C71E1 /* Pods-RoomiesUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RoomiesUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-RoomiesUITests/Pods-RoomiesUITests.release.xcconfig"; sourceTree = "<group>"; };
+		6B113544DAFB8D28CD006D7D /* Pods_Roomies.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Roomies.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7089E09C1CEFBF6100485CD4 /* Roomies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Roomies.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7089E09F1CEFBF6100485CD4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7089E0A11CEFBF6100485CD4 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -95,6 +105,8 @@
 		70C9FA621CF3B3BB00E1801F /* NewTaskViewControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewTaskViewControllerDelegate.swift; sourceTree = "<group>"; };
 		70C9FA641CF4DD6D00E1801F /* MyTasksViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyTasksViewController.swift; sourceTree = "<group>"; };
 		70C9FA661CF4F18100E1801F /* TaskDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskDetailsViewController.swift; sourceTree = "<group>"; };
+		A68242721CF6D20E00073764 /* Roomies-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Roomies-Bridging-Header.h"; sourceTree = "<group>"; };
+		A68242761CF6D2AA00073764 /* MessagesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
 		A688D5A11CF39202007E3D11 /* NSCharacterSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSCharacterSet.swift; sourceTree = "<group>"; };
 		A688D5A21CF39202007E3D11 /* SocketAckEmitter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketAckEmitter.swift; sourceTree = "<group>"; };
 		A688D5A31CF39202007E3D11 /* SocketAckManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketAckManager.swift; sourceTree = "<group>"; };
@@ -119,6 +131,9 @@
 		A688D5B61CF39202007E3D11 /* SwiftRegex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftRegex.swift; sourceTree = "<group>"; };
 		A688D5B71CF39202007E3D11 /* WebSocket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebSocket.swift; sourceTree = "<group>"; };
 		A688D5CF1CF39224007E3D11 /* SocketIOManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketIOManager.swift; sourceTree = "<group>"; };
+		CE2D0F2247121F8BBEF925F7 /* Pods-RoomiesTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RoomiesTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-RoomiesTests/Pods-RoomiesTests.release.xcconfig"; sourceTree = "<group>"; };
+		E5397E85D8AA695061FA7A8E /* Pods_RoomiesUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RoomiesUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FCD591CD5B8797E7F1427C5F /* Pods-Roomies.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Roomies.release.xcconfig"; path = "Pods/Target Support Files/Pods-Roomies/Pods-Roomies.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +141,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6A76D42D56B1889E1DB91702 /* Pods_Roomies.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -133,6 +149,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CF6F4F7BFE2AC124F8ADAAFD /* Pods_RoomiesTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -140,6 +157,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9E29EDC65063E62E8F477A7E /* Pods_RoomiesUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -154,6 +172,8 @@
 				7089E0B31CEFBF6100485CD4 /* RoomiesTests */,
 				7089E0BE1CEFBF6200485CD4 /* RoomiesUITests */,
 				7089E09D1CEFBF6100485CD4 /* Products */,
+				8F6E0C023C5A3BAC82523DDE /* Pods */,
+				A3605047834211AE67715576 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -175,6 +195,7 @@
 				A688D5CF1CF39224007E3D11 /* SocketIOManager.swift */,
 				7089E0A11CEFBF6100485CD4 /* LoginViewController.swift */,
 				7089E0DB1CF017EE00485CD4 /* TaskViewController.swift */,
+				A68242761CF6D2AA00073764 /* MessagesViewController.swift */,
 				70C9FA641CF4DD6D00E1801F /* MyTasksViewController.swift */,
 				70C9FA661CF4F18100E1801F /* TaskDetailsViewController.swift */,
 				70C9FA601CF38CDD00E1801F /* NewTaskViewController.swift */,
@@ -189,6 +210,7 @@
 				7089E0A61CEFBF6100485CD4 /* Assets.xcassets */,
 				7089E0A81CEFBF6100485CD4 /* LaunchScreen.storyboard */,
 				7089E0AB1CEFBF6100485CD4 /* Info.plist */,
+				A68242721CF6D20E00073764 /* Roomies-Bridging-Header.h */,
 			);
 			path = Roomies;
 			sourceTree = "<group>";
@@ -209,6 +231,29 @@
 				7089E0C11CEFBF6200485CD4 /* Info.plist */,
 			);
 			path = RoomiesUITests;
+			sourceTree = "<group>";
+		};
+		8F6E0C023C5A3BAC82523DDE /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				460CFC11264908C79FA6C87D /* Pods-Roomies.debug.xcconfig */,
+				FCD591CD5B8797E7F1427C5F /* Pods-Roomies.release.xcconfig */,
+				34E672E8D07640894578F340 /* Pods-RoomiesTests.debug.xcconfig */,
+				CE2D0F2247121F8BBEF925F7 /* Pods-RoomiesTests.release.xcconfig */,
+				46928A10E04D81B83BE6EB7E /* Pods-RoomiesUITests.debug.xcconfig */,
+				5EBDEE3FB6622D26AD9C71E1 /* Pods-RoomiesUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		A3605047834211AE67715576 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6B113544DAFB8D28CD006D7D /* Pods_Roomies.framework */,
+				3C13C467F7BBA1F10FAACEE4 /* Pods_RoomiesTests.framework */,
+				E5397E85D8AA695061FA7A8E /* Pods_RoomiesUITests.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		A688D5A01CF39202007E3D11 /* Source */ = {
@@ -248,9 +293,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7089E0C41CEFBF6200485CD4 /* Build configuration list for PBXNativeTarget "Roomies" */;
 			buildPhases = (
+				951B72C02E9D5F41AA034152 /* 📦 Check Pods Manifest.lock */,
 				7089E0981CEFBF6100485CD4 /* Sources */,
 				7089E0991CEFBF6100485CD4 /* Frameworks */,
 				7089E09A1CEFBF6100485CD4 /* Resources */,
+				2D225111D656C2FEB2A3997E /* 📦 Embed Pods Frameworks */,
+				46148D97DF8DF609E5DDA9EC /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -265,9 +313,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7089E0C71CEFBF6200485CD4 /* Build configuration list for PBXNativeTarget "RoomiesTests" */;
 			buildPhases = (
+				DBE0951DEAD2972483DFBAFB /* 📦 Check Pods Manifest.lock */,
 				7089E0AC1CEFBF6100485CD4 /* Sources */,
 				7089E0AD1CEFBF6100485CD4 /* Frameworks */,
 				7089E0AE1CEFBF6100485CD4 /* Resources */,
+				BAF80ABB5E402C09ADB6AD5E /* 📦 Embed Pods Frameworks */,
+				27621C76B8D2AD0FE9265290 /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -283,9 +334,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7089E0CA1CEFBF6200485CD4 /* Build configuration list for PBXNativeTarget "RoomiesUITests" */;
 			buildPhases = (
+				B25CFAE416BEFCA77A033F21 /* 📦 Check Pods Manifest.lock */,
 				7089E0B71CEFBF6200485CD4 /* Sources */,
 				7089E0B81CEFBF6200485CD4 /* Frameworks */,
 				7089E0B91CEFBF6200485CD4 /* Resources */,
+				3775F3E1E83041CBBAEF6C65 /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -367,6 +420,129 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		27621C76B8D2AD0FE9265290 /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RoomiesTests/Pods-RoomiesTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2D225111D656C2FEB2A3997E /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Roomies/Pods-Roomies-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3775F3E1E83041CBBAEF6C65 /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RoomiesUITests/Pods-RoomiesUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		46148D97DF8DF609E5DDA9EC /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Roomies/Pods-Roomies-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		951B72C02E9D5F41AA034152 /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		B25CFAE416BEFCA77A033F21 /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		BAF80ABB5E402C09ADB6AD5E /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RoomiesTests/Pods-RoomiesTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DBE0951DEAD2972483DFBAFB /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		7089E0981CEFBF6100485CD4 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -387,6 +563,7 @@
 				A688D5BB1CF39202007E3D11 /* SocketAnyEvent.swift in Sources */,
 				7089E0CE1CEFE23800485CD4 /* UserModel.swift in Sources */,
 				A688D5BA1CF39202007E3D11 /* SocketAckManager.swift in Sources */,
+				A68242771CF6D2AA00073764 /* MessagesViewController.swift in Sources */,
 				A688D5C81CF39202007E3D11 /* SocketPacket.swift in Sources */,
 				A688D5C31CF39202007E3D11 /* SocketIOClient.swift in Sources */,
 				A688D5C11CF39202007E3D11 /* SocketEngineWebsocket.swift in Sources */,
@@ -551,28 +728,36 @@
 		};
 		7089E0C51CEFBF6200485CD4 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 460CFC11264908C79FA6C87D /* Pods-Roomies.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = Roomies/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.abarlowcodes.Roomies;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Roomies/Roomies-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		7089E0C61CEFBF6200485CD4 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FCD591CD5B8797E7F1427C5F /* Pods-Roomies.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = Roomies/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.abarlowcodes.Roomies;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Roomies/Roomies-Bridging-Header.h";
 			};
 			name = Release;
 		};
 		7089E0C81CEFBF6200485CD4 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 34E672E8D07640894578F340 /* Pods-RoomiesTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = RoomiesTests/Info.plist;
@@ -585,6 +770,7 @@
 		};
 		7089E0C91CEFBF6200485CD4 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CE2D0F2247121F8BBEF925F7 /* Pods-RoomiesTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = RoomiesTests/Info.plist;
@@ -597,6 +783,7 @@
 		};
 		7089E0CB1CEFBF6200485CD4 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 46928A10E04D81B83BE6EB7E /* Pods-RoomiesUITests.debug.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = RoomiesUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -608,6 +795,7 @@
 		};
 		7089E0CC1CEFBF6200485CD4 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5EBDEE3FB6622D26AD9C71E1 /* Pods-RoomiesUITests.release.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = RoomiesUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";

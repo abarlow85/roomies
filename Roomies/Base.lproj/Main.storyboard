@@ -862,6 +862,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="SFe-ma-g0c" kind="relationship" relationship="viewControllers" id="yRl-uo-65h"/>
+                        <segue destination="meO-td-ctU" kind="relationship" relationship="viewControllers" id="srN-20-7c0"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xHu-Xi-XGH" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -886,6 +887,44 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f6z-k9-Y93" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3887" y="2940"/>
+        </scene>
+        <!--Task Messages-->
+        <scene sceneID="5Rf-eg-Rnf">
+            <objects>
+                <viewController id="zCR-f9-Ao4" customClass="MessagesViewController" customModule="Roomies" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="td0-p4-1b9"/>
+                        <viewControllerLayoutGuide type="bottom" id="R2k-Gw-0pI"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="VA7-xS-C6e">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Task Messages" id="uyq-qh-H9l"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="w3X-Af-0Q3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4665" y="3623"/>
+        </scene>
+        <!--Task Messages-->
+        <scene sceneID="h2e-Nn-AeH">
+            <objects>
+                <navigationController title="Task Messages" automaticallyAdjustsScrollViewInsets="NO" id="meO-td-ctU" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="7gh-Rp-gim"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="GXw-No-IXQ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="zCR-f9-Ao4" kind="relationship" relationship="rootViewController" id="4DH-CR-2tD"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="789-fk-Psp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3887" y="3623"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>

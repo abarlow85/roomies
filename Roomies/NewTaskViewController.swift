@@ -61,7 +61,7 @@ class NewTaskViewController: UIViewController, UITableViewDataSource, UITableVie
         
         let taskData = NSMutableDictionary()
         
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
         let fromDate = dateFormatter.stringFromDate(newTaskDate.date)
         
         taskData["objective"] = newTaskText.text!

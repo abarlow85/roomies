@@ -1,4 +1,4 @@
-roomies.controller('taskDetailsController', function ($scope, $location, $localStorage, taskFactory, messageFactory){
+roomies.controller('taskDetailsController', function ($scope, $location, $localStorage, taskFactory, messageFactory, socketFactory){
 	$scope.room = $localStorage.room;
 	$scope.currentUser = $localStorage.user;
 	$scope.currentTask = $localStorage.currentTask;

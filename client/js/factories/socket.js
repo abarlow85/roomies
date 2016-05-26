@@ -1,4 +1,4 @@
-roomies.factory('socketFactory', function ($rootScope){
+roomies.factory('socketFactory', function (){
 	// var socket = io.connect();
 	var socket = io.connect({'force new connection': true});
 	return {

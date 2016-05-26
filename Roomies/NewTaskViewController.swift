@@ -88,7 +88,7 @@ class NewTaskViewController: UIViewController, UITableViewDataSource, UITableVie
         
         let taskText = newTaskText.text!
         let taskDate = newTaskDate.date
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
         let stringDate: String = dateFormatter.stringFromDate(NSDate())
         SocketIOManager.sharedInstance.sendTaskAlert(stringDate, objective: taskText)
 //        scheduleLocalNotification(newTaskDate.date, withText: newTaskText.text!)

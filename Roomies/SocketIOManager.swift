@@ -68,7 +68,7 @@ class SocketIOManager: NSObject {
         }
 //        let taskUsers = task["users"] as! String
         let taskExpirationDate = task["expiration_date"] as! String
-        print("sending task")
+        print("sending task123")
         socket.emit("task", [taskObjective, taskUsers, taskExpirationDate])
 
     }
@@ -87,7 +87,7 @@ class SocketIOManager: NSObject {
             taskDictionary["objective"] = dataArray[0][0]
             taskDictionary["users"] = dataArray[0][1]
             taskDictionary["expiration_date"] = dataArray[0][2]
-            print("getting task")
+            print("getting task123")
 //            print(dataArray)
 //            let data = dataArray[0] as! String
             completionHandler(taskInfo: taskDictionary)
@@ -97,9 +97,10 @@ class SocketIOManager: NSObject {
 //    
     private func listenForOtherTasks() {
         socket.on("getNewTaskAlert") { (dataArray, socketAck) -> Void in
+            print(dataArray)
             var taskDictionary = [String: AnyObject]()
-            taskDictionary["date"] = dataArray[0][0]
-            taskDictionary["objective"] = dataArray[0][1]
+            taskDictionary["date"] = dataArray[0]
+            taskDictionary["objective"] = dataArray[1]
             NSNotificationCenter.defaultCenter().postNotificationName("newTaskWasAddedNotification", object: taskDictionary)
         }
         
@@ -108,7 +109,7 @@ class SocketIOManager: NSObject {
             taskDictionary["objective"] = dataArray[0][0]
             taskDictionary["users"] = dataArray[0][1]
             taskDictionary["expiration_date"] = dataArray[0][2]
-            print("getting task")
+            print("getting task456")
             NSNotificationCenter.defaultCenter().postNotificationName("TaskWasAddedNotification", object: taskDictionary)
         }
         

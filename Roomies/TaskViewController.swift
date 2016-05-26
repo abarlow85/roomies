@@ -332,7 +332,7 @@ class TaskViewController: UITableViewController, CancelButtonDelegate, NewTaskVi
 //            self.scrollToBottom()
             let dateString = date
             let dateFormatter = NSDateFormatter()
-            dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+            dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
             let dateFromString = dateFormatter.dateFromString(dateString as! String)
             
             for i in 0..<users.count {

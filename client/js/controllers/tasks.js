@@ -21,6 +21,7 @@ roomies.controller('allTaskController', function ($scope, $route, $window, $loca
 		}, 6000);
 	})
 	socketFactory.on('newTask', function (var1, var2, var3){
+		console.log("newTask Socket")
 		taskFactory.getRoomById($localStorage.room, function (data){
 			$scope.tasks = data.tasks;
 			$scope.users = data.users;
@@ -49,7 +50,7 @@ roomies.controller('allTaskController', function ($scope, $route, $window, $loca
 		}
 		var fullTask = {};
 		fullTask.objective = taskContent.objective;
-		var fulldate = taskContent.expiration_date + " " + taskContent.expiration_hour+':'+taskContent.expiration_minute + " " + taskContent.expiration_time;
+		var fulldate = taskContent.expiration_date + " " + taskContent.expiration_hour+':'+taskContent.expiration_minute;
 		console.log(fulldate);
 		fullTask.expiration_date = fulldate;
 		fullTask.users = taskContent.users;

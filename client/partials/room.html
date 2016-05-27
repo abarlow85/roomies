@@ -20,6 +20,10 @@
 						<th> Room Name </th>
 					</tr>
 				</thead>
+			</table>
+		</div>
+		<div class="row" style="height: 600px; overflow-y: scroll; white-space: nowrap;">
+			<table class='col s6'>
 				<tbody>
 					<tr ng-repeat = 'room in rooms | filter:filter | orderBy: "name"'>
 						<td>{{room.name}}</td>

@@ -49,6 +49,7 @@ roomies.controller('taskDetailsController', function ($scope, $location, $localS
 	socketFactory.on('emitNewMessage', function (dataArray){
 		taskFactory.getTaskById($localStorage.currentTask, function (data){
 			$scope.messages = data.messages;
+			updateScroll();
 		})
 	})
 	$scope.addMessage = function (message){
@@ -68,5 +69,10 @@ roomies.controller('taskDetailsController', function ($scope, $location, $localS
 				socketFactory.emit('newMessage', dataArray);
 			}
 		})
+	}
+
+	function updateScroll(){
+    	var element = document.getElementById("messageBox");
+    	element.scrollTop = element.scrollHeight;
 	}
 })

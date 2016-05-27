@@ -27,7 +27,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         if newUser {
             //User was in the register view but needs to log-in
             newUser = false
-            loginTextLabel.text = "Please Log-in"
+            loginTextLabel.text = "Please Login"
             errorTextLabel.hidden = true
             registerButtonLabel.setTitle("New Roommate?", forState: .Normal)
             nameTextField.hidden = true

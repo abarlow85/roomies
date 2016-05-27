@@ -156,8 +156,11 @@ class TaskViewController: UITableViewController, CancelButtonDelegate, NewTaskVi
         
         let users = roomTasks[indexPath.row]["users"] as! NSArray
         cell?.responsibleRoomiesLabel.text = stringifyResponsibleUsers(users)
+        cell?.responsibleRoomiesLabel.font = UIFont(name:"Roboto-Bold", size: 15.0)
         cell?.objectiveLabel.text = roomTasks[indexPath.row]["objective"] as? String
+        cell?.objectiveLabel.font = UIFont(name:"Roboto-Bold", size: 18.0)
         cell?.dueDateLabel.text = roomTasks[indexPath.row]["expiration_date"] as? String
+        cell?.dueDateLabel.font = UIFont(name:"Roboto-Bold", size: 12.0)
         
         let completed = self.roomTasks[indexPath.row]["completed"]! as! String
         if completed == "notcompleted" {
@@ -167,6 +170,7 @@ class TaskViewController: UITableViewController, CancelButtonDelegate, NewTaskVi
             attributeString.addAttribute(NSStrikethroughStyleAttributeName, value: 2, range: NSMakeRange(0, attributeString.length))
             cell?.objectiveLabel?.attributedText = attributeString;
             cell?.dueDateLabel.text = "Task completed"
+            cell?.dueDateLabel.font = UIFont(name:"Roboto-Bold", size: 10.0)
             
         }
         

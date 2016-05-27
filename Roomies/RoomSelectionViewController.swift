@@ -53,7 +53,9 @@ class RoomSelectionViewController: UITableViewController, CancelButtonDelegate {
             room = rooms[indexPath.row]
         }
         cell.textLabel?.text = "\(room["name"]!) at \(room["category"]!)"
+        cell.textLabel?.font = UIFont(name:"Roboto-Bold", size:20)
         cell.detailTextLabel?.text = room["category"] as? String
+        cell.detailTextLabel?.font = UIFont(name:"Roboto", size:20)
         return cell
     }
     
@@ -75,7 +77,7 @@ class RoomSelectionViewController: UITableViewController, CancelButtonDelegate {
     
     func filterContentForSearchText(searchText: String, scope: String = "All") {
         filteredRooms = rooms.filter { room in
-            return room["name"]!.lowercaseString.containsString(searchText.lowercaseString)
+            return room["category"]!.lowercaseString.containsString(searchText.lowercaseString) || room["name"]!.lowercaseString.containsString(searchText.lowercaseString)
         }
         tableView.reloadData()
     }

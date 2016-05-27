@@ -36,7 +36,9 @@ class TaskDetailsViewController: UIViewController, UITableViewDataSource, UITabl
                     self.prefs.setValue(self.taskdetails, forKey: "currentTaskView")
                     dispatch_async(dispatch_get_main_queue(), {
                         self.taskLabel.text = taskDescription
+                        self.taskLabel.font = UIFont(name: "Roboto-Bold", size: 24.0)
                         self.dueDateLabel.text = "Due Date: \(taskDue)"
+                        self.dueDateLabel.font = UIFont(name: "Roboto-Bold", size: 14.0)
                         self.userTableView.reloadData()
                     })
                     
@@ -56,7 +58,7 @@ class TaskDetailsViewController: UIViewController, UITableViewDataSource, UITabl
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = userTableView.dequeueReusableCellWithIdentifier("taskUsersCell")!
         cell.textLabel?.text =  users[indexPath.row]["name"] as? String
-        cell.textLabel?.font = UIFont(name: "Chalkduster", size: 17.0)
+        cell.textLabel?.font = UIFont(name: "Roboto-Bold", size: 20.0)
         cell.selectionStyle = .None
         cell.backgroundColor = UIColor(red:77/255.0, green:182/255.0, blue:172/255.0, alpha: 1.0)
         return cell

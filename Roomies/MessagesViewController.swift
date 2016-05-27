@@ -69,7 +69,7 @@ class MessagesViewController: JSQMessagesViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         checkForObserver()
-        title = "Task Messages"
+        title = "Messages"
         getMessages()
         setupBubbles()
         collectionView!.collectionViewLayout.incomingAvatarViewSize = CGSizeZero
@@ -86,22 +86,25 @@ class MessagesViewController: JSQMessagesViewController {
         return messages[indexPath.item]
     }
     
-//    override func collectionView(collectionView: JSQMessagesCollectionView!, attributedTextForMessageBubbleTopLabelAtIndexPath indexPath: NSIndexPath!) -> NSAttributedString! {
-//        
-//        let msg: JSQMessage = self.messages[indexPath.item]
-//        if (msg.senderId != self.senderId) {
-//            print("message details is: \(msg)")
-//            return NSAttributedString(string: msg.senderDisplayName)
-//        }
-//        else {
-//            return NSAttributedString(string: senderDisplayName)
-//        }
-//        
-//    }
-//    
-//    override func collectionView(collectionView: JSQMessagesCollectionView!, layout collectionViewLayout: JSQMessagesCollectionViewFlowLayout!, heightForCellTopLabelAtIndexPath indexPath: NSIndexPath!) -> CGFloat {
-//        return 2.0
-//    }
+    override func collectionView(collectionView: JSQMessagesCollectionView!, attributedTextForMessageBubbleTopLabelAtIndexPath indexPath: NSIndexPath!) -> NSAttributedString! {
+        
+        let msg: JSQMessage = self.messages[indexPath.item]
+        print("message details is: \(msg)")
+        if (msg.senderId != prefs.stringForKey("currentUser")!) {
+            return NSAttributedString(string: msg.senderDisplayName)
+        }
+        else {
+            return NSAttributedString(string: senderDisplayName)
+        }
+    }
+    
+    override func collectionView(collectionView: JSQMessagesCollectionView!, layout collectionViewLayout: JSQMessagesCollectionViewFlowLayout!, heightForMessageBubbleTopLabelAtIndexPath indexPath: NSIndexPath!) -> CGFloat {
+        let data = self.collectionView(self.collectionView, messageDataForItemAtIndexPath: indexPath)
+        if (self.senderDisplayName == data.senderDisplayName()) {
+            return 0.0
+        }
+        return kJSQMessagesCollectionViewCellLabelHeightDefault
+    }
     
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return messages.count

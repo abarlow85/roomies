@@ -64,7 +64,7 @@
 								    <option ng-selected = 'currentTask.expiration_min == 55' name='55' value = '55'>55</option>
 								    <option ng-selected = 'currentTask.expiration_min == 60' name='60' value = '60'>60</option>
 								</select>
-							    <p class = 'col s1'> &nbsp </p>
+							    <p class = 'col s1'> &nbsp; </p>
 							    <select required material-select class = 'col s2' ng-model = 'Task.expiration_time'>
 								    <option ng-selected = 'currentTask.expiration_hour < 13' name='AM' value = 'AM'>AM</option>
 								    <option ng-selected = 'currentTask.expiration_hour > 12' name='PM' value = 'PM'>PM</option>
@@ -97,7 +97,7 @@
 				<tbody>
 					<tr ng-repeat = 'message in messages'>
 						<td style="display: block; font-size: 0.7em; height: 10px;" ng-style="currentUser._id == message._user._id ? { 'float': 'right', 'display': 'none' } : { 'text-align' : 'left'}">{{message._user.name}}</td>
-						<td style="border-radius: 20px; padding: 5px; display: block; border: 1px solid black; word-wrap: break-word;" ng-style="currentUser._id == message._user._id ? { 'float': 'right', 'color' : 'white', 'background-color': 'blue' } : { 'float' : 'left', 'margin-left' : '10px', 'background-color': 'rgb(230, 230, 230)'}">{{message.content}}</td>
+						<td style="border-radius: 20px; padding: 5px 10px; display: block; word-wrap: break-word;" ng-style="currentUser._id == message._user._id ? { 'float': 'right', 'color' : 'white', 'background-color': '#4187fd' } : { 'float' : 'left', 'margin-left' : '10px', 'background-color': 'rgb(230, 230, 230)'}">{{message.content}}</td>
 					</tr>
 				</tbody>
 			</table>

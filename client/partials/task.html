@@ -84,21 +84,20 @@
 			</form>
 		</div>
 		<div class= 'row'>
-			<table class = 'col s12'>
+			<table class = 'col s6'>
 				<thead>
-					<tr>
-						<th> Comment </th>
-						<th> User </th>
+					<tr >
+						<th style='text-align: center;'> Messages </th>
 					</tr>
 				</thead>
 			</table>
 		</div>
 		<div class = 'row custom2'>
-			<table class = 'col s12'>
+			<table class = 'col s6'>
 				<tbody>
 					<tr ng-repeat = 'message in messages'>
-						<td>{{message.content}}</td>
-						<td>{{message._user.name}}</td>
+						<td style="display: block; font-size: 0.7em; height: 10px;" ng-style="currentUser._id == message._user._id ? { 'float': 'right', 'display': 'none' } : { 'text-align' : 'left'}">{{message._user.name}}</td>
+						<td style="border-radius: 20px; padding: 5px; display: block; border: 1px solid black; word-wrap: break-word;" ng-style="currentUser._id == message._user._id ? { 'float': 'right', 'color' : 'white', 'background-color': 'blue' } : { 'float' : 'left', 'margin-left' : '10px', 'background-color': 'rgb(230, 230, 230)'}">{{message.content}}</td>
 					</tr>
 				</tbody>
 			</table>

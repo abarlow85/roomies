@@ -82,11 +82,11 @@ roomies.controller('allTaskController', function ($scope, $route, $window, $loca
 		fullTask.users = taskContent.users;
 		fullTask._room = $scope.room;
 		taskFactory.createTask(fullTask, function (data){
+			modalDismiss();
 			if (data){
 				$scope.tasks.push(data);
 				$scope.newTask = {};
 				socketFactory.emit('task', [fullTask.objective, fullTask.users, fullTask.expiration_date]);
-				modalDismiss();
 			}
 		})
 	}

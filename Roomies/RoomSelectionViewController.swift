@@ -27,8 +27,8 @@ class RoomSelectionViewController: UITableViewController, CancelButtonDelegate {
     
     
     override func viewDidLoad() {
-        print("you are at select room page")
         super.viewDidLoad()
+        self.navigationController?.navigationBar.barTintColor = UIColor(red: 77.0/255.0, green: 182.0/255.0, blue: 172.0/255.0, alpha: 1.0)
         searchController.searchResultsUpdater = self
         searchController.dimsBackgroundDuringPresentation = false
         definesPresentationContext = true

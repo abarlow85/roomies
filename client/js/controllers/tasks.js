@@ -99,6 +99,7 @@ roomies.controller('allTaskController', function ($scope, $route, $window, $loca
 			if (data){
 				console.log(data);
 				// console.log($scope.tasks.indexOf(taskId));
+				data.expiration_date = "Completed";
 				$scope.tasks[$scope.tasks.indexOf(taskId)] = data;
 				// console.log($scope.tasks[$scope.tasks.indexOf(taskId)]);
 			}

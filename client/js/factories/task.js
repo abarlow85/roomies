@@ -28,6 +28,7 @@ roomies.factory('taskFactory', function ($http){
 		task.expiration_date = info.expiration_date;
 		$http.post('/tasks/update/' + paramId, task).success(function (output){
 			if (output){
+				console.log(output);
 				callback(output)
 			}
 		})

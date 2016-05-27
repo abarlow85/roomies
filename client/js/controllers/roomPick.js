@@ -15,11 +15,11 @@ roomies.controller('roomPickController', function ($scope, $route, $location, $l
 	})
 	$scope.addNewRoom = function (newRoom){
 		newRoom.user = $scope.user
+		modalDismiss();
 		roomFactory.addNewRoom(newRoom, function (data){
 			if (data){
 				$localStorage.login = true;
 				$localStorage.room = data._id;
-				modalDismiss();
 				$location.path('/room/' + data._id)
 			}
 		})

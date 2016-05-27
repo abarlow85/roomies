@@ -58,6 +58,10 @@ class SocketIOManager: NSObject {
         }
     }
     
+    func sendUserEntry(user: NSMutableDictionary) {
+        socket.emit("userPickedRoom", user)
+    }
+    
     func sendTask(task: NSMutableDictionary) {
 //        print(task)
         let taskObjective = task["objective"] as! String

@@ -141,6 +141,9 @@ class MessagesViewController: JSQMessagesViewController {
     
     private func setupBubbles() {
         self.navigationController?.navigationBar.barTintColor = UIColor(red: 77.0/255.0, green: 182.0/255.0, blue: 172.0/255.0, alpha: 1.0)
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor(), NSFontAttributeName: UIFont(name:"Roboto-Bold", size:20)!]
+        collectionView.backgroundView = UIImageView(image: UIImage(named: "room"))
+        self.inputToolbar.contentView.leftBarButtonItem = nil
         let bubbleImageFactory = JSQMessagesBubbleImageFactory()
         outgoingBubbleImageView = bubbleImageFactory.outgoingMessagesBubbleImageWithColor(UIColor.jsq_messageBubbleBlueColor())
         incomingBubbleImageView = bubbleImageFactory.incomingMessagesBubbleImageWithColor(UIColor.jsq_messageBubbleLightGrayColor())

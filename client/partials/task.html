@@ -1,12 +1,11 @@
 <div ng-controller = 'taskDetailsController'>
 	<h2 class = 'viewbar'> {{currentTask.objective}}</h2>
 	<button class="viewbar newModal-trigger btn waves-effect waves-light teal lighten-2" href="#modal1" modal dismissible= 'true'>Update Task</button>
-	<hr>
 	<div class ='modal' id="modal1">
 		<div class= 'modal-content'>
 				<form>
 						<label>Objective </label>
-						<input type = 'text' ng-model = 'Task.objective' ng-value = 'currentTask.objective'>
+						<input type = 'text' ng-init='Task.objective = currentTask.objective' ng-model = 'Task.objective' ng-value = 'currentTask.objective' >
 						<label for= 'inputDate'> Expiration Date </label>
 							<input input-date
 						    type="text"
@@ -31,10 +30,11 @@
 						    on-open="onOpen()"
 						    on-close="onClose()"
 						    on-set="onSet()"
-						    on-stop="onStop()" ng-value = 'currentTask.expiration_day' />
+						    on-stop="onStop()" ng-value = 'currentTask.expiration_day'
+						    ng-init = 'Task.expiration_date = currentTask.expiration_day' />
 						   	<label>Time</label>
 						   	<div class= 'row'>
-							    <select required material-select class = 'col s2' ng-model = 'Task.expiration_hour'>
+							    <select required material-select class = 'col s2' ng-init = 'Task.expiration_hour = currentTask.expiration_hour' ng-model = 'Task.expiration_hour'>
 								    <option ng-selected = 'currentTask.expiration_hour == 01 || currentTask.expiration_hour == 13' name='1' value = '01'>01</option>
 								    <option ng-selected = 'currentTask.expiration_hour == 02 || currentTask.expiration_hour == 14' name='2' value = '02'>02</option>
 								    <option ng-selected = 'currentTask.expiration_hour == 03 || currentTask.expiration_hour == 15' name='3' value = '03'>03</option>
@@ -49,7 +49,7 @@
 								    <option ng-selected = 'currentTask.expiration_hour == 12 || currentTask.expiration_hour == 24' name='12' value = '12'>12</option>
 								</select>
 							    <p class = 'col s1'> : </p>
-							    <select required material-select class = 'col s2' ng-model = 'Task.expiration_minute'>
+							    <select  ng-init = 'Task.expiration_minute = currentTask.expiration_min' required material-select class = 'col s2' ng-model = 'Task.expiration_minute'>
 							    	<option ng-selected = 'currentTask.expiration_min == 00' name='00' value = '00'>00</option>
 								    <option ng-selected = 'currentTask.expiration_min == 05' name='05' value = '05'>05</option>
 								    <option ng-selected = 'currentTask.expiration_min == 10' name='10' value = '10'>10</option>
@@ -65,7 +65,7 @@
 								    <option ng-selected = 'currentTask.expiration_min == 60' name='60' value = '60'>60</option>
 								</select>
 							    <p class = 'col s1'> &nbsp; </p>
-							    <select required material-select class = 'col s2' ng-model = 'Task.expiration_time'>
+							    <select ng-init = "Task.expiration_time = currentTask.expiration_timeOfDay" required material-select class = 'col s2' ng-model = 'Task.expiration_time'>
 								    <option ng-selected = 'currentTask.expiration_hour < 13' name='AM' value = 'AM'>AM</option>
 								    <option ng-selected = 'currentTask.expiration_hour > 12' name='PM' value = 'PM'>PM</option>
 								</select>

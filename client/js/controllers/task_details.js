@@ -5,6 +5,12 @@ roomies.controller('taskDetailsController', function ($scope, $location, $localS
 	$scope.currentTask.expiration_day = $scope.currentTask.expiration_date.slice(0,10);
 	$scope.currentTask.expiration_hour = $scope.currentTask.expiration_date.slice(11,13);
 	$scope.currentTask.expiration_min = $scope.currentTask.expiration_date.slice(14,16);
+	if(parseInt($scope.expiration_hour) > 11){
+		$scope.currentTask.expiration_timeOfDay = "PM"
+	}
+	else{
+		$scope.currentTask.expiration_timeOfDay = "AM";
+	}
 	$scope.messages = [];
 	
 	function modalDismiss(){
@@ -18,6 +24,8 @@ roomies.controller('taskDetailsController', function ($scope, $location, $localS
 		$location.path('/room/' + $scope.room);	
 	}
 	$scope.updateTask = function (taskContent, taskId){
+		console.log(taskContent);
+		console.log($scope.Task);
 		if (taskContent.expiration_time == 'PM' && taskContent.expiration_hour != '12'){
 			var parsed = parseInt(taskContent.expiration_hour);
 			parsed += 12;

@@ -78,6 +78,7 @@ roomies.controller('allTaskController', function ($scope, $route, $window, $loca
 		modal[0].style.display = "none";
 		var overlay = angular.element(document.getElementsByClassName('lean-overlay'))
 		overlay[0].style.display = "none";
+		console.log('dismissing');
 
 	}
 	$scope.modalShow = function () {

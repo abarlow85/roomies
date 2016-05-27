@@ -64,7 +64,7 @@
 								    <option ng-selected = 'currentTask.expiration_min == 55' name='55' value = '55'>55</option>
 								    <option ng-selected = 'currentTask.expiration_min == 60' name='60' value = '60'>60</option>
 								</select>
-							    <p class = 'col s1'> &nbsp </p>
+							    <p class = 'col s1'> &nbsp; </p>
 							    <select required material-select class = 'col s2' ng-model = 'Task.expiration_time'>
 								    <option ng-selected = 'currentTask.expiration_hour < 13' name='AM' value = 'AM'>AM</option>
 								    <option ng-selected = 'currentTask.expiration_hour > 12' name='PM' value = 'PM'>PM</option>
@@ -92,7 +92,7 @@
 				</thead>
 			</table>
 		</div>
-		<div class = 'row custom2'>
+		<div id="messageBox" class = 'row custom2' style="height: 400px; overflow-y: scroll; white-space: nowrap;">
 			<table class = 'col s6'>
 				<tbody>
 					<tr ng-repeat = 'message in messages'>

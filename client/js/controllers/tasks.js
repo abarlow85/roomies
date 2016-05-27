@@ -31,13 +31,13 @@ roomies.controller('allTaskController', function ($scope, $route, $window, $loca
 			$scope.tasks = data.tasks;
 			$scope.users = data.users;
 			$scope.room = data;
-			var taskUsers = dataArray[1]
-			for (user in taskUsers) {
-				console.log(taskUsers);
-				if (taskUsers[user]._id == $scope.currentUser._id) {
-					alert('You have a new task:\n' + dataArray[0]);
-				}
-			}
+			// var taskUsers = dataArray[1]
+			// for (user in taskUsers) {
+			// 	console.log(taskUsers);
+			// 	if (taskUsers[user]._id == $scope.currentUser._id) {
+			// 		alert('You have a new task:\n' + dataArray[0]);
+			// 	}
+			// }
 		})
 	})
 	socketFactory.on('getTaskDeletedOrCompleted', function (var1){

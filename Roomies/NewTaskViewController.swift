@@ -16,10 +16,10 @@ class NewTaskViewController: UIViewController, UITableViewDataSource, UITableVie
     let dateFormatter = NSDateFormatter()
     var userArray: NSArray?
     var responsibleUsers = [String]()
-    
+    var roomTasks = [NSMutableDictionary]()
     
     @IBOutlet weak var newTaskText: UITextField!
-    
+
     @IBOutlet weak var newTaskDate: UIDatePicker!
     
     @IBOutlet weak var userTableView: UITableView!
@@ -125,7 +125,25 @@ class NewTaskViewController: UIViewController, UITableViewDataSource, UITableVie
         return true
     }
     
-
+    func getTasksForRoom(room:String) {
+        TaskModel.getTasksForRoom(room) { data, response, error in
+            do {
+                if let roomData = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as? NSMutableDictionary {
+                    let tasks = roomData["tasks"] as! [NSMutableDictionary]
+                    self.roomTasks = tasks
+                    let users = roomData["users"] as! NSArray
+                    self.userArray = users
+                    //                    print(roomData["users"]!)
+                    dispatch_async(dispatch_get_main_queue(), {
+                        self.userTableView.reloadData()
+                    })
+                }
+            } catch {
+                print("Something went wrong")
+            }
+        }
+        
+    }
     
     
     

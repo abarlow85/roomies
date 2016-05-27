@@ -43,6 +43,8 @@ class MyTasksViewController: UITableViewController, CancelButtonDelegate, NewTas
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.barTintColor = UIColor(red: 77.0/255.0, green: 182.0/255.0, blue: 172.0/255.0, alpha: 1.0)
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+        tableView.backgroundView = UIImageView(image: UIImage(named: "room"))
         let room = prefs.stringForKey("currentRoom")!
         let currentUser = prefs.stringForKey("currentUser")!
         getUserTasksForRoom(room, user: currentUser)

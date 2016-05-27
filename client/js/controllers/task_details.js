@@ -42,9 +42,9 @@ roomies.controller('taskDetailsController', function ($scope, $location, $localS
 		console.log(fulldate);
 		fullTask.expiration_date = fulldate;
 		fullTask._id = taskId._id;
+		modalDismiss();
 		taskFactory.updateTask(fullTask, function (data){
 			if (data){
-				modalDismiss();
 				$location.path('/room/' + data._id)
 				socketFactory.emit('task');
 			}

@@ -73,6 +73,11 @@ a.navLink {
 td p {
 	display: inline-block;
 }
+.completed{
+	color: gray;
+	 text-decoration: line-through;
+}
+
 .notifications{
 	text-align: center;
 	color: white;

@@ -94,13 +94,15 @@ roomies.controller('allTaskController', function ($scope, $route, $window, $loca
 			}
 		})
 	}
-	// $scope.completeTask = function (taskId){
-	// 	taskFactory.completeTask(taskId, function (data){
-	// 		if (data){
-	// 			console.log(data);
-	// 			$scope.
-	// 		}
-	// 	})
-	// }
+	$scope.completeTask = function (taskId){
+		taskFactory.completeTask(taskId, function (data){
+			if (data){
+				console.log(data);
+				// console.log($scope.tasks.indexOf(taskId));
+				$scope.tasks[$scope.tasks.indexOf(taskId)] = data;
+				// console.log($scope.tasks[$scope.tasks.indexOf(taskId)]);
+			}
+		})
+	}
 
 })

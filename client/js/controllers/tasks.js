@@ -5,21 +5,39 @@ roomies.controller('allTaskController', function ($scope, $route, $window, $loca
 	$scope.users = [];
 	$scope.newUser = "";
 
-	socketFactory.on('userJoinedRoom', function (userName){
-		$scope.newUser = userName
+	socketFactory.on('userJoinedRoom', function (userObject){
+		console.log(userObject);
+		$scope.newUser = userObject.name
 		console.log($scope.newUser);
 		$scope.newUserShowing = true;
+		var userAlreadyExists = false;
+		for (user in $scope.users) {
+			if ($scope.users[user]._id == userObject._id) {
+				userAlreadyExists = true;
+			}
+		}
+		if (!userAlreadyExists) {
+			$scope.users.push(userObject)
+		}
+		$scope.$apply();
 		setTimeout(function () {
 			$scope.newUserShowing = false;
 			$scope.$apply();
 		}, 6000);
 	})
-	socketFactory.on('newTask', function (var1, var2, var3){
+	socketFactory.on('newTask', function (dataArray){
 		console.log("newTask Socket")
 		taskFactory.getRoomById($localStorage.room, function (data){
 			$scope.tasks = data.tasks;
 			$scope.users = data.users;
 			$scope.room = data;
+			var taskUsers = dataArray[1]
+			for (user in taskUsers) {
+				console.log(taskUsers);
+				if (taskUsers[user]._id == $scope.currentUser._id) {
+					alert('You have a new task:\n' + dataArray[0]);
+				}
+			}
 		})
 	})
 	socketFactory.on('getTaskDeletedOrCompleted', function (var1){

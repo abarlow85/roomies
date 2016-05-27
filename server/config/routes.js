@@ -24,7 +24,7 @@ module.exports = function(app, passport, server, http) {
 			})
 		})
 		socket.on('userPickedRoom', function (userObject){
-			socket.broadcast.emit('userJoinedRoom', userObject.name);
+			socket.broadcast.emit('userJoinedRoom', userObject);
 		})
 		// socket.on('subscribe', function(){
 		// 	users.subscribe(socket, data);

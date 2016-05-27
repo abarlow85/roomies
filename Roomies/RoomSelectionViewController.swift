@@ -17,6 +17,7 @@ extension RoomSelectionViewController: UISearchResultsUpdating {
 class RoomSelectionViewController: UITableViewController, CancelButtonDelegate {
     
     @IBOutlet weak var RoomSearchBar: UISearchBar!
+    @IBOutlet weak var menuButton: UIBarButtonItem!
     
     var filteredRooms = [NSMutableDictionary]()
     let prefs = NSUserDefaults.standardUserDefaults()
@@ -33,6 +34,11 @@ class RoomSelectionViewController: UITableViewController, CancelButtonDelegate {
         definesPresentationContext = true
         tableView.tableHeaderView = searchController.searchBar
         showAllRooms()
+        if self.revealViewController() != nil {
+            menuButton.target = self.revealViewController()
+            menuButton.action = "revealToggle:"
+            self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+        }
     }
     
     
@@ -92,9 +98,9 @@ class RoomSelectionViewController: UITableViewController, CancelButtonDelegate {
 //            controller.delegate = self
         } else {
 //            print("else")
-            let tabBarController = segue.destinationViewController as! UITabBarController
-            let navController = tabBarController.viewControllers![0] as! UINavigationController
-            let controller = navController.topViewController as! TaskViewController
+//            let tabBarController = segue.destinationViewController as! UIViewController
+//            let navController = tabBarController as! UINavigationController
+//            let controller = navController.topViewController as! TaskViewController
 //            controller.tabBarController?.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Room Selection", style: .Plain, target: controller, action: Selector(controller.backToRoomSelection()))
         }
     }

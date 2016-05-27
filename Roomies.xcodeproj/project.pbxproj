@@ -40,6 +40,9 @@
 		A616452D1CF7BDA700F94B98 /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A61645211CF7BDA700F94B98 /* Roboto-Regular.ttf */; };
 		A616452E1CF7BDA700F94B98 /* Roboto-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A61645221CF7BDA700F94B98 /* Roboto-Thin.ttf */; };
 		A616452F1CF7BDA700F94B98 /* Roboto-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A61645231CF7BDA700F94B98 /* Roboto-ThinItalic.ttf */; };
+		A61645341CF814B700F94B98 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A61645331CF814B700F94B98 /* SWRevealViewController.m */; };
+		A61645361CF8199B00F94B98 /* MenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A61645351CF8199B00F94B98 /* MenuController.swift */; };
+		A61645381CF8227900F94B98 /* NavButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A61645371CF8227900F94B98 /* NavButton.swift */; };
 		A68242771CF6D2AA00073764 /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68242761CF6D2AA00073764 /* MessagesViewController.swift */; };
 		A688D5B81CF39202007E3D11 /* NSCharacterSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A688D5A11CF39202007E3D11 /* NSCharacterSet.swift */; };
 		A688D5B91CF39202007E3D11 /* SocketAckEmitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A688D5A21CF39202007E3D11 /* SocketAckEmitter.swift */; };
@@ -130,6 +133,10 @@
 		A61645211CF7BDA700F94B98 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
 		A61645221CF7BDA700F94B98 /* Roboto-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Thin.ttf"; sourceTree = "<group>"; };
 		A61645231CF7BDA700F94B98 /* Roboto-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-ThinItalic.ttf"; sourceTree = "<group>"; };
+		A61645321CF814B700F94B98 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
+		A61645331CF814B700F94B98 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
+		A61645351CF8199B00F94B98 /* MenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuController.swift; sourceTree = "<group>"; };
+		A61645371CF8227900F94B98 /* NavButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavButton.swift; sourceTree = "<group>"; };
 		A68242721CF6D20E00073764 /* Roomies-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Roomies-Bridging-Header.h"; sourceTree = "<group>"; };
 		A68242761CF6D2AA00073764 /* MessagesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
 		A688D5A11CF39202007E3D11 /* NSCharacterSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSCharacterSet.swift; sourceTree = "<group>"; };
@@ -193,6 +200,7 @@
 		7089E0931CEFBF6100485CD4 = {
 			isa = PBXGroup;
 			children = (
+				A61645311CF8146100F94B98 /* SWRevealViewController */,
 				A61645301CF7BDBF00F94B98 /* Font */,
 				A688D5A01CF39202007E3D11 /* Source */,
 				7089E09E1CEFBF6100485CD4 /* Roomies */,
@@ -218,6 +226,8 @@
 			isa = PBXGroup;
 			children = (
 				7089E0A31CEFBF6100485CD4 /* Main.storyboard */,
+				A61645371CF8227900F94B98 /* NavButton.swift */,
+				A61645351CF8199B00F94B98 /* MenuController.swift */,
 				7089E09F1CEFBF6100485CD4 /* AppDelegate.swift */,
 				A688D5CF1CF39224007E3D11 /* SocketIOManager.swift */,
 				7089E0A11CEFBF6100485CD4 /* LoginViewController.swift */,
@@ -301,6 +311,15 @@
 				A61645231CF7BDA700F94B98 /* Roboto-ThinItalic.ttf */,
 			);
 			name = Font;
+			sourceTree = "<group>";
+		};
+		A61645311CF8146100F94B98 /* SWRevealViewController */ = {
+			isa = PBXGroup;
+			children = (
+				A61645321CF814B700F94B98 /* SWRevealViewController.h */,
+				A61645331CF814B700F94B98 /* SWRevealViewController.m */,
+			);
+			name = SWRevealViewController;
 			sourceTree = "<group>";
 		};
 		A688D5A01CF39202007E3D11 /* Source */ = {
@@ -609,6 +628,7 @@
 			files = (
 				A688D5B91CF39202007E3D11 /* SocketAckEmitter.swift in Sources */,
 				7089E0D41CEFEE9800485CD4 /* NewRoomViewController.swift in Sources */,
+				A61645341CF814B700F94B98 /* SWRevealViewController.m in Sources */,
 				7089E0A21CEFBF6100485CD4 /* LoginViewController.swift in Sources */,
 				A688D5CE1CF39202007E3D11 /* WebSocket.swift in Sources */,
 				A688D5C01CF39202007E3D11 /* SocketEngineSpec.swift in Sources */,
@@ -627,7 +647,9 @@
 				A688D5C31CF39202007E3D11 /* SocketIOClient.swift in Sources */,
 				A688D5C11CF39202007E3D11 /* SocketEngineWebsocket.swift in Sources */,
 				7089E0D21CEFE66800485CD4 /* RoomModel.swift in Sources */,
+				A61645381CF8227900F94B98 /* NavButton.swift in Sources */,
 				7089E0D01CEFE58E00485CD4 /* RoomSelectionViewController.swift in Sources */,
+				A61645361CF8199B00F94B98 /* MenuController.swift in Sources */,
 				A688D5C71CF39202007E3D11 /* SocketLogger.swift in Sources */,
 				A688D5BD1CF39202007E3D11 /* SocketEngineClient.swift in Sources */,
 				70C9FA651CF4DD6D00E1801F /* MyTasksViewController.swift in Sources */,

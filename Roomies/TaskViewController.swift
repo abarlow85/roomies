@@ -17,6 +17,8 @@ class TaskViewController: UITableViewController, CancelButtonDelegate, NewTaskVi
     var nickname: String!
     var observer: Bool = false
     
+    @IBOutlet weak var menuButton: UIBarButtonItem!
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         checkForObserver()
@@ -28,6 +30,11 @@ class TaskViewController: UITableViewController, CancelButtonDelegate, NewTaskVi
         super.viewDidLoad()
         checkForObserver()
         setupNotificationSettings()
+        if self.revealViewController() != nil {
+            menuButton.target = self.revealViewController()
+            menuButton.action = "revealToggle:"
+            self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+        }
     }
     
     func checkForObserver() {

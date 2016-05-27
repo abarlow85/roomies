@@ -3,3 +3,5 @@
 //
 #import <JSQMessagesViewController/JSQMessages.h>
 
+#import "SWRevealViewController.h"
+

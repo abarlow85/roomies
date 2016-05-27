@@ -25,6 +25,8 @@ class MyTasksViewController: UITableViewController, CancelButtonDelegate, NewTas
     var nickname: String!
     var observer = false
     
+    @IBOutlet weak var menuButton: UIBarButtonItem!
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         let room = prefs.stringForKey("currentRoom")!
@@ -40,7 +42,15 @@ class MyTasksViewController: UITableViewController, CancelButtonDelegate, NewTas
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let room = prefs.stringForKey("currentRoom")!
+        let currentUser = prefs.stringForKey("currentUser")!
+        getUserTasksForRoom(room, user: currentUser)
         checkForObserver()
+        if self.revealViewController() != nil {
+            menuButton.target = self.revealViewController()
+            menuButton.action = "revealToggle:"
+            self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+        }
     }
     
     override func viewDidAppear(animated: Bool) {

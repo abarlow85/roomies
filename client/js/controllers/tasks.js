@@ -11,7 +11,6 @@ roomies.controller('allTaskController', function ($scope, $route, $window, $loca
 		$scope.newUserShowing = true;
 		setTimeout(function () {
 			$scope.newUserShowing = false;
-			console.log('timing out');
 			$scope.$apply();
 		}, 6000);
 	})
@@ -25,6 +24,7 @@ roomies.controller('allTaskController', function ($scope, $route, $window, $loca
 	})
 	socketFactory.on('getTaskDeletedOrCompleted', function (var1){
 		taskFactory.getRoomById($localStorage.room, function (data){
+			taskCompletedCssUpdate(data);
 			$scope.tasks = data.tasks;
 			$scope.users = data.users;
 			$scope.room = data;
@@ -32,10 +32,19 @@ roomies.controller('allTaskController', function ($scope, $route, $window, $loca
 	})
 
 	taskFactory.getRoomById($localStorage.room, function (data){
+		taskCompletedCssUpdate(data);
 		$scope.tasks = data.tasks;
 		$scope.users = data.users;
 		$scope.room = data;
 	})
+	function taskCompletedCssUpdate(data) {
+		for (var i = 0; i < data.tasks.length; i ++){
+			console.log(data.tasks[i]);
+			if (data.tasks[i].completed == "completed"){
+				data.tasks[i].expiration_date = "Completed";
+			}
+		}
+	}
 	$scope.createTask = function (taskContent){
 		if (taskContent.expiration_time == 'PM' && taskContent.expiration_hour != '12'){
 			var parsed = parseInt(taskContent.expiration_hour);

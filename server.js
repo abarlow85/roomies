@@ -18,12 +18,8 @@ app.use(flash());
 require('./server/config/mongoose.js');
 require('./server/config/passport.js')(passport);
 
-app.set('port', (process.env.PORT || 1000));
-app.set('/', function (req, res){
-	res.send("<h1> Hello World </h1>");
-})
-var server = app.listen(app.get('port'), function(){
- console.log("listening on port ", app.get('port'));
-});
+var server = app.listen(1000, function() {
+ console.log('go to localhost:8000')
+};
 
 require('./server/config/routes.js')(app, passport, server, http);
